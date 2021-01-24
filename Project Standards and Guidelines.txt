@@ -1,0 +1,19 @@
+javascript
+-un archivo por funcionaliad, si el nombre del archivo esta conformadas por varias palabras separarlos por un punto "."
+-en la carpeta "police\public\assets\js\police\user\form" se encuentran todos los archivos JS en comun que se ultilizan en los formularios para crear y actualizar
+-en la carpeta "police\public\assets\js\police\user\list" se encuentran todos los archivos JS en comun que se ultilizan en los listado
+-si algun modulo tiene una funcionalidad unica se crea un carpeta y se guardan los archivos en ella
+
+rutas
+-las rutas ubicadas en  "police\config\routes.yaml" y en "police\src\XXXXXXX\Infrastructure\UserInterface\Routes\XXXX.yaml" de los modulos utiizar "-" para separar las palabras de la url
+ en los nombres de las rutas las palabras estan separadas por "_"
+	EJ:
+traffic_police_booth_create:(Nombre de ruta) 
+  path: /create (URL)
+  defaults: { _controller: App\Backoffice\TrafficPoliceBooth\Infrastructure\UserInterface\Web\TrafficPoliceBoothPostController}
+  methods:  [POST]
+
+Base de datos
+- No se utiliza id numericos autoincrementables, en su lugar se utiliza Uuid para no acoplarnos a ningún motor de base de datos
+
+
