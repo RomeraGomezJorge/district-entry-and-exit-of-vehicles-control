@@ -1,0 +1,252 @@
+{% extends 'backoffice/_shared/list.base.html.twig' %}
+{% block title %} Listado {{ sectionTtile }} {% endblock %}
+{% block page_title %} {{ sectionTtile }} {% endblock  page_title %}
+{% block buttonsOnTopRightOfATable %}
+    {{ parent() }}
+    <a href="{{ path(export_to_pdf_path) }}/page-{{ totalPage }}/order-{{ order }}-{{ orderBy }}/rows_per_page-{{ limit }}/{{ filters }}"
+       class="btn btn-dark  btn-round ml-auto float-right text-white mr-3"
+    >
+        Exportar
+        <span class=" ml-1 btn-label">
+            <i class="fas fa-download"></i>
+        </span>
+    </a>
+
+{% endblock %}
+{% block table %}
+    <div id="districtEntryAndExitOfVehiclesControls">
+        <table
+                class="display table table-striped table-hover dataTable"
+                role="grid"
+                aria-describedby="add-row_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting_{{ toggleSort }} d-none d-sm-table-cell">
+                    <a href="{{ path(list_path) }}/page-1/order-createAt-{{ toggleSort }}/rows_per_page-{{ limit }}/{{ filters }}">
+                        Fecha
+                    </a>
+                </th>
+                <th class=" d-none d-sm-table-cell">
+                    Pasajeros
+                </th>
+                <th class=" d-none d-sm-table-cell">
+                    Vehiculo
+                </th>
+                <th class=" d-none d-sm-table-cell">
+                    Viaje
+                </th>
+                <th class=" d-none d-sm-table-cell">
+                    Puesto
+                </th>
+                <th class="d-none d-sm-table-cell" style="width: 132.8px;">
+                    Acción
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for district_entry_and_exit_of_vehicle_control in district_entry_and_exit_of_vehicles_control %}
+                {# Vista Movil#}
+                <tr role="row" class="odd"
+                    id="css-selector-for-tr-that_contains-items-to-delete-{{ district_entry_and_exit_of_vehicle_control.id }}"
+                >
+
+                    <td class=" d-table-cell d-sm-none cursor-pointer"
+                        data-toggle="modal"
+                        data-target="#mobile-actions-modal"
+                        data-edit_path="{{ path(edit_path, {'id': district_entry_and_exit_of_vehicle_control.id}) }}"
+                        data-delete_path="{{ path(delete_path) }}"
+                        data-url_delete_confirmation_modal="{{ path(delete_confirmation_modal_path) }}"
+                        data-css_selector_to_handle_tr_style_that_contains_items_to_delete="#css-selector-for-tr-that_contains-items-to-delete-{{ district_entry_and_exit_of_vehicle_control.id }}"
+                        data-id_to_delete="{{ district_entry_and_exit_of_vehicle_control.id }}"
+                        data-message_to_delete_confirmation='La provincia con el dominio "{{ district_entry_and_exit_of_vehicle_control.licensePlate }}".'
+                        data-modal_title='{{ district_entry_and_exit_of_vehicle_control.licensePlate }}'
+                    >
+                        <div class="row pt-2 mt-4 mb-3">
+                            <div class="col-10">
+
+                                <b class="mt-3">Fecha:</b> {{ district_entry_and_exit_of_vehicle_control.createAt |date('d/m/Y  H:i') }}
+                                <br>
+                                <b class="mt-3">Pasajeros</b><br>
+                                <ul>
+                                    {% for passenger in district_entry_and_exit_of_vehicle_control.vehiclePassengers %}
+                                        <li> {{ passenger.surname }}, {{ passenger.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <b class="mt-3">Vehiculo</b>
+                                <ul>
+                                    <li>Dominio:{{ district_entry_and_exit_of_vehicle_control.licensePlate }}</li>
+                                    <li>
+                                        Marca: {{ district_entry_and_exit_of_vehicle_control.ModelOfVehicle.VehicleMakerName.description }}</li>
+                                    <li>
+                                        Modelo: {{ district_entry_and_exit_of_vehicle_control.ModelOfVehicle.description }}</li>
+                                </ul>
+
+                                <b class="mt-3">Viaje</b>
+                                <ul>
+                                    <li>Origen: {{ district_entry_and_exit_of_vehicle_control.tripOrigin.description }}</li>
+                                    <li>
+                                        Destino: {{ district_entry_and_exit_of_vehicle_control.tripDestination.description }}</li>
+                                    <li>
+                                        Motivo: {{ district_entry_and_exit_of_vehicle_control.reasonForTrip.description }}</li>
+                                </ul>
+                                <b>Puesto:</b> {{ district_entry_and_exit_of_vehicle_control.TrafficPoliceBooth.description }}
+                            </div>
+                            <div class="col-2"><i class="fas fa-ellipsis-v"></i></div>
+                        </div>
+                    </td>
+                    {# Fin Vista Movil#}
+
+                    <td class="d-none d-sm-table-cell">
+                        {{ district_entry_and_exit_of_vehicle_control.createAt |date('d/m/Y  H:i') }}
+                    </td>
+                    <td class="d-none d-sm-table-cell">
+                        <ul class="mt-3">
+                            {% for passenger in district_entry_and_exit_of_vehicle_control.vehiclePassengers %}
+                                <li> {{ passenger.surname }}, {{ passenger.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td class="d-none d-sm-table-cell">
+                        <ul class="mt-3">
+                            <li><b>Dominio:</b> {{ district_entry_and_exit_of_vehicle_control.licensePlate }}</li>
+                            <li>
+                                <b>Marca:</b> {{ district_entry_and_exit_of_vehicle_control.ModelOfVehicle.VehicleMakerName.description }}
+                            </li>
+                            <li><b>Modelo:</b> {{ district_entry_and_exit_of_vehicle_control.ModelOfVehicle.description }}
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="d-none d-sm-table-cell">
+                        <ul class="mt-3">
+                            <li><b>Origen:</b> {{ district_entry_and_exit_of_vehicle_control.tripOrigin.description }}</li>
+                            <li><b>Destino:</b> {{ district_entry_and_exit_of_vehicle_control.tripDestination.description }}
+                            </li>
+                            <li><b>Motivo:</b> {{ district_entry_and_exit_of_vehicle_control.reasonForTrip.description }}</li>
+                        </ul>
+                    </td>
+                    <td class="d-none d-sm-table-cell">
+                        {{ district_entry_and_exit_of_vehicle_control.TrafficPoliceBooth.description }}
+                    </td>
+
+                    <td class="d-none d-sm-table-cell">
+                        <div class="d-block d-sm-none">
+                            <button type="button" class="btn btn-link text-dark">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+
+                        <div class="d-none d-sm-block">
+                    <span class="form-button-dots">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                            <span class="form-button-action">
+                        <a href="{{ path(edit_path, {'id': district_entry_and_exit_of_vehicle_control.id}) }}"
+                           class="editItemLink btn btn-link btn-primary btn-lg">
+                            <i class="fa fa-edit"></i>
+                        </a>
+
+                        <button type="button"
+                                class="btn btn-link btn-danger shown-delete-confirmation-modal"
+                                data-toggle="modal"
+                                data-target="#delete-confirmation-modal"
+                                data-delete_path="{{ path(delete_path) }}"
+                                data-url_delete_confirmation_modal="{{ path(delete_confirmation_modal_path) }}"
+                                data-css_selector_to_handle_tr_style_that_contains_items_to_delete="#css-selector-for-tr-that_contains-items-to-delete-{{ district_entry_and_exit_of_vehicle_control.id }}"
+                                data-id_to_delete="{{ district_entry_and_exit_of_vehicle_control.id }}"
+                                data-message_to_delete_confirmation='La provincia con la descripción "{{ district_entry_and_exit_of_vehicle_control.licensePlate }}".'
+                        >
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </span>
+                        </div>
+                    </td>
+                </tr>
+
+            {% else %}
+                <tr>
+                    <td class="text-center " colspan="6">
+                        <i class="fas fa-exclamation-circle text-info"></i> &nbsp;Ningún resultado encontrado.
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block filterFields %}
+    <div class="form-group col-12 col-sm-4">
+        <select name="filters[0][field]" id="field" class="filter-field form-control form-control-sm w-100">
+            <option value="createAt" selected>Fecha del control</option>
+            <option value="licensePlate" selected>Dominio</option>
+            <option value="name" selected>Nombre de pasajero</option>
+            <option value="surname" selected>Apellido de pasajero</option>
+            <option value="identityCard" selected>Documento</option>
+        </select>
+    </div>
+    <div class="form-group col-12 col-sm-4">
+        <select name="filters[0][operator]" id="operator" class="filter-operator form-control  form-control-sm w-100">
+            <option value="=">es exactamente igual a</option>
+            <option value="CONTAINS">contiene</option>
+            <option value=">">es mayor que</option>
+            <option value="<">es menor que</option>
+        </select>
+    </div>
+    <div class="form-group col-12 col-sm-4">
+        <input name="filters[0][value]" type="text" id="text" class="filter-value form-control form-control-sm w-100"
+               placeholder="Valor..">
+    </div>
+
+    <div id="filter-rows" class="w-100"></div>
+
+
+    <button type="button" class="add_button btn btn-success btn-border ml-2 mt-2"
+            id="add-field-button"
+            onclick="addFilter(event)"
+    >
+        <span class=" ml-1  btn-label">
+            <i class="fas fa-plus-circle"></i>
+        </span>
+        Añadir filtro
+    </button>
+{% endblock %}
+
+   {% block buttonToCreateOnMobileVersion %}
+
+       <a href="{{ path(export_to_pdf_path) }}/page-{{ totalPage }}/order-{{ order }}-{{ orderBy }}/rows_per_page-{{ limit }}/{{ filters }}"
+          id="export-position"
+          class="secondary-action show-button-description d-none d-sm-none btnExport"
+          data-label="Exportar"
+       >
+           <i class="fas fa-download"></i>
+       </a>
+
+       <a href="{{ path(add_path) }}"
+          id="create-position"
+          class="secondary-action show-button-description d-none d-sm-none btnExport"
+          data-label="Crear"
+       >
+           <i class="fas fa-plus"></i>
+       </a>
+
+       <a href="#"
+          id="action-position"
+          class="primary-action d-block d-sm-none text-white"
+       >
+           <i class="fas fa-ellipsis-v create-icon"></i>
+       </a>
+
+   {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/plugin/inputmaks/jquery.inputmask.min.js') }}"></script>
+    <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/list/add.or.remove.filters.js') }}"></script>
+    <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/list/the.input.type.search.value.changes.depending.on.the.chosen.search.field.js') }}"></script>
+    <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/list/toggle.actions.button.on.mobile.js') }}"></script>
+
+{% endblock %}
+
+
+
+

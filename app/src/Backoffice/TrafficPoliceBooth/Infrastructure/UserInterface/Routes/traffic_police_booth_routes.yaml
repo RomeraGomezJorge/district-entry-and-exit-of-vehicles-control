@@ -1,0 +1,34 @@
+traffic_police_booth_list:
+  path: /list/{pageLabel}-{page}/{orderLabel}-{order}-{orderBy}/{limitLabel}-{limit}/{filters}
+  defaults: { _controller: App\Backoffice\TrafficPoliceBooth\Infrastructure\UserInterface\Web\TrafficPoliceBoothGetController, pageLabel: 'page' , page: 1 , orderLabel: 'order' , order: 'createAt' , orderBy: 'desc' , limitLabel: 'rows_per_page' , limit: 10 , filters: null }
+  methods:  [GET,POST]
+
+traffic_police_booth_add:
+  path: /create
+  defaults: { _controller: App\Backoffice\TrafficPoliceBooth\Infrastructure\UserInterface\Web\TrafficPoliceBoothAddController}
+  methods:  [GET]
+
+traffic_police_booth_create:
+  path: /create
+  defaults: { _controller: App\Backoffice\TrafficPoliceBooth\Infrastructure\UserInterface\Web\TrafficPoliceBoothPostController}
+  methods:  [POST]
+
+traffic_police_booth_edit:
+  path: /edit/{id}
+  defaults: { _controller: App\Backoffice\TrafficPoliceBooth\Infrastructure\UserInterface\Web\TrafficPoliceBoothEditController}
+  methods:  [GET]
+
+traffic_police_booth_update:
+  path: /update
+  defaults: { _controller: App\Backoffice\TrafficPoliceBooth\Infrastructure\UserInterface\Web\TrafficPoliceBoothPutController}
+  methods:  [POST]
+
+traffic_police_booth_description_available:
+  path: /description-available
+  defaults: { _controller: App\Backoffice\TrafficPoliceBooth\Infrastructure\UserInterface\Web\TrafficPoliceBoothDescriptionAvailableController}
+  methods:  [GET]
+
+traffic_police_booth_delete:
+  path: /delete
+  defaults: { _controller: App\Backoffice\TrafficPoliceBooth\Infrastructure\UserInterface\Web\TrafficPoliceBoothDeleteController}
+  methods:  [POST]

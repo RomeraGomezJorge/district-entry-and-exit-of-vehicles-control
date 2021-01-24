@@ -1,0 +1,34 @@
+vehicle_body_type_list:
+  path: /list/{pageLabel}-{page}/{orderLabel}-{order}-{orderBy}/{limitLabel}-{limit}/{filters}
+  defaults: { _controller: App\Backoffice\VehicleBodyType\Infrastructure\UserInterface\Web\VehicleBodyTypeGetController, pageLabel: 'page' , page: 1 , orderLabel: 'order' , order: 'createAt' , orderBy: 'desc' , limitLabel: 'rows_per_page' , limit: 10 , filters: null }
+  methods:  [GET,POST]
+
+vehicle_body_type_add:
+  path: /create
+  defaults: { _controller: App\Backoffice\VehicleBodyType\Infrastructure\UserInterface\Web\VehicleBodyTypeAddController}
+  methods:  [GET]
+
+vehicle_body_type_create:
+  path: /create
+  defaults: { _controller: App\Backoffice\VehicleBodyType\Infrastructure\UserInterface\Web\VehicleBodyTypePostController}
+  methods:  [POST]
+
+vehicle_body_type_edit:
+  path: /edit/{id}
+  defaults: { _controller: App\Backoffice\VehicleBodyType\Infrastructure\UserInterface\Web\VehicleBodyTypeEditController}
+  methods:  [GET]
+
+vehicle_body_type_update:
+  path: /update
+  defaults: { _controller: App\Backoffice\VehicleBodyType\Infrastructure\UserInterface\Web\VehicleBodyTypePutController}
+  methods:  [POST]
+
+vehicle_body_type_description_available:
+  path: /description-available
+  defaults: { _controller: App\Backoffice\VehicleBodyType\Infrastructure\UserInterface\Web\VehicleBodyTypeDescriptionAvailableController}
+  methods:  [GET]
+
+vehicle_body_type_delete:
+  path: /delete
+  defaults: { _controller: App\Backoffice\VehicleBodyType\Infrastructure\UserInterface\Web\VehicleBodyTypeDeleteController}
+  methods:  [POST]

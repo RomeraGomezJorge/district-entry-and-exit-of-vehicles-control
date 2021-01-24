@@ -1,0 +1,210 @@
+<aside class="sidebar sidebar-style-2">
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+        <div class="sidebar-content">
+            <div class="user d-block d-sm-none">
+                <div class="avatar-sm float-left mr-2">
+                    <i class="far fa-user-circle"></i>
+                </div>
+                <div class="info">
+                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									{{   app.user.surname }}, {{ app.user.name }}
+									<span class="user-level">{{ app.user.role.description }}</span>
+									<span class="caret"></span>
+								</span>
+                    </a>
+                    <div class="clearfix"></div>
+
+                    <div class="collapse in" id="collapseExample">
+                        <ul class="nav">
+                            <li>
+                                <a href="{{ path('user_account_management') }}">
+                                    <span class="link-collapse">Gestionar Cuenta</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('logout') }}">
+                                    <span class="link-collapse">
+                                        Cerrar Sessión
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-primary">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a href="{{ path('dashboard') }}">
+                            <i class="fas fa-home-alt"></i>
+                            <p>Inicio</p>
+                            <span class="caret"></span>
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#districtEntryAndExitOfVehiclesControl" class="collapsed"
+                       aria-expanded="false">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p>Control de Ingresos</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="districtEntryAndExitOfVehiclesControl">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ path('district_entry_and_exit_of_vehicles_control_list') }}">
+                                    <span class="sub-item">Todos los controles </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('district_entry_and_exit_of_vehicles_control_add') }}">
+                                    <span class="sub-item"> Añadir nuevo control</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#trafficPoliceBooth" class="collapsed" aria-expanded="false">
+                            <i class="fas fa-store-alt"></i>
+                            <p>Puestos de control</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="trafficPoliceBooth">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ path('traffic_police_booth_list') }}">
+                                        <span class="sub-item">Todos los puestos de control</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('traffic_police_booth_add') }}">
+                                        <span class="sub-item"> Añadir nuevo</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#identityCardType" class="collapsed" aria-expanded="false">
+                            <i class="fas fa-id-card"></i>
+                            <p>Tipo de documento</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="identityCardType">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ path('identity_card_type_list') }}">
+                                        <span class="sub-item">Todos los tipos de documento</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('identity_card_type_add') }}">
+                                        <span class="sub-item"> Añadir nuevo</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#user" class="collapsed" aria-expanded="false">
+                            <i class="fas fa-users"></i>
+                            <p>Usuarios</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="user">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ path('user_list') }}">
+                                        <span class="sub-item">Todos los usuarios</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('user_create') }}">
+                                        <span class="sub-item"> Añadir nuevo usuario</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#district" class="collapsed" aria-expanded="false">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <p>Provincias</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="district">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ path('district_list') }}">
+                                        <span class="sub-item">Todos las provincias</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('district_create') }}">
+                                        <span class="sub-item"> Añadir nueva provincia</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#reasonForTrip" class="collapsed" aria-expanded="false">
+                            <i class="fas fa-suitcase-rolling"></i>
+                            <p>Motivos de viaje</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="reasonForTrip">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ path('reason_for_trip_list') }}">
+                                        <span class="sub-item">Todos los motivos de viaje</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('reason_for_trip_create') }}">
+                                        <span class="sub-item"> Añadir nueva motivo de viaje</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#vehicle" class="collapsed" aria-expanded="false">
+                            <i class="fas fa-car"></i>
+                            <p>Vehiculos</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="vehicle">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ path('vehicle_body_type_list') }}">
+                                        <span class="sub-item">Tipos</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('vehicle_maker_name_list') }}">
+                                        <span class="sub-item">Marcas</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('model_of_vehicle_list') }}">
+                                        <span class="sub-item">Modelos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                {% endif %}
+                <li class="nav-item d-block d-sm-none">
+                    <a  href="{{ path('logout') }}" class="collapsed" >
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p>Salir</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</aside>

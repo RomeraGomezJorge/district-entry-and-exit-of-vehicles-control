@@ -1,0 +1,62 @@
+traffic_police_booth_routes_directory:
+    resource: '../src/Backoffice/TrafficPoliceBooth/Infrastructure/UserInterface/Routes/traffic_police_booth_routes.yaml'
+    prefix: /backoffice/traffic_police_booth
+
+user_directory:
+    resource: '../src/Backoffice/User/Infrastructure/UserInterface/Routes/user_routes.yaml'
+    prefix: /backoffice/user
+
+district_directory:
+  resource: '../src/Backoffice/District/Infrastructure/UserInterface/Routes/district_routes.yaml'
+  prefix: /backoffice/district
+
+vehicle_body_type_directory:
+  resource: '../src/Backoffice/VehicleBodyType/Infrastructure/UserInterface/Routes/vehicle_body_type_routes.yaml'
+  prefix: /backoffice/vehicle-body-type
+
+reason_for_trip_directory:
+  resource: '../src/Backoffice/ReasonForTrip/Infrastructure/UserInterface/Routes/reason_for_trip_routes.yaml'
+  prefix: /backoffice/reason-for-trip
+
+vehicle_maker_name_directory:
+  resource: '../src/Backoffice/VehicleMakerName/Infrastructure/UserInterface/Routes/vehicle_maker_name_routes.yaml'
+  prefix: /backoffice/vehicle-maker-name
+
+model_of_vehicle_directory:
+  resource: '../src/Backoffice/ModelOfVehicle/Infrastructure/UserInterface/Routes/model_of_vehicle_routes.yaml'
+  prefix: /backoffice/model-of-vehicle
+
+district_entry_and_exit_of_vehicles_control_directory:
+  resource: '../src/Backoffice/DistrictEntryAndExitOfVehiclesControl/Infrastructure/UserInterface/Routes/district_entry_and_exit_of_vehicles_control.yaml'
+  prefix: /backoffice/district-entry-and-exit-of-vehicles-control
+
+identity_card_type_routes_directory:
+  resource: '../src/Backoffice/IdentityCardType/Infrastructure/UserInterface/Routes/identity_card_type_routes.yaml'
+  prefix: /backoffice/identity-card-type-routes
+
+delete_confirmation_modal:
+    path: /backoffice/delete-confirm-modal
+    defaults: { _controller: App\Shared\Infrastructure\UserInterface\Web\DeleteConfirmationModalController}
+    methods:  [GET]
+
+reset_password_request_directory:
+  resource: '../src/ResetPasswordRequest/Infrastructure/UserInterface/Routes/reset_password_routes.yaml'
+
+login:
+    path: login
+    defaults: { _controller: App\SymfonyAuthentication\SecurityController:login}
+    methods:  [GET,POST]
+
+logout:
+    path: logout
+    defaults: { _controller: App\SymfonyAuthentication\SecurityController:logout}
+
+dashboard_directory:
+    resource: '../src/Backoffice/Dashboard/Infrastructure/UserInterface/Routes/dashboard_routes.yaml'
+    prefix: /backoffice/dashboard
+    methods:  [GET]
+
+error_page:
+    path: /error
+    defaults: { _controller: App\ErrorPage\Infrastructure\UserInterface\Web\ErrorPageGetController}
+    methods:  [GET]

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Backoffice\User\Domain\User" table="user">
+    <indexes>
+      <index name="role_id" columns="id"/>
+      <index name="id_trafficPoliceBooth" columns="trafficPoliceBooth_id"/>
+      <index name="role_id_2" columns="role_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="username" columns="username"/>
+      <unique-constraint name="id" columns="id"/>
+      <unique-constraint name="email" columns="email"/>
+    </unique-constraints>
+    <id name="id" type="string" column="id" length="36"/>
+    <field name="username" type="string" column="username" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="email" type="string" column="email" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="password" type="string" column="password" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="createAt" type="datetime" column="createAt" nullable="false"/>
+    <field name="updateAt" type="datetime" column="updateAt" nullable="true"/>
+    <field name="isActive" type="boolean" column="isActive" nullable="false"/>
+    <field name="name" type="string" column="name" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="surname" type="string" column="surname" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="role" target-entity="App\Backoffice\Role\Domain\Role" fetch="LAZY">
+      <join-columns>
+        <join-column name="role_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="trafficPoliceBooth" target-entity="App\Backoffice\TrafficPoliceBooth\Domain\TrafficPoliceBooth" fetch="LAZY">
+      <join-columns>
+        <join-column name="trafficPoliceBooth_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

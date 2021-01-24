@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/export-to-pdf.css') }}">
+</head>
+
+
+<div class="container">
+    <table class="responsive-table" style="    width: 100%;">
+        <caption>
+            <h1>Listados de Controles Registrados ({{ districtEntryAndExitOfVehiclesControl|length }})</h1>
+            <small>{{ currentDate }}</small>
+        </caption>
+        <thead>
+        <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Pasajeros</th>
+            <th scope="col">Vehiculo</th>
+            <th scope="col">Viaje</th>
+            <th scope="col">Puesto</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for districtEntryAndExitOfVehicleControl in districtEntryAndExitOfVehiclesControl %}
+            <tr role="row" class="odd">
+                <td>
+                    <br>
+                    <br>
+                    {{ districtEntryAndExitOfVehicleControl.createAt |date('d/m/Y  H:i') }}
+                </td>
+                <td>
+                    <ul class="mt-3">
+                        <br>
+                        <br>
+                        {% for passenger in districtEntryAndExitOfVehicleControl.vehiclePassengers %}
+                            <li> {{ passenger.surname }}, {{ passenger.name }}</li>
+                        {% endfor %}
+                        <br>
+                        <br>
+                    </ul>
+                </td>
+                <td>
+                    <ul class="mt-3"><br>
+                        <br>
+                        <li><b>Dominio:</b> {{ districtEntryAndExitOfVehicleControl.licensePlate }}</li>
+                        <li>
+                            <b>Marca:</b> {{ districtEntryAndExitOfVehicleControl.ModelOfVehicle.VehicleMakerName.description }}
+                        </li>
+                        <li>
+                            <b>Modelo:</b> {{ districtEntryAndExitOfVehicleControl.ModelOfVehicle.description }}
+                        </li>
+                        <br>
+                        <br>
+                    </ul>
+                </td>
+                <td>
+                    <ul class="mt-3"><br>
+                        <br>
+                        <li>
+                            <b>Origen:</b> {{ districtEntryAndExitOfVehicleControl.tripOrigin.description }}</li>
+                        <li>
+                            <b>Destino:</b> {{ districtEntryAndExitOfVehicleControl.tripDestination.description }}
+                        </li>
+                        <li>
+                            <b>Motivo:</b> {{ districtEntryAndExitOfVehicleControl.reasonForTrip.description }}
+                        </li>
+                        <br>
+                        <br>
+                    </ul>
+                </td>
+                <td>
+                    <br>
+                    <br>
+                    {{ districtEntryAndExitOfVehicleControl.TrafficPoliceBooth.description }}
+                    <br>
+                    <br>
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td class="text-center " colspan="6">
+
+
+                    <i class="fas fa-exclamation-circle text-info"></i> &nbsp;Ningún resultado encontrado.
+                </td>
+            </tr>
+        {% endfor %}
+
+
+        <tr class="black-background">
+            <td colspan="7" class="footer" style="">
+
+                © 2021 Secretaria de Seguridad | Gobierno de La Rioja
+
+            </td>
+        </tr>
+
+    </table>
+</div>

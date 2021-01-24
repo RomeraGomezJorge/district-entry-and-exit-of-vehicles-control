@@ -1,0 +1,34 @@
+district_list:
+  path: /list/{pageLabel}-{page}/{orderLabel}-{order}-{orderBy}/{limitLabel}-{limit}/{filters}
+  defaults: { _controller: App\Backoffice\District\Infrastructure\UserInterface\Web\DistrictGetController, pageLabel: 'page' , page: 1 , orderLabel: 'order' , order: 'createAt' , orderBy: 'desc' , limitLabel: 'rows_per_page' , limit: 10 , filters: null }
+  methods:  [GET,POST]
+
+district_add:
+  path: /create
+  defaults: { _controller: App\Backoffice\District\Infrastructure\UserInterface\Web\DistrictAddController}
+  methods:  [GET]
+
+district_create:
+  path: /create
+  defaults: { _controller: App\Backoffice\District\Infrastructure\UserInterface\Web\DistrictPostController}
+  methods:  [POST]
+
+district_edit:
+  path: /edit/{id}
+  defaults: { _controller: App\Backoffice\District\Infrastructure\UserInterface\Web\DistrictEditController}
+  methods:  [GET]
+
+district_update:
+  path: /update
+  defaults: { _controller: App\Backoffice\District\Infrastructure\UserInterface\Web\DistrictPutController}
+  methods:  [POST]
+
+district_description_available:
+  path: /description-available
+  defaults: { _controller: App\Backoffice\District\Infrastructure\UserInterface\Web\DistrictDescriptionAvailableController}
+  methods:  [GET]
+
+district_delete:
+  path: /delete
+  defaults: { _controller: App\Backoffice\District\Infrastructure\UserInterface\Web\DistrictDeleteController}
+  methods:  [POST]

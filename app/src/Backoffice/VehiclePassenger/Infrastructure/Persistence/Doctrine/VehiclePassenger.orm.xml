@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Backoffice\VehiclePassenger\Domain\VehiclePassenger" table="vehicle_passenger">
+        <indexes>
+            <index name="district_entry_and_exit_of_vehicles_control_id"
+                   columns="districtEntryAndExitOfVehiclesControlId"/>
+            <index name="identity_card_type_id" columns="identityCardTypeId"/>
+        </indexes>
+        <unique-constraints>
+            <unique-constraint name="id" columns="id"/>
+        </unique-constraints>
+        <id name="id" type="string" column="id" length="36"/>
+        <field name="name" type="string" column="name" length="100" nullable="false">
+            <options>
+                <option name="fixed"/>
+            </options>
+        </field>
+        <field name="surname" type="string" column="surname" length="100" nullable="false">
+            <options>
+                <option name="fixed"/>
+            </options>
+        </field>
+        <field name="identityCard" type="string" column="identityCard" length="100" nullable="false">
+            <options>
+                <option name="fixed"/>
+            </options>
+        </field>
+        <field name="phone" type="string" column="phone" length="100" nullable="false">
+            <options>
+                <option name="fixed"/>
+            </options>
+        </field>
+        <field name="address" type="string" column="address" length="100" nullable="false">
+            <options>
+                <option name="fixed"/>
+            </options>
+        </field>
+        <field name="temperatureControl" type="string" column="temperatureControl" length="4" nullable="false">
+            <options>
+                <option name="fixed"/>
+            </options>
+        </field>
+        <field name="createAt" type="datetime" column="createAt" nullable="false"/>
+        <field name="updateAt" type="datetime" column="updateAt" nullable="false"/>
+        <many-to-one field="districtEntryAndExitOfVehiclesControl"
+                     target-entity="App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Domain\DistrictEntryAndExitOfVehiclesControl"
+                     inversed-by="vehiclePassengers"
+                     fetch="LAZY"
+        >
+            <join-columns>
+                <join-column name="districtEntryAndExitOfVehiclesControlId" referenced-column-name="id"/>
+            </join-columns>
+        </many-to-one>
+        <many-to-one field="identityCardType" target-entity="App\Backoffice\IdentityCardType\Domain\IdentityCardType"
+                     fetch="LAZY">
+            <join-columns>
+                <join-column name="identityCardTypeId" referenced-column-name="id"/>
+            </join-columns>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>
