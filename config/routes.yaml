@@ -1,0 +1,32 @@
+
+traffic_police_booth_routes_directory:
+    resource: '../src/Backoffice/TrafficPoliceBooth/Infrastructure/UserInterface/Routes/traffic_police_booth_routes.yaml'
+    prefix: /backoffice/traffic_police_booth
+
+user_directory:
+    resource: '../src/Backoffice/User/Infrastructure/UserInterface/Routes/user_routes.yaml'
+    prefix: /backoffice/user
+
+delete_confirmation_modal:
+    path: /delete-confirm-modal
+    defaults: { _controller: App\Shared\Infrastructure\UserInterface\Web\DeleteConfirmationModalController}
+    methods:  [GET]
+
+login:
+    path: login
+    defaults: { _controller: App\SymfonyAuthentication\SecurityController:login}
+    methods:  [GET,POST]
+
+logout:
+    path: logout
+    defaults: { _controller: App\SymfonyAuthentication\SecurityController:logout}
+
+dashboard_directory:
+    resource: '../src/Backoffice/Dashboard/Infrastructure/UserInterface/Routes/dashboard_routes.yaml'
+    prefix: /backoffice/dashboard
+    methods:  [GET]
+
+error_page:
+    path: /error
+    defaults: { _controller: App\ErrorPage\Infrastructure\UserInterface\Web\ErrorPageGetController}
+    methods:  [GET]
