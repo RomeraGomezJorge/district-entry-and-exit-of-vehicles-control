@@ -29,7 +29,6 @@
 		private function create(Request $request, TrafficPoliceBoothCreator $creator)
 		{
 			$creator->__invoke(
-				$this->
 				$request->get('id'),
 				$request->get('description')
 			);
