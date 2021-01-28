@@ -41,7 +41,7 @@ class Uuid
     private function ensureIsValidUuid($id): void
     {
         if (!RamseyUuid::isValid($id)) {
-            throw new InvalidArgumentException(sprintf('El valor <%s> no es valido.',  $id));
+	        throw new InvalidArgumentException(sprintf('El valor <%s> no es Uuid valido.', $id));
         }
     }
 }
