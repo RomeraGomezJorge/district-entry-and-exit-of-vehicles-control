@@ -129,9 +129,9 @@
 		{
 			return self::create(
 				$id = Uuid::random(),
-				$username = WordMother::random(),
-				$name = WordMother::random(),
-				$surname = WordMother::random(),
+				$username = WordMother::random() . IntegerMother::random(),
+				$name = WordMother::random() . IntegerMother::random(),
+				$surname = WordMother::random() . IntegerMother::random(),
 				$email = EmailMother::random(),
 				$password = PasswordMother::random(),
 				$role ,

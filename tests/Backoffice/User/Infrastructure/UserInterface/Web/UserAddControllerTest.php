@@ -5,13 +5,20 @@
 	
 	
 	use App\Shared\Domain\ValueObject\Uuid;
+	use App\Tests\Backoffice\User\Domain\UserMother;
 	use App\Tests\Backoffice\User\UserInfrastructureTestCase;
+	use Symfony\Component\BrowserKit\Cookie;
+	use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 	
 	
 	final class UserAddControllerTest extends UserInfrastructureTestCase
 	{
-	
+		
 		private $user;
+		/**
+		 * @var \Symfony\Bundle\FrameworkBundle\KernelBrowser
+		 */
+		private $client;
 		
 		/** @test
 		 * Comprueba que se cargue corretamente la interfaz para crear un registro y el funcionamiento de controlador
@@ -19,33 +26,27 @@
 		 */
 		public function it_should_create_a_user()
 		{
-			$client = static::createClient();
+			$user = $this->getUserCreatedForTest();
 			
-			$crawler = $client->request('GET', self::CREATE_ITEM_PATH);
+			$client = $this->createAuthorizedClient();
 			
-			$form = $crawler->selectButton('submit')->form();
+			$crawler = $this->isOnPage($client, self::CREATE_ITEM_PATH);
 			
-			$form['name'] = $this->user->getName();
-			$form['surname'] = $this->user->getSurname();
-			$form['email'] = $this->user->getEmail() ;
-			$form['password'] = $this->user->getpassword() ;
-			$form['role_id'] = $this->user->getrole()->getId() ;
-			$form['isActive'] = 'on' ;
-			$form['trafficPoliceBooth_id'] = $this->user->gettrafficPoliceBooth()->getId() ;
+			$form = $crawler->selectButton('submitBtn')->form();
+			
+			$form['username'] = $user->getUsername();
+			$form['name'] = $user->getName();
+			$form['surname'] = $user->getSurname();
+			$form['email'] = $user->getEmail();
+			$form['password'] = $user->getpassword();
+			$form['role_id'] = $user->getrole()->getId();
+			$form['isActive'] = 'on';
+			$form['trafficPoliceBooth_id'] = $user->gettrafficPoliceBooth()->getId();
 			
 			$client->submit($form);
 			
-			$this->assertTrue(
-				$client->getResponse()->isRedirect(self::LIST_ITEMS_PATH)
-			);
+			$this->shouldPageRedirectsTo($client, self::LIST_ITEMS_PATH);
 			
 		}
 		
-		protected function setUp(): void
-		{
-			parent::setUp();
-			
-			$this->user = $this->getUserCreatedForTest();
-			
-		}
 	}

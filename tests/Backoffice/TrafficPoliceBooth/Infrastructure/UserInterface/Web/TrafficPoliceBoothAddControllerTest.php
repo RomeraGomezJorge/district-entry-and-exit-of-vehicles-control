@@ -20,28 +20,19 @@
 		 */
 		public function it_should_create_a_traffic_police_booth()
 		{
-			$client = static::createClient();
+			$trafficPoliceBooth = TrafficPoliceBoothMother::random();
 			
-			$crawler = $client->request('GET', self::CREATE_ITEM_PATH);
+			$client = $this->createAuthorizedClient();
+			
+			$crawler = $this->isOnPage($client, self::CREATE_ITEM_PATH);
 			
 			$form = $crawler->selectButton('submitBtn')->form();
 			
-			$form['description'] = $this->trafficPoliceBooth->getDescription();
+			$form['description'] = $trafficPoliceBooth->getDescription();
 			
 			$client->submit($form);
 			
-			$this->assertTrue(
-				$client->getResponse()->isRedirect(self::LIST_ITEMS_PATH)
-			);
+			$this->shouldPageRedirectsTo($client, self::LIST_ITEMS_PATH);
 			
-		}
-		
-		protected function setUp(): void
-		{
-			parent::setUp();
-			
-			$this->trafficPoliceBooth = TrafficPoliceBoothMother::random();
-			
-			$this->id = new Uuid($this->trafficPoliceBooth->getId());
 		}
 	}

@@ -14,6 +14,10 @@
 		private TrafficPoliceBooth $trafficPoliceBooth;
 		
 		private Uuid $id;
+		/**
+		 * @var \Symfony\Bundle\FrameworkBundle\KernelBrowser
+		 */
+		private $client;
 		
 		/** @test
 		 * Comprueba que se cargue correctamente el listado de registros y que los registros generados se encuentren
@@ -27,21 +31,24 @@
 			$this->repository()->save($anotherTrafficPoliceBooth);
 			$this->repository()->save($someOtherTrafficPoliceBooth);
 			
-			$client = static::createClient();
+			$this->client = $this->createAuthorizedClient();
 			
-			$client->request('GET', self::LIST_ITEMS_PATH);
+			$this->isOnPage($this->client, self::LIST_ITEMS_PATH);
 			
-			$this->assertStringContainsString(
-				$this->trafficPoliceBooth->getDescription(),
-				$client->getResponse()->getContent());
+			$this->shouldFindOnThePage(
+				$this->client,
+				$this->trafficPoliceBooth->getDescription()
+			);
 			
-			$this->assertStringContainsString(
-				$anotherTrafficPoliceBooth->getDescription(),
-				$client->getResponse()->getContent());
+			$this->shouldFindOnThePage(
+				$this->client,
+				$anotherTrafficPoliceBooth->getDescription()
+			);
 			
-			$this->assertStringContainsString(
-				$someOtherTrafficPoliceBooth->getDescription(),
-				$client->getResponse()->getContent());
+			$this->shouldFindOnThePage(
+				$this->client,
+				$someOtherTrafficPoliceBooth->getDescription()
+			);
 		}
 		
 		/** @test
@@ -50,15 +57,11 @@
 		 */
 		public function it_should_show_interface_to_create_a_traffic_police_booth()
 		{
-			$client = static::createClient();
+			$crawler = $this->isOnPage($this->client, self::LIST_ITEMS_PATH);
 			
-			$crawler = $client->request('GET', self::LIST_ITEMS_PATH);
+			$this->clickAndFollowTheLink($this->client, $crawler, 'a#createItemLink');
 			
-			$createItemLink = $crawler->filter('a#createItemLink')->link();
-			
-			$crawler = $client->click($createItemLink);
-			
-			$this->assertTrue($crawler->filter('html:contains("'.self::LABEL_TO_CREATE_ITEMS.'")')->count() > 0);
+			$this->shouldFindOnThePage($this->client, self::LABEL_TO_CREATE_ITEMS);
 		}
 		
 		/** @test
@@ -70,15 +73,14 @@
 			$this->repository()->save($this->trafficPoliceBooth);
 			$this->repository()->save($anotherTrafficPoliceBooth);
 			
-			$client = static::createClient();
+			$this->isOnPage(
+				$this->client,
+				self::LIST_ITEMS_PATH . '/page-1/order-createAt-desc/rows_per_page-10/filters%5B0%5D%5Bfield%5D=description&filters%5B0%5D%5Boperator%5D=%3D&filters%5B0%5D%5Bvalue%5D=' . $anotherTrafficPoliceBooth->getDescription()
+			);
 			
-			$client->request(
-				'GET',
-				self::LIST_ITEMS_PATH.'/page-1/order-createAt-desc/rows_per_page-10/filters%5B0%5D%5Bfield%5D=description&filters%5B0%5D%5Boperator%5D=%3D&filters%5B0%5D%5Bvalue%5D=' . $anotherTrafficPoliceBooth->getDescription());
-			
-			$this->assertStringNotContainsString(
-				$this->trafficPoliceBooth->getDescription(),
-				$client->getResponse()->getContent()
+			$this->shouldFindOnThePage(
+				$this->client,
+				$anotherTrafficPoliceBooth->getDescription()
 			);
 		}
 		
@@ -90,16 +92,11 @@
 		{
 			$this->repository()->save($this->trafficPoliceBooth);
 			
-			$client = static::createClient();
+			$crawler = $this->isOnPage($this->client, self::LIST_ITEMS_PATH);
 			
-			$crawler = $client->request('GET', self::LIST_ITEMS_PATH);
+			$this->clickAndFollowTheLink($this->client, $crawler, 'a.editItemLink');
 			
-			$createItemLink = $crawler->filter('a.editItemLink')->link();
-			
-			$crawler = $client->click($createItemLink);
-			
-			$this->assertTrue($crawler->filter('html:contains("'.self::LABEL_TO_UPDATE_ITEMS.'")')->count() > 0);
-			
+			$this->shouldFindOnThePage($this->client, self::LABEL_TO_UPDATE_ITEMS);
 		}
 		
 		protected function setUp(): void
@@ -109,5 +106,7 @@
 			$this->trafficPoliceBooth = TrafficPoliceBoothMother::random();
 			
 			$this->id = new Uuid($this->trafficPoliceBooth->getId());
+			
+			$this->client = $this->createAuthorizedClient();
 		}
 	}

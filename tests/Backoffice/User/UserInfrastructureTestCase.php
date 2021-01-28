@@ -14,6 +14,8 @@
 	use App\Tests\Backoffice\User\Domain\UserMother;
 	use App\Tests\Shared\Infrastructure\PhpUnit\ContextInfrastructureTestCase;
 	use http\Env\Request;
+	use Symfony\Component\BrowserKit\Cookie;
+	use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 	
 	class UserInfrastructureTestCase extends ContextInfrastructureTestCase
 	{
@@ -43,20 +45,17 @@
 		/** Crea un usuario en la tabla user de la base de datos*/
 		protected function getUserCreatedForTest(): User
 		{
-			$role = UserMother::createRandomRole();
-			
-			$this->roleRepository()->save($role);
-			
 			$trafficPoliceBooth = TrafficPoliceBoothMother::random();
 			
 			$this->trafficPoliceBoothRepository()->save($trafficPoliceBooth);
 			
 			$this->clearUnitOfWork();
 			
-			$this->roleFound = $this->roleRepository()->search($role->getId());
+			$this->roleFound = $this->getARoleFromDatabase();
 			
-			$this->trafficPoliceBoothFound = $this->trafficPoliceBoothRepository()->search( new Uuid($trafficPoliceBooth->getId()));
+			$this->trafficPoliceBoothFound = $this->trafficPoliceBoothRepository()->search(new Uuid($trafficPoliceBooth->getId()));
 			
-			return  UserMother::randomWithARoleAndTrafficPoliceBooth($this->roleFound, $this->trafficPoliceBoothFound);
+			return UserMother::randomWithARoleAndTrafficPoliceBooth($this->roleFound, $this->trafficPoliceBoothFound);
 		}
+		
 	}
