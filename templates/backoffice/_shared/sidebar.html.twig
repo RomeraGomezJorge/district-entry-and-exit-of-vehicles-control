@@ -111,6 +111,27 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a data-toggle="collapse" href="#reasonForTrip" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-suitcase-rolling"></i>
+                        <p>Motivos de viaje</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="reasonForTrip">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ path('reason_for_trip_list') }}">
+                                    <span class="sub-item">Todos los motivos de viaje</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('reason_for_trip_create') }}">
+                                    <span class="sub-item"> Añadir nueva motivo de viaje</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a data-toggle="collapse" href="#vehicle" class="collapsed" aria-expanded="false">
                         <i class="fas fa-car"></i>
                         <p>Vehiculos</p>

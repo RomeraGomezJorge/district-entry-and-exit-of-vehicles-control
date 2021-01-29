@@ -40,5 +40,11 @@ doctrine:
               dir: '%kernel.project_dir%/src/Backoffice/VehicleBodyType/Infrastructure/Persistence/Doctrine'
               prefix: 'App\Backoffice\VehicleBodyType\Domain'
               alias: App
+            App\Backoffice\ReasonForTrip:
+              is_bundle: false
+              type: xml
+              dir: '%kernel.project_dir%/src/Backoffice/ReasonForTrip/Infrastructure/Persistence/Doctrine'
+              prefix: 'App\Backoffice\ReasonForTrip\Domain'
+              alias: App
 
 
