@@ -13,4 +13,5 @@
 		const DESCRIPTION_AVAILABLE_PATH = 'traffic_police_booth_description_available';
 		const SECTION_TITLE = 'Puesto de Control';
 		const FORM_FILE_PATH = 'backoffice/trafficPoliceBooth/formToHandleItem.html.twig';
+		const LIST_FILE_PATH = 'backoffice/trafficPoliceBooth/list.html.twig';
 	}

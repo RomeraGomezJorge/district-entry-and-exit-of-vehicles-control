@@ -17,5 +17,6 @@
 		const RESET_PASSWORD_PATH = 'user_reset_password';
 		const SECTION_TITLE = 'Usuarios';
 		const FORM_FILE_PATH = 'backoffice/user/formToHandleItem.html.twig';
+		const LIST_FILE_PATH = 'backoffice/user/list.html.twig';
 		const USER_ROLES = ['ROLE_ADMIN','ROLE_USER'];
 	}
