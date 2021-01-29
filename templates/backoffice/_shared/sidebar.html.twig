@@ -89,12 +89,32 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#district" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Provincias</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="district">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ path('district_list') }}">
+                                    <span class="sub-item">Todos las provincias</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('district_create') }}">
+                                    <span class="sub-item"> Añadir nueva provincia</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
                 <li class="nav-item d-block d-sm-none">
                     <a  href="{{ path('logout') }}" class="collapsed" >
                         <i class="fas fa-sign-out-alt"></i>
                         <p>Salir</p>
-
                     </a>
                 </li>
             </ul>

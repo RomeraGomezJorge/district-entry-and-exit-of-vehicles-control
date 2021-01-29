@@ -7,6 +7,10 @@ user_directory:
     resource: '../src/Backoffice/User/Infrastructure/UserInterface/Routes/user_routes.yaml'
     prefix: /backoffice/user
 
+district_directory:
+  resource: '../src/Backoffice/District/Infrastructure/UserInterface/Routes/district_routes.yaml'
+  prefix: /backoffice/district
+
 delete_confirmation_modal:
     path: /delete-confirm-modal
     defaults: { _controller: App\Shared\Infrastructure\UserInterface\Web\DeleteConfirmationModalController}
