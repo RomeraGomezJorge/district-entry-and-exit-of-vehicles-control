@@ -33,8 +33,8 @@ class TrafficPoliceBoothGetController extends WebController
 	    $totalItem = $counter->__invoke($filters, $order, $orderBy, $limit,OffsetPaginationUtil::calculate($limit,$page));
 	
 	    $totalNumberOfPages = TotalNumberOfPagesUtil::calculate($page, $limit,$totalItem);
-
-        return $this->render('backoffice/trafficPoliceBooth/list.html.twig', [
+	
+	    return $this->render(TwigTemplateConstants::LIST_FILE_PATH, [
 	        'page_title' => TwigTemplateConstants::SECTION_TITLE,
 	        'list_path' =>TwigTemplateConstants::LIST_PATH,
 	        'edit_path' => TwigTemplateConstants::EDIT_PATH,

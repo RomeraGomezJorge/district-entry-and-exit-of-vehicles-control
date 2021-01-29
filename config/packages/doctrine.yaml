@@ -28,5 +28,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Backoffice/Role/Infrastructure/Persistence/Doctrine'
                 prefix: 'App\Backoffice\Role\Domain'
                 alias: App
+            App\Backoffice\District:
+              is_bundle: false
+              type: xml
+              dir: '%kernel.project_dir%/src/Backoffice/District/Infrastructure/Persistence/Doctrine'
+              prefix: 'App\Backoffice\District\Domain'
+              alias: App
 
 
