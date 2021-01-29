@@ -1,0 +1,46 @@
+{% extends 'backoffice/_shared/formToHandleItem.base.html.twig' %}
+{% block form %}
+    <form action="{{ path(form_action_attribute) }}" method="post" id="form"
+          novalidate="novalidate">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <input type="hidden" name="id" value="{{ id }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token(id) }}">
+                    <div class="form-group {% if flash.has('errors.description') %} has-error {% endif %}">
+                        <label>Descripción</label>
+                        <input type="text"
+                               placeholder=" - Obligatorio -"
+                               name="description"
+                               value="{{ description }}"
+                               data-description_from_database="{{ description }}"
+                               data-available_description_url="{{ path(description_available_path) }}"
+                               maxlength="255"
+                               id="inputFloatingLabelDescription"
+                               class="form-control"
+                               required
+                        >
+                        <small class="errorLabelContainer form-text text-muted text-danger">
+                            {% if flash.has('errors.description') %}
+                                <span class="has-error">{{ flash.get('errors.description') }} </span>
+                            {% endif %}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-action">
+            <button class="btn btn-success col-12 col-sm-4 col-md-2 col-lg-2" type="submit" id="submitBtn">
+                <span class="btn-label">
+                    <i class="fas fa-save"></i>
+                </span>
+                {{ submit_bButton_label }}
+            </button>
+        </div>
+    </form>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/blog/form/click.submit.button.on.enter.key.press.in.keyboard.js') }}"></script>
+    <script src="{{ asset('assets/js/blog/district/form/check.available.description.js') }}"></script>
+{% endblock %}
