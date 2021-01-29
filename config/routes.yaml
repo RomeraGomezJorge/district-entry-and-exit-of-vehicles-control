@@ -11,6 +11,10 @@ district_directory:
   resource: '../src/Backoffice/District/Infrastructure/UserInterface/Routes/district_routes.yaml'
   prefix: /backoffice/district
 
+vehicle_body_type_directory:
+  resource: '../src/Backoffice/VehicleBodyType/Infrastructure/UserInterface/Routes/vehicle_body_type_routes.yaml'
+  prefix: /backoffice/vehicle_body_type
+
 delete_confirmation_modal:
     path: /delete-confirm-modal
     defaults: { _controller: App\Shared\Infrastructure\UserInterface\Web\DeleteConfirmationModalController}
