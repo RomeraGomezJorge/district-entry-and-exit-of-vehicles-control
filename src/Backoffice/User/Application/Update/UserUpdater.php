@@ -47,7 +47,7 @@ final class UserUpdater
 		string $role_id,
 		int $isActive,
 		string $trafficPoliceBooth_id
-	) {
+	): void {
 		$email = new UserEmail($email);
 		
 		$user = $this->finder->__invoke($id);

@@ -1,6 +1,5 @@
 <?php
 	
-	
 	namespace App\Backoffice\TrafficPoliceBooth\Application\Update;
 	
 	use App\Backoffice\TrafficPoliceBooth\Application\Find\TrafficPoliceBoothFinder;
@@ -35,14 +34,9 @@
             
             $this->repository->save($trafficPoliceBooth);
 		}
-        
-        
-        private function hasDescriptionChanged( string $newDescription , TrafficPoliceBooth $trafficPoliceBooth )
+		
+		private function hasDescriptionChanged(string $newDescription, TrafficPoliceBooth $trafficPoliceBooth): bool
         {
-            if( strcmp( $newDescription , $trafficPoliceBooth->getDescription() ) !== 0 ){
-                return true;
-            }
-    
-            return false;
+	        return strcmp($newDescription, $trafficPoliceBooth->getDescription()) !== 0 ? true : false;
         }
     }

@@ -1,13 +1,11 @@
 <?php
 	
-	
 	namespace App\Backoffice\ModelOfVehicle\Application\Update;
 	
 	use App\Backoffice\ModelOfVehicle\Application\Find\ModelOfVehicleFinder;
 	use App\Backoffice\ModelOfVehicle\Domain\ModelOfVehicle;
 	use App\Backoffice\ModelOfVehicle\Domain\ModelOfVehicleRepository;
 	use App\Backoffice\ModelOfVehicle\Domain\UniqueModelOfVehicleDescriptionSpecification;
-	use App\Backoffice\VehicleBodyType\Application\Find\VehicleBodyTypeFinder;
 	use App\Backoffice\VehicleMakerName\Application\Find\VehicleMakerNameFinder;
 	use App\Backoffice\VehicleMakerName\Domain\VehicleMakerName;
 	use App\Backoffice\VehicleMakerName\Domain\VehicleMakerNameRepository;
@@ -34,7 +32,7 @@
 			$this->uniqueModelOfVehicleDescriptionSpecification = $uniqueModelOfVehicleDescriptionSpecification;
 		}
 		
-		public function __invoke(string $id, string $newDescription, string $vehicleMakerName_id)
+		public function __invoke(string $id, string $newDescription, string $vehicleMakerName_id): void
 		{
 			$modelOfVehicle = $this->finder->__invoke($id);
 			
@@ -55,13 +53,9 @@
 			$this->repository->save($modelOfVehicle);
 		}
 		
-		private function hasDescriptionChanged(string $newDescription, ModelOfVehicle $district)
+		private function hasDescriptionChanged(string $newDescription, ModelOfVehicle $modelOfVehicle): bool
 		{
-			if (strcmp($newDescription, $district->getDescription()) !== 0) {
-				return true;
-			}
-			
-			return false;
+			return strcmp($newDescription, $modelOfVehicle->getDescription()) !== 0 ? true : false;
 		}
 		
 		private function hasVehicleMakerNameChanged(

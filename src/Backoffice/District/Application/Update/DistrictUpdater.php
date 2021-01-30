@@ -1,6 +1,5 @@
 <?php
 	
-	
 	namespace App\Backoffice\District\Application\Update;
 	
 	use App\Backoffice\District\Application\Find\DistrictFinder;
@@ -25,7 +24,7 @@
 			$this->uniqueDistrictDescriptionSpecification = $uniqueDistrictDescriptionSpecification;
 		}
 		
-		public function __invoke(string $id, string $newDescription)
+		public function __invoke(string $id, string $newDescription): void
 		{
 			$district = $this->finder->__invoke($id);
 			
@@ -37,12 +36,8 @@
 		}
 		
 		
-		private function hasDescriptionChanged(string $newDescription, District $district)
+		private function hasDescriptionChanged(string $newDescription, District $district): bool
 		{
-			if (strcmp($newDescription, $district->getDescription()) !== 0) {
-				return true;
-			}
-			
-			return false;
+			return strcmp($newDescription, $district->getDescription()) !== 0 ? true : false;
 		}
 	}

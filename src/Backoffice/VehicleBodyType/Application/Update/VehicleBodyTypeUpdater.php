@@ -1,10 +1,8 @@
 <?php
 	
-	
 	namespace App\Backoffice\VehicleBodyType\Application\Update;
 	
 	use App\Backoffice\VehicleBodyType\Application\Find\VehicleBodyTypeFinder;
-	use App\Backoffice\VehicleBodyType\Domain\District;
 	use App\Backoffice\VehicleBodyType\Domain\VehicleBodyType;
 	use App\Backoffice\VehicleBodyType\Domain\VehicleBodyTypeRepository;
 	use App\Backoffice\VehicleBodyType\Domain\UniqueVehicleBodyTypeDescriptionSpecification;
@@ -26,7 +24,7 @@
 			$this->uniqueVehicleBodyTypeDescriptionSpecification = $uniqueVehicleBodyTypeDescriptionSpecification;
 		}
 		
-		public function __invoke(string $id, string $newDescription)
+		public function __invoke(string $id, string $newDescription): void
 		{
 			$vehicleBodyType = $this->finder->__invoke($id);
 			
@@ -37,13 +35,8 @@
 			$this->repository->save($vehicleBodyType);
 		}
 		
-		
-		private function hasDescriptionChanged(string $newDescription, VehicleBodyType $district)
+		private function hasDescriptionChanged(string $newDescription, VehicleBodyType $vehicleBodyType): bool
 		{
-			if (strcmp($newDescription, $district->getDescription()) !== 0) {
-				return true;
-			}
-			
-			return false;
+			return strcmp($newDescription, $vehicleBodyType->getDescription()) !== 0 ? true : false;
 		}
 	}
