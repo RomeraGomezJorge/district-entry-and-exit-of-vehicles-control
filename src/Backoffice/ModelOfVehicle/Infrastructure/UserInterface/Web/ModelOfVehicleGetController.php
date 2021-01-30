@@ -9,11 +9,12 @@
 	use App\Backoffice\ModelOfVehicle\Application\Counter\ModelOfVehicleCounter;
 	use App\Backoffice\ModelOfVehicle\Application\FindByCriteriaSearcher\ModelsOfVehicleByCriteriaSearcher;
 	use App\Shared\Infrastructure\UserInterface\Web\TwigTemplateGlobalConstants;
+	use App\Shared\Infrastructure\Utils\FilterUtils;
 	use App\Shared\Infrastructure\Utils\NextPage;
 	use App\Shared\Infrastructure\Utils\PreviousPage;
+	use App\Shared\Infrastructure\Utils\SortUtils;
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpFoundation\Response;
-	
 	
 	class ModelOfVehicleGetController extends WebController
 	{
@@ -37,7 +38,7 @@
 			
 			$limit = $request->get('limit');
 			
-			$filters = $this->filters($request->get('filters'));
+			$filters = FilterUtils::getAValidValueForFilter($request->get('filters'));
 			
 			$modelsOfVehicle = $itemsByCriteriaSearcher->__invoke(
 				$filters,
@@ -46,14 +47,12 @@
 				$limit,
 				OffsetPaginationUtil::calculate($limit, $page));
 			
-			$totalItem = 2;
-
-//			$totalItem = $counter->__invoke(
-//				$filters,
-//				$order,
-//				$orderBy,
-//				$limit,
-//				OffsetPaginationUtil::calculate($limit, $page));
+			$totalItem = $counter->__invoke(
+				$filters,
+				$order,
+				$orderBy,
+				$limit,
+				OffsetPaginationUtil::calculate($limit, $page));
 			
 			$totalNumberOfPages = TotalNumberOfPagesUtil::calculate($page, $limit, $totalItem);
 			
@@ -70,7 +69,7 @@
 				'order' => $order,
 				'limit' => $limit,
 				'filters' => $request->get('filters'),
-				'toggleSort' => $this->toggleSort($orderBy),
+				'toggleSort' => SortUtils::toggle($orderBy),
 				'currentPage' => $page,
 				'nextPage' => NextPage::calculate($page, $totalNumberOfPages),
 				'previousPage' => PreviousPage::calculate($page),
@@ -81,21 +80,9 @@
 			]);
 		}
 		
-		private function filters(?string $stringOfFilterArrayStruct): array
-		{
-			if ($stringOfFilterArrayStruct === null) {
-				return array();
-			}
-			
-			parse_str($stringOfFilterArrayStruct);
-			
-			if (!isset($filters)) {
-				return array();
-			}
-			
-			return $filters;
-		}
-		
+		/* Se utiliza ese metodo y no un searchAll() para poder organizar alfabeticamente
+			mejorando la experiencia del usuario a la hora de buscar.
+		 */
 		private function getVehicleMarkersNameSortAlphabetically(
 			VehicleMakersNameByCriteriaSearcher $vehicleMakersNameByCriteriaSearcher
 		): array {
@@ -106,15 +93,6 @@
 				self::LIST_END_ON_1000,
 				self::LIST_BEGIN_ON_0
 			);
-		}
-		
-		/* Se utiliza ese metodo y no un searchAll() para poder organizar alfabeticamente
-			mejorando la experiencia del usuario a la hora de buscar.
-		 */
-		
-		private function toggleSort($sort): string
-		{
-			return $sort === 'asc' ? 'desc' : 'asc';
 		}
 	}
 	

@@ -8,8 +8,10 @@ use App\Shared\Infrastructure\TotalNumberOfPagesUtil;
 use App\Backoffice\TrafficPoliceBooth\Application\Counter\TrafficPoliceBoothCounter;
 use App\Backoffice\TrafficPoliceBooth\Application\FindByCriteriaSearcher\TrafficPoliceBoothsByCriteriaSearcher;
 use App\Shared\Infrastructure\UserInterface\Web\TwigTemplateGlobalConstants;
+use App\Shared\Infrastructure\Utils\FilterUtils;
 use App\Shared\Infrastructure\Utils\NextPage;
 use App\Shared\Infrastructure\Utils\PreviousPage;
+use App\Shared\Infrastructure\Utils\SortUtils;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,8 +27,8 @@ class TrafficPoliceBoothGetController extends WebController
         $page = $request->get('page');
 
         $limit = $request->get('limit');
-
-        $filters = $this->filters($request->get('filters'));
+	
+	    $filters = FilterUtils::getAValidValueForFilter($request->get('filters'));
 
         $trafficPoliceBooths = $itemsByCriteriaSearcher->__invoke($filters, $order, $orderBy, $limit,OffsetPaginationUtil::calculate($limit,$page));
 	    
@@ -45,7 +47,7 @@ class TrafficPoliceBoothGetController extends WebController
             'order' => $order,
             'limit' => $limit,
             'filters' => $request->get('filters'),
-            'toggleSort' => $this->toggleSort($orderBy),
+		    'toggleSort' => SortUtils::toggle($orderBy),
 	        'currentPage' => $page,
 	        'nextPage' => NextPage::calculate($page,$totalNumberOfPages),
 	        'previousPage' => PreviousPage::calculate($page),
@@ -54,24 +56,5 @@ class TrafficPoliceBoothGetController extends WebController
             'trafficPoliceBooths' => $trafficPoliceBooths
         ]);
     }
-
-    private function toggleSort( $sort):string
-    {
-        return $sort === 'asc' ? 'desc' : 'asc';
-    }
-
-    private function filters(?string $stringOfFilterArrayStruct): array
-    {
-        if($stringOfFilterArrayStruct === null){
-            return array();
-        }
-
-        parse_str($stringOfFilterArrayStruct);
-
-        if (!isset($filters)) {
-            return array();
-        }
-
-        return $filters;
-    }
+	
 }
