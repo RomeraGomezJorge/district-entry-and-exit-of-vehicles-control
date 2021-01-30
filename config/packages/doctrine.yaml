@@ -16,35 +16,47 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Backoffice/TrafficPoliceBooth/Infrastructure/Persistence/Doctrine'
                 prefix: 'App\Backoffice\TrafficPoliceBooth\Domain'
                 alias: App
+
             App\Backoffice\User:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Backoffice/User/Infrastructure/Persistence/Doctrine'
                 prefix: 'App\Backoffice\User\Domain'
                 alias: App
+
             App\Backoffice\Role:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Backoffice/Role/Infrastructure/Persistence/Doctrine'
                 prefix: 'App\Backoffice\Role\Domain'
                 alias: App
+
             App\Backoffice\District:
               is_bundle: false
               type: xml
               dir: '%kernel.project_dir%/src/Backoffice/District/Infrastructure/Persistence/Doctrine'
               prefix: 'App\Backoffice\District\Domain'
               alias: App
+
             App\Backoffice\VehicleBodyType:
               is_bundle: false
               type: xml
               dir: '%kernel.project_dir%/src/Backoffice/VehicleBodyType/Infrastructure/Persistence/Doctrine'
               prefix: 'App\Backoffice\VehicleBodyType\Domain'
               alias: App
+
             App\Backoffice\ReasonForTrip:
               is_bundle: false
               type: xml
               dir: '%kernel.project_dir%/src/Backoffice/ReasonForTrip/Infrastructure/Persistence/Doctrine'
               prefix: 'App\Backoffice\ReasonForTrip\Domain'
+              alias: App
+
+            App\Backoffice\VehicleMakerName:
+              is_bundle: false
+              type: xml
+              dir: '%kernel.project_dir%/src/Backoffice/VehicleMakerName/Infrastructure/Persistence/Doctrine'
+              prefix: 'App\Backoffice\VehicleMakerName\Domain'
               alias: App
 
 
