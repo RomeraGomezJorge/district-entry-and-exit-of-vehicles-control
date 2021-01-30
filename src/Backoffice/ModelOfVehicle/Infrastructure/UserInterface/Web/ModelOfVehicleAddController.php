@@ -25,7 +25,7 @@
 				'vehicleMakersName' => $vehicleMakerNameRepository->searchAll(),
 				'vehicleMakerName_id' => $flashSession->get('inputs.vehicleMakersName_id'),
 				'form_action_attribute' => TwigTemplateConstants::CREATE_PATH,
-				'submit_bButton_label' => FormConstant::SUBMIT_BUTTON_VALUE_TO_CREATE,
+				'submit_button_label' => FormConstant::SUBMIT_BUTTON_VALUE_TO_CREATE,
 				'action_to_do' => FormConstant::CREATE_LABEL_TEXT,
 			]);
 		}

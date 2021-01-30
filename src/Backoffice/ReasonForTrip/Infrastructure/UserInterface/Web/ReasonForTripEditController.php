@@ -22,7 +22,7 @@
 				'description' => $reasonForTrip->getDescription(),
 				'description_available_path' => TwigTemplateConstants::DESCRIPTION_AVAILABLE_PATH,
 				'form_action_attribute' => TwigTemplateConstants::UPDATE_PATH,
-				'submit_bButton_label' => FormConstant::SUBMIT_BUTTON_VALUE_TO_UPDATE,
+				'submit_button_label' => FormConstant::SUBMIT_BUTTON_VALUE_TO_UPDATE,
 				'action_to_do' => FormConstant::UPDATE_LABEL_TEXT,
 			]);
 		}

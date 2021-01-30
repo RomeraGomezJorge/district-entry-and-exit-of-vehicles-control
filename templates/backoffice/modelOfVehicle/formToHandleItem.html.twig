@@ -8,7 +8,7 @@
                     <input type="hidden" name="id" value="{{ id }}">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token(id) }}">
                     <div class="form-group {% if flash.has('errors.description') %} has-error {% endif %}">
-                        <label>Descripción</label>
+                        <label>Descripción ( * )</label>
                         <input type="text"
                                placeholder=" - Obligatorio -"
                                name="description"
@@ -51,7 +51,7 @@
                 <span class="btn-label">
                     <i class="fas fa-save"></i>
                 </span>
-                {{ submit_bButton_label }}
+                {{ submit_button_label }}
             </button>
         </div>
     </form>

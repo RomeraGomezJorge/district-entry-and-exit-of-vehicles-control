@@ -22,7 +22,7 @@
 				'description_available_path' => TwigTemplateConstants::DESCRIPTION_AVAILABLE_PATH,
 				'description' => $flashSession->get('inputs.description'),
 				'form_action_attribute' => TwigTemplateConstants::CREATE_PATH,
-				'submit_bButton_label' => FormConstant::SUBMIT_BUTTON_VALUE_TO_CREATE,
+				'submit_button_label' => FormConstant::SUBMIT_BUTTON_VALUE_TO_CREATE,
 				'action_to_do' => FormConstant::CREATE_LABEL_TEXT,
 			]);
 		}
