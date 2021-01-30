@@ -29,7 +29,7 @@
 			return true;
 		}
 		
-		public static function getFromFilters(array $filters,$fieldName): ?string
+		public static function getValueFromFilters(array $filters, $fieldName): ?string
 		{
 			$fieldsInFilters = array_column($filters, 'field');
 			

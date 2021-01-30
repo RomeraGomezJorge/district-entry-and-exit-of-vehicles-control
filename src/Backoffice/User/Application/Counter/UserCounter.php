@@ -1,6 +1,5 @@
 <?php
 	
-	
 	namespace App\Backoffice\User\Application\Counter;
 	
 	
@@ -47,7 +46,8 @@
 				return null;
 			};
 			
-			$roleId = FilterUtilsForFieldThatNotBelongToAnEntity::getFromFilters($filters, self::FIELD_NAME_TO_ROLE);
+			$roleId = FilterUtilsForFieldThatNotBelongToAnEntity::getValueFromFilters($filters,
+				self::FIELD_NAME_TO_ROLE);
 			
 			return $this->roleFinder->__invoke($roleId);
 		}
