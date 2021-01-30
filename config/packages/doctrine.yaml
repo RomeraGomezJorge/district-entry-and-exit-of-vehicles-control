@@ -59,4 +59,11 @@ doctrine:
               prefix: 'App\Backoffice\VehicleMakerName\Domain'
               alias: App
 
+            App\Backoffice\ModelOfVehicle:
+              is_bundle: false
+              type: xml
+              dir: '%kernel.project_dir%/src/Backoffice/ModelOfVehicle/Infrastructure/Persistence/Doctrine'
+              prefix: 'App\Backoffice\ModelOfVehicle\Domain'
+              alias: App
+
 

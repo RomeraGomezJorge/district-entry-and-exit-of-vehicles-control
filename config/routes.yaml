@@ -23,6 +23,10 @@ vehicle_maker_name_directory:
   resource: '../src/Backoffice/VehicleMakerName/Infrastructure/UserInterface/Routes/vehicle_maker_name_routes.yaml'
   prefix: /backoffice/vehicle_maker_name
 
+model_of_vehicle_directory:
+  resource: '../src/Backoffice/ModelOfVehicle/Infrastructure/UserInterface/Routes/model_of_vehicle_routes.yaml'
+  prefix: /backoffice/model_of_vehicle
+
 delete_confirmation_modal:
     path: /delete-confirm-modal
     defaults: { _controller: App\Shared\Infrastructure\UserInterface\Web\DeleteConfirmationModalController}

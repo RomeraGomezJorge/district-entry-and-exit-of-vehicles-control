@@ -1,0 +1,34 @@
+model_of_vehicle_list:
+  path: /list/{pageLabel}-{page}/{orderLabel}-{order}-{orderBy}/{limitLabel}-{limit}/{filters}
+  defaults: { _controller: App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web\ModelOfVehicleGetController, pageLabel: 'page' , page: 1 , orderLabel: 'order' , order: 'createAt' , orderBy: 'desc' , limitLabel: 'rows_per_page' , limit: 10 , filters: null }
+  methods:  [GET,POST]
+
+model_of_vehicle_add:
+  path: /create
+  defaults: { _controller: App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web\ModelOfVehicleAddController}
+  methods:  [GET]
+
+model_of_vehicle_create:
+  path: /create
+  defaults: { _controller: App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web\ModelOfVehiclePostController}
+  methods:  [POST]
+
+model_of_vehicle_edit:
+  path: /edit/{id}
+  defaults: { _controller: App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web\ModelOfVehicleEditController}
+  methods:  [GET]
+
+model_of_vehicle_update:
+  path: /update
+  defaults: { _controller: App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web\ModelOfVehiclePutController}
+  methods:  [POST]
+
+model_of_vehicle_description_available:
+  path: /description-available
+  defaults: { _controller: App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web\ModelOfVehicleDescriptionAvailableController}
+  methods:  [GET]
+
+model_of_vehicle_delete:
+  path: /delete
+  defaults: { _controller: App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web\ModelOfVehicleDeleteController}
+  methods:  [POST]
