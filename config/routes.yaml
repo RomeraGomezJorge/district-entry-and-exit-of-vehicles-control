@@ -19,6 +19,10 @@ reason_for_trip_directory:
   resource: '../src/Backoffice/ReasonForTrip/Infrastructure/UserInterface/Routes/reason_for_trip_routes.yaml'
   prefix: /backoffice/reason_for_trip
 
+vehicle_maker_name_directory:
+  resource: '../src/Backoffice/VehicleMakerName/Infrastructure/UserInterface/Routes/vehicle_maker_name_routes.yaml'
+  prefix: /backoffice/vehicle_maker_name
+
 delete_confirmation_modal:
     path: /delete-confirm-modal
     defaults: { _controller: App\Shared\Infrastructure\UserInterface\Web\DeleteConfirmationModalController}

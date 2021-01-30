@@ -1,0 +1,34 @@
+vehicle_maker_name_list:
+  path: /list/{pageLabel}-{page}/{orderLabel}-{order}-{orderBy}/{limitLabel}-{limit}/{filters}
+  defaults: { _controller: App\Backoffice\VehicleMakerName\Infrastructure\UserInterface\Web\VehicleMakerNameGetController, pageLabel: 'page' , page: 1 , orderLabel: 'order' , order: 'createAt' , orderBy: 'desc' , limitLabel: 'rows_per_page' , limit: 10 , filters: null }
+  methods:  [GET,POST]
+
+vehicle_maker_name_add:
+  path: /create
+  defaults: { _controller: App\Backoffice\VehicleMakerName\Infrastructure\UserInterface\Web\VehicleMakerNameAddController}
+  methods:  [GET]
+
+vehicle_maker_name_create:
+  path: /create
+  defaults: { _controller: App\Backoffice\VehicleMakerName\Infrastructure\UserInterface\Web\VehicleMakerNamePostController}
+  methods:  [POST]
+
+vehicle_maker_name_edit:
+  path: /edit/{id}
+  defaults: { _controller: App\Backoffice\VehicleMakerName\Infrastructure\UserInterface\Web\VehicleMakerNameEditController}
+  methods:  [GET]
+
+vehicle_maker_name_update:
+  path: /update
+  defaults: { _controller: App\Backoffice\VehicleMakerName\Infrastructure\UserInterface\Web\VehicleMakerNamePutController}
+  methods:  [POST]
+
+vehicle_maker_name_description_available:
+  path: /description-available
+  defaults: { _controller: App\Backoffice\VehicleMakerName\Infrastructure\UserInterface\Web\VehicleMakerNameDescriptionAvailableController}
+  methods:  [GET]
+
+vehicle_maker_name_delete:
+  path: /delete
+  defaults: { _controller: App\Backoffice\VehicleMakerName\Infrastructure\UserInterface\Web\VehicleMakerNameDeleteController}
+  methods:  [POST]
