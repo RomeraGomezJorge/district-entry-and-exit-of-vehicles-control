@@ -1,8 +1,6 @@
 <?php
 	
-	
 	namespace App\Backoffice\Dashboard\Infrastructure\UserInterface\Web;
-
 	
 	use App\Shared\Infrastructure\Symfony\WebController;
 	use Symfony\Component\HttpFoundation\Request;
@@ -12,11 +10,6 @@
 	{
 		public function __invoke(Request $request ): Response
 		{
-			return $this->render('backoffice/dashboard/index.html.twig', [
-				'post_list' => 'post_list',
-				'author_list' => 'post_author',
-				'tag_list' => 'tag_list',
-				'user_list' => 'user_list'
-			]);
+			return $this->render('backoffice/dashboard/index.html.twig');
 		}
 	}

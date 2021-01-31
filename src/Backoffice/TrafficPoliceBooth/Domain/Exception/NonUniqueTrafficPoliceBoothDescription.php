@@ -23,6 +23,7 @@
 		
 		protected function errorMessage(): string
 		{
-			return sprintf('El tag con la descripción "%s" que ha ingresado ya está registrada.', $this->description);
+			return sprintf('El puesto de control con la descripción "%s" que ha ingresado ya está registrado.',
+				$this->description);
 		}
 	}
