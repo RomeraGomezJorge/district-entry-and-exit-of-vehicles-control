@@ -41,12 +41,26 @@
 		{
 			$doctrineCriteria = DoctrineCriteriaConverter::convert($criteria);
 			
-			$this->isNotNullAddAsFilterVehicleMakerNameFilter($vehicleMakerName, $doctrineCriteria);
+			$this->isNotNullAddAsFilter($vehicleMakerName, $doctrineCriteria);
 			
 			return $this->repository(ModelOfVehicle::class)->matching($doctrineCriteria)->toArray();
 		}
 		
-		protected function isNotNullAddAsFilterVehicleMakerNameFilter(
+		public function totalMatchingRows(Criteria $criteria, ?VehicleMakerName $vehicleMakerName): int
+		{
+			$doctrineCriteria = DoctrineCriteriaConverter::convert($criteria);
+			
+			$this->isNotNullAddAsFilter($vehicleMakerName, $doctrineCriteria);
+			
+			return $this->repository(ModelOfVehicle::class)->matching($doctrineCriteria)->count();
+		}
+		
+		public function delete(ModelOfVehicle $district): void
+		{
+			$this->remove($district);
+		}
+		
+		private function isNotNullAddAsFilter(
 			?VehicleMakerName $vehicleMakerName,
 			DoctrineCriteria $doctrineCriteria
 		): DoctrineCriteria {
@@ -61,20 +75,6 @@
 					$vehicleMakerName
 				)
 			);
-		}
-		
-		public function totalMatchingRows(Criteria $criteria, ?VehicleMakerName $vehicleMakerName): int
-		{
-			$doctrineCriteria = DoctrineCriteriaConverter::convert($criteria);
-			
-			$this->isNotNullAddAsFilterVehicleMakerNameFilter($vehicleMakerName, $doctrineCriteria);
-			
-			return $this->repository(ModelOfVehicle::class)->matching($doctrineCriteria)->count();
-		}
-		
-		public function delete(ModelOfVehicle $district): void
-		{
-			$this->remove($district);
 		}
 	}
 	

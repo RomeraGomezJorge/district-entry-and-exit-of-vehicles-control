@@ -51,12 +51,7 @@
 		{
 			$doctrineCriteria = DoctrineCriteriaConverter::convert($criteria);
 			
-			if ( !is_null($role)) {
-				
-				$doctrineCriteria->andWhere(DoctrineCriteria::expr()->eq(
-					'role',$role)
-				);
-			}
+			$doctrineCriteria = $this->isNotNullAddAsFilter($role,$doctrineCriteria);
 			
 			return $this->repository(User::class)->matching($doctrineCriteria)->toArray();
 		}
@@ -66,12 +61,7 @@
 		{
 			$doctrineCriteria = DoctrineCriteriaConverter::convert($criteria);
 			
-			if ( !is_null($role)) {
-				
-				$doctrineCriteria->andWhere(DoctrineCriteria::expr()->eq(
-					'role',$role)
-				);
-			}
+			$doctrineCriteria = $this->isNotNullAddAsFilter($role,$doctrineCriteria);
 			
 			return $this->repository(User::class)->matching($doctrineCriteria)->count();
 		}
@@ -79,5 +69,22 @@
 		public function delete(User $user): void
 		{
 			$this->remove($user);
+		}
+		
+		private function isNotNullAddAsFilter(
+			?Role $role,
+			DoctrineCriteria $doctrineCriteria
+		): DoctrineCriteria {
+			
+			if (is_null($role)) {
+				return $doctrineCriteria;
+			}
+			
+			return $doctrineCriteria->andWhere(
+				DoctrineCriteria::expr()->eq(
+					'role',
+					$role
+				)
+			);
 		}
 	}
