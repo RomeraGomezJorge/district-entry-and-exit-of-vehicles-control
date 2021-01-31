@@ -49,9 +49,9 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('assets/js/blog/form/validate.form.fields.js') }}"></script>
+    <script src="{{ asset('assets/js/police/form/validate.form.fields.js') }}"></script>
     {% if flash.has('hasErrors.0') %}
-        <script src="{{ asset('assets/js/blog/form/display.error.message.on.invalid.field.js') }}"></script>
+        <script src="{{ asset('assets/js/police/form/display.error.message.on.invalid.field.js') }}"></script>
     {% endif %}
 
 {% endblock %}
