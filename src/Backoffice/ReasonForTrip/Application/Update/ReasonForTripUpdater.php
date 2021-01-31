@@ -1,10 +1,8 @@
 <?php
 	
-	
 	namespace App\Backoffice\ReasonForTrip\Application\Update;
 	
 	use App\Backoffice\ReasonForTrip\Application\Find\ReasonForTripFinder;
-	use App\Backoffice\ReasonForTrip\Domain\District;
 	use App\Backoffice\ReasonForTrip\Domain\ReasonForTrip;
 	use App\Backoffice\ReasonForTrip\Domain\ReasonForTripRepository;
 	use App\Backoffice\ReasonForTrip\Domain\UniqueReasonForTripDescriptionSpecification;
@@ -26,7 +24,7 @@
 			$this->uniqueReasonForTripDescriptionSpecification = $uniqueReasonForTripDescriptionSpecification;
 		}
 		
-		public function __invoke(string $id, string $newDescription)
+		public function __invoke(string $id, string $newDescription): void
 		{
 			$reasonForTrip = $this->finder->__invoke($id);
 			
@@ -37,12 +35,8 @@
 			$this->repository->save($reasonForTrip);
 		}
 		
-		
-		private function hasDescriptionChanged(string $newDescription, ReasonForTrip $reasonForTrip)
+		private function hasDescriptionChanged(string $newDescription, ReasonForTrip $reasonForTrip): bool
 		{
-			if (strcmp($newDescription, $reasonForTrip->getDescription()) !== 0) {
-				return true;
-			}
-			return false;
+			return strcmp($newDescription, $reasonForTrip->getDescription()) !== 0 ? true : false;
 		}
 	}

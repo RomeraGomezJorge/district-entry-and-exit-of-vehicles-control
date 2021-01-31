@@ -1,6 +1,5 @@
 <?php
 	
-	
 	namespace App\Backoffice\VehicleMakerName\Application\Update;
 	
 	use App\Backoffice\VehicleMakerName\Application\Find\VehicleMakerNameFinder;
@@ -25,7 +24,7 @@
 			$this->uniqueVehicleMakerNameDescriptionSpecification = $uniqueVehicleMakerNameDescriptionSpecification;
 		}
 		
-		public function __invoke(string $id, string $newDescription)
+		public function __invoke(string $id, string $newDescription): void
 		{
 			$vehicleMakerName = $this->finder->__invoke($id);
 			
@@ -37,12 +36,8 @@
 			$this->repository->save($vehicleMakerName);
 		}
 		
-		private function hasDescriptionChanged(string $newDescription, VehicleMakerName $district)
+		private function hasDescriptionChanged(string $newDescription, VehicleMakerName $vehicleMakerName): bool
 		{
-			if (strcmp($newDescription, $district->getDescription()) !== 0) {
-				return true;
-			}
-			
-			return false;
+			return strcmp($newDescription, $vehicleMakerName->getDescription()) !== 0 ? true : false;
 		}
 	}
