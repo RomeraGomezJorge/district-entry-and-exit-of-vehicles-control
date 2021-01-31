@@ -4,13 +4,8 @@ $(document).ready(function () {
     const vehicleMakersName = $('#valuesOfVehicleMakersName');
     const valuesNotEqualToRole = $('#valuesNotEqualVehicleMakersName');
 
-    /* ejecuta el evento change para saber que campo de busqueda se encuentra selecionado y asi mostrar
-    solo el que corresponda */
-    filter_field.change();
-
     filter_field.on('change', function () {
 
-        alert('cambia');
         /* en caso que el campo de busqueda sea "marca de vehiculos" muestra la etiqueta select
         que contiene todas mas las marcas de vehiculos y oculta el campo que permite ingresar caracteres */
         if (filter_field.val() === 'vehicleMakerName') {

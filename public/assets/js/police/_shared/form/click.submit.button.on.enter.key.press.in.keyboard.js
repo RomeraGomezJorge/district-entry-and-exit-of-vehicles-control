@@ -1,4 +1,4 @@
-function disablingEnteKeyForForm() {
+function changeTheDefaultBehaviorOfTheEnterKey() {
     $(document).keypress(
         function(event){
             if (event.which == '13') {

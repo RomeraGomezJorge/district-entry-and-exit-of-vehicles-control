@@ -3,7 +3,7 @@ $(document).ready(function () {
     const inputSelector = $('input[name="username"]');
 
     /* disablingEnteKeyForForm() FIX: prevent an exception, because if is enabled can submit the data without validate is a description is  already in use */
-    disablingEnteKeyForForm();
+    changeTheDefaultBehaviorOfTheEnterKey();
 
     inputSelector.on('focusout',function () {
         addUniqueUsernameRule(inputSelector);
