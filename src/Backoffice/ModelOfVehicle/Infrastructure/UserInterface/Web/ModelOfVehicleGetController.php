@@ -37,8 +37,8 @@
 			$page = $request->get('page');
 			
 			$limit = $request->get('limit');
-			
-			$filters = FilterUtils::getAValidValueForFilter($request->get('filters'));
+            
+            $filters = FilterUtils::getValidValueForFilter( $request->get( 'filters' ) );
 			
 			$modelsOfVehicle = $itemsByCriteriaSearcher->__invoke(
 				$filters,

@@ -1,0 +1,439 @@
+{% extends 'backoffice/_shared/formToHandleItem.base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/wizard.css') }}">
+{% endblock %}
+{% block form %}
+    <style>
+
+    </style>
+    <form action="{{ path(form_action_attribute) }}" method="post" id="form" novalidate="novalidate">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token(id) }}">
+        <input type="hidden" name="id" value="{{ id }}">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="">
+                        {#   Datos de los pasajeros   #}
+                        <fieldset class="show">
+                            <div class="form-card">
+                                <div>
+                                    <div class="pull-left">
+                                        <span class="set-size charts-container">
+                                            <div class="pie-wrapper progress-35 style-2">
+                                                <span class="label"> 1 de 3</span>
+                                                <div class="pie">
+                                                    <div class="left-side half-circle"></div>
+                                                    <div class="right-side half-circle"></div>
+                                                </div>
+                                                <div class="shadow"></div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="pull-left mt-4">
+                                        <h2>Datos de pasajeros</h2>
+                                        <small><b>Proximo:</b> Detalles del vehiculo </small>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <hr>
+                                <h7 class="my-1"><strong> Pasajero nº 1</strong></h7>
+                                <hr>
+
+                                <div class="field_wrapper">
+                                    <div class="form-group">
+                                        <label>Nombre ( * ) :</label>
+                                        <input type="text"
+                                               placeholder=" - Obligatorio -"
+                                               name="vehiclePassenger[name][]"
+                                               value=""
+                                               data-description_from_database=""
+                                               maxlength="255"
+                                               class="form-control"
+                                               required=""
+                                               autofocus
+                                        >
+                                        <small class="errorLabelContainer form-text text-muted text-danger">
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Apellido ( * ) :</label>
+                                        <input type="text"
+                                               placeholder=" - Obligatorio -"
+                                               name="vehiclePassenger[surname][]"
+                                               value=""
+                                               data-description_from_database=""
+                                               maxlength="255"
+                                               class="form-control"
+                                               required="">
+                                        <small class="errorLabelContainer form-text text-muted text-danger">
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Dni ( * ) :</label>
+                                        <input type="number"
+                                               placeholder=" - Obligatorio -"
+                                               name="vehiclePassenger[identityCard][]"
+                                               value=""
+                                               data-description_from_database=""
+                                               maxlength="255"
+                                               class="form-control"
+                                               required="">
+                                        <small class="errorLabelContainer form-text text-muted text-danger"></small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Telefono :</label>
+                                        <input type="text"
+                                               placeholder=" - Opcional -"
+                                               name="vehiclePassenger[phone][]"
+                                               value=""
+                                               data-description_from_database=""
+                                               maxlength="255"
+                                               class="form-control"
+                                               required="">
+                                        <small class="errorLabelContainer form-text text-muted text-danger"></small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Dirección :</label>
+                                        <input type="text"
+                                               placeholder=" - Opcional -"
+                                               name="vehiclePassenger[address][]"
+                                               value=""
+                                               data-description_from_database=""
+                                               maxlength="255"
+                                               class="form-control"
+                                               required="">
+                                        <small class="errorLabelContainer form-text text-muted text-danger"></small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Temperatura ( * ) :</label>
+                                        <input type="text"
+                                               placeholder=" - Obligatorio -"
+                                               name="vehiclePassenger[temperatureControl][]"
+                                               value=""
+                                               data-description_from_database=""
+                                               maxlength="255"
+                                               class="form-control"
+                                               required="">
+                                        <small class="errorLabelContainer form-text text-muted text-danger"></small>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <a href="javascript:void(0);" class="add_button btn btn-black btn-border mr-2">
+                                        <i class="fas fa-plus-circle"></i>
+                                        Agregar Pasajero
+                                    </a>
+                                    <b class="d-none d-sm-inline" id="contador">Cantidad de pasajeros ( 1 )</b>
+                                </div>
+
+                                <hr>
+
+                                <button type="button" id="passengerValidations" class="btn btn-dark btn-block next">
+                                    Siguiente
+                                    <span class=" ml-1 btn-label">
+                                        <i class="fas fa-forward"></i>
+                                    </span>
+                                </button>
+
+                            </div>
+
+                        </fieldset>
+                        {#  Fin Datos de los pasajeros   #}
+
+                        {#  Datos del vehiculo #}
+                        <fieldset>
+                            <div class="form-card">
+                                <div>
+                                    <div class="pull-left">
+                                        <span class="set-size charts-container">
+                                            <div class="pie-wrapper progress-60 style-2">
+                                                <span class="label"> 2 de 3</span>
+                                                <div class="pie">
+                                                    <div class="left-side half-circle"></div>
+                                                    <div class="right-side half-circle"></div>
+                                                </div>
+                                                <div class="shadow"></div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="pull-left mt-4">
+                                        <h2>Detalles del vehiculo </h2>
+                                        <small><b>Proximo:</b> Detalles del viaje </small>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="form-group {% if flash.has('errors.vehicleBodyTypeId') %} has-error {% endif %}">
+                                    <div class="" id="vehicleBodyType">
+                                        <label>Tipo de Carrocería ( * )</label><br>
+                                        <div class="selectgroup w-100 mt-3">
+                                            {% for vehicleBodyType in vehicleBodyTypes %}
+                                                <label class="selectgroup-item">
+                                                    <input type="radio"
+                                                           name="vehicleBodyTypeId"
+                                                           value="{{ vehicleBodyType.id }}"
+                                                           class="selectgroup-input"
+                                                            {{ vehicleBodyTypeId == vehicleBodyType.id? 'checked':'' }}
+                                                    >
+                                                    <span class="selectgroup-button selectgroup-button-icon">
+                                                        <img src="{{ vehicleBodyType.image }}"><br>
+                                                        {{ vehicleBodyType.description }}
+                                                    </span>
+                                                </label>
+                                            {% endfor %}
+                                        </div>
+                                        <small class="errorLabelContainer form-text text-muted text-danger">
+                                            {% if flash.has('errors.vehicleBodyTypeId') %}
+                                                <span class="has-error">{{ flash.get('errors.vehicleBodyTypeId') }} </span>
+                                            {% endif %}
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group {% if flash.has('errors.licensePlate') %} has-error {% endif %}">
+                                    <label>Dominio ( * ) :</label>
+                                    <input type="text"
+                                           placeholder=" - Obligatorio -"
+                                           name="licensePlate"
+                                           value="{{ licensePlate }}"
+                                           maxlength="255"
+                                           class="form-control"
+                                           required="">
+                                    <small class="errorLabelContainer form-text text-muted text-danger">
+                                        {% if flash.has('errors.licensePlate') %}
+                                            <span class="has-error">{{ flash.get('errors.licensePlate') }} </span>
+                                        {% endif %}
+                                    </small>
+                                </div>
+
+                                <div class="form-group {% if flash.has('errors.vehicleMakerNameId') %} has-error {% endif %}">
+                                    <label for="modelsOfVehicleId">Marca del vehiculo ( * )</label>
+                                    <select name="vehicleMakerNameId"
+                                            id="vehicleMakerNameId"
+                                            class="form-control"
+                                            required
+                                    >
+                                        <option selected disabled> - Seleccioné -</option>
+                                        {% for vehicleMakerName in vehicleMakersName %}
+                                            <option value="{{ vehicleMakerName.id }}"
+                                                    {{ vehicleMakerName.id == vehicleMakerNameId ? 'selected':'' }}
+                                            >
+                                                {{ vehicleMakerName.description }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <small class="errorLabelContainer form-text text-muted text-danger">
+                                        {% if flash.has('errors.vehicleMakerNameId') %}
+                                            <span class="has-error">{{ flash.get('errors.vehicleMakerNameId') }} </span>
+                                        {% endif %}
+                                    </small>
+                                </div>
+
+                                <div id="modelOfVehicleIdContainer"
+                                     class="form-group {% if flash.has('errors.modelOfVehicleId') %} has-error {% endif %}"
+                                >
+                                    <label for="modelOfVehicleId">Modelo del vehiculo ( * )</label>
+                                    <select name="modelOfVehicleId" id="modelOfVehicleId" class="form-control"
+                                            required>
+                                        <option selected disabled> - Seleccioné -</option>
+                                        {% for modelOfVehicle in modelsOfVehicle %}
+                                            <option data-vehicle_maker_name_id="{{ modelOfVehicle.vehicleMakerName.id }}"
+                                                    value="{{ modelOfVehicle.id }}"
+                                                    {{ modelOfVehicle.id == modelOfVehicleId ? 'selected':'' }}
+                                            >
+                                                {{ modelOfVehicle.description }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <small class="errorLabelContainer form-text text-muted text-danger">
+                                        {% if flash.has('errors.modelOfVehicleId') %}
+                                            <span class="has-error">{{ flash.get('errors.modelOfVehicleId') }}</span>
+                                        {% endif %}
+                                    </small>
+                                </div>
+
+                                <button type="button"
+                                        class="btn btn-light d-none d-sm-block col-sm-5 pull-left mt-3 prev">
+                                    <span class=" ml-1 btn-label">
+                                        <i class="fas fa-backward"></i>
+                                    </span>
+                                    Anterior
+                                </button>
+                                <button type="button"
+                                        id="vehicleValidations"
+                                        class="btn btn-dark pull-right  mt-3 col-sm-5 next"
+                                        onclick="validateVehicleInfo()"
+                                >
+                                    Siguiente
+                                    <span class=" ml-1 btn-label">
+                                        <i class="fas fa-forward"></i>
+                                    </span>
+                                </button>
+                                <button type="button"
+                                        class="btn btn-light d-block d-sm-none col-sm-5 pull-left mt-3 prev">
+                                    <span class=" ml-1 btn-label">
+                                        <i class="fas fa-backward"></i>
+                                    </span>
+                                    Anterior
+                                </button>
+                                <div>
+                        </fieldset>
+                        {# Fin Datos del vehiculo #}
+
+                        {#  Datos del viaje #}
+                        <fieldset>
+                            <div class="form-card">
+                                <div>
+                                    <div class="pull-left">
+                                        <span class="set-size charts-container">
+                                            <div class="pie-wrapper progress-100 style-2">
+                                                <span class="label"> 3 de 3</span>
+                                                <div class="pie">
+                                                    <div class="left-side half-circle"></div>
+                                                    <div class="right-side half-circle"></div>
+                                                </div>
+                                                <div class="shadow"></div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="pull-left mt-45">
+                                        <h2>Detalles del viaje </h2>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="form-group {% if flash.has('errors.tripOriginId') %} has-error {% endif %}">
+                                    <label for="tripOriginId">Destino ( * )</label>
+                                    <select name="tripOriginId" id="tripOriginId" class="form-control" required>
+                                        <option selected disabled> - Seleccioné -</option>
+                                        {% for district in districts %}
+                                            <option value="{{ district.id }}"
+                                                    {{ district.id == tripOriginId ? 'selected':'' }}
+                                            >
+                                                {{ district.description }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <small class="errorLabelContainer form-text text-muted text-danger">
+                                        {% if flash.has('errors.tripOriginId') %}
+                                            <span class="has-error">{{ flash.get('errors.tripOriginId') }}</span>
+                                        {% endif %}
+                                    </small>
+                                </div>
+                                <div class="form-group {% if flash.has('errors.tripDestinationId') %} has-error {% endif %}">
+                                    <label for="tripDestinationId">Destino ( * )</label>
+                                    <select name="tripDestinationId"
+                                            id="tripDestinationId"
+                                            class="form-control"
+                                            required
+                                    >
+                                        <option selected disabled> - Seleccioné -</option>
+                                        {% for district in districts %}
+                                            <option value="{{ district.id }}"
+                                                    {{ district.id == tripDestinationId ? 'selected':'' }}
+                                            >
+                                                {{ district.description }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <small class="errorLabelContainer form-text text-muted text-danger">
+                                        {% if flash.has('errors.tripDestinationId') %}
+                                            <span class="has-error">{{ flash.get('errors.tripDestinationId') }}</span>
+                                        {% endif %}
+                                    </small>
+                                </div>
+
+                                <div class="form-group {% if flash.has('errors.reasonForTripId') %} has-error {% endif %}">
+                                    <div class="form-check" id="reasonForTripId">
+                                        <label>Motivo del viaje ( * )</label><br>
+                                        {% for reasonForTrip in reasonsForTrip %}
+                                            <label class="form-radio-label">
+                                                <input class="form-radio-input"
+                                                       type="radio"
+                                                       name="reasonForTripId"
+                                                       value="{{ reasonForTrip.id }}"
+                                                        {{ reasonForTripId == reasonForTrip.id? 'checked':'' }}>
+                                                <span class="form-radio-sign">{{ reasonForTrip.description }}</span>
+                                            </label>
+                                            <br>
+                                        {% endfor %}
+                                        <small class="errorLabelContainer form-text text-muted text-danger">
+                                            {% if flash.has('errors.reasonForTripId') %}
+                                                <span class="has-error">{{ flash.get('errors.reasonForTripId') }} </span>
+                                            {% endif %}
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group {% if flash.has('errors.trafficPoliceBoothId') %} has-error {% endif %}">
+                                    <div class="form-check" id="trafficPoliceBoothId">
+                                        <label>Puesto de control ( * )</label><br>
+                                        {% for trafficPoliceBooth in trafficPoliceBooths %}
+                                            <label class="form-radio-label">
+                                                <input class="form-radio-input"
+                                                       type="radio"
+                                                       name="trafficPoliceBoothId"
+                                                       value="{{ trafficPoliceBooth.id }}"
+                                                        {{ trafficPoliceBoothId == trafficPoliceBooth.id? 'checked':'' }}>
+                                                <span class="form-radio-sign">{{ trafficPoliceBooth.description }}</span>
+                                            </label>
+                                            <br>
+                                        {% endfor %}
+                                        <small class="errorLabelContainer form-text text-muted text-danger">
+                                            {% if flash.has('errors.trafficPoliceBoothId') %}
+                                                <span class="has-error">{{ flash.get('errors.trafficPoliceBoothId') }} </span>
+                                            {% endif %}
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <button type="button"
+                                        class="btn btn-light col-sm-5 d-none d-sm-block pull-left mt-3 prev">
+                                    <span class=" ml-1 btn-label">
+                                        <i class="fas fa-backward"></i>
+                                    </span>
+                                    Anterior
+                                </button>
+
+                                <button type="submit"
+                                        id="tripValidations"
+                                        class="btn btn-success pull-right col-sm-5 mt-3"
+                                >
+                                    <span class="btn-label">
+                                        <i class="fas fa-save"></i>
+                                    </span>
+                                    {{ submit_button_label }}
+                                </button>
+
+                                <button type="button"
+                                        class="btn btn-light col-sm-5 d-block d-sm-none pull-left mt-3 prev"
+                                >
+                                    <span class=" ml-1 btn-label">
+                                        <i class="fas fa-backward"></i>
+                                    </span>
+                                    Anterior
+                                </button>
+                            </div>
+                        </fieldset>
+                        {# Fin Datos del viaje #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/police/_shared/form/click.submit.button.on.enter.key.press.in.keyboard.js') }}"></script>
+    <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/form/add.more.js') }}"></script>
+    <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/form/wizard.js') }}"></script>
+    <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/form/append.rules.on.form.validation.js') }}"></script>
+    <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/form/show.model.of.vehicle.that.belong.to.a.vehicle.maker.name.js') }}"></script>
+
+{% endblock %}

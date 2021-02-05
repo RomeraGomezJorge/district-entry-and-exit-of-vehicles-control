@@ -7352,7 +7352,7 @@ label.error {
 }
 
 .btn-light {
-    background: #ffffff !important;
+    background: #e8e8e8 !important;
     border-color: transparent;
 }
 
@@ -7422,8 +7422,8 @@ label.error {
 }
 
 .btn-border.btn-light {
-    border: 1px solid #efefef;
-    background: #fff !important;
+    border: 1px solid #beb3b3;
+    background: #e8e8e8 !important;
 }
 
 /*      Button Rounded      */
@@ -8816,20 +8816,26 @@ label.error {
     padding-left: .5rem;
     padding-right: .5rem;
     font-size: 1rem;
+    color: black;
+}
+
+.selectgroup-button-icon img {
+    width: 50px;
 }
 
 .selectgroup-input:checked + .selectgroup-button {
-    border-color: #1572E8;
+    border-color: #e01a34;
     z-index: 1;
-    color: #1572E8;
-    background: rgba(21, 114, 232, 0.15);
+    color: #e01a34;
+    background: #e01a3417;
+    font-weight: bold;
 }
 
 .selectgroup-input:focus + .selectgroup-button {
-    border-color: #1572E8;
+    border-color: #e01a34;
     z-index: 2;
-    color: #1572E8;
-    box-shadow: 0 0 0 2px rgba(21, 114, 232, 0.25);
+    color: #e01a34;
+    box-shadow: 0 0 0 2px #e01a3417;
 }
 
 .selectgroup-pills {
@@ -20998,4 +21004,9 @@ a.dashboard-shortcut, a.dashboard-shortcut:visited{
     border-radius: 50%;
     -webkit-animation: 1s spin linear infinite;
     animation:  1s spin linear infinite;
+}
+
+/* custom */
+.mt-45 {
+    margin-top: 2.7rem !important;
 }

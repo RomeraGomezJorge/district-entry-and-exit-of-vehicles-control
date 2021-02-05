@@ -66,4 +66,11 @@ doctrine:
               prefix: 'App\Backoffice\ModelOfVehicle\Domain'
               alias: App
 
+            App\Backoffice\DistrictEntryAndExitOfVehiclesControl:
+              is_bundle: false
+              type: xml
+              dir: '%kernel.project_dir%/src/Backoffice/DistrictEntryAndExitOfVehiclesControl/Infrastructure/Persistence/Doctrine'
+              prefix: 'App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Domain'
+              alias: App
+
 

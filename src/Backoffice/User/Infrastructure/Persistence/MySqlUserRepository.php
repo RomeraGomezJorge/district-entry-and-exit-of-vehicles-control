@@ -35,14 +35,14 @@
 		
 		public function isUserNameExits(array $criteria): bool
 		{
-			$isUnique = (bool)$this->repository(User::class)->findOneBy($criteria);
+            $isUnique = (bool)$this->repository( User::class )->findOneBy( $criteria );
 			
 			return $isUnique;
 		}
 		
 		public function isEmailExits(array $criteria): bool
 		{
-			$isUnique = (bool)$this->repository(User::class)->findOneBy($criteria);
+            $isUnique = (bool)$this->repository( User::class )->findOneBy( $criteria );
 			
 			return $isUnique;
 		}

@@ -30,7 +30,8 @@
 		{
 			$creator->__invoke(
 				$request->get('id'),
-				$request->get('description')
+                $request->get( 'description' ),
+                $request->get( 'image' )
 			);
 			
 			return $this->redirectWithMessage(

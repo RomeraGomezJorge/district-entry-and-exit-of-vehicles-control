@@ -1,0 +1,30 @@
+district_entry_and_exit_of_vehicles_control_list:
+  path: /list/{pageLabel}-{page}/{orderLabel}-{order}-{orderBy}/{limitLabel}-{limit}/{filters}
+  defaults: { _controller: App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Infrastructure\UserInterface\Web\DistrictEntryAndExitOfVehiclesControlGetController, pageLabel: 'page' , page: 1 , orderLabel: 'order' , order: 'createAt' , orderBy: 'desc' , limitLabel: 'rows_per_page' , limit: 10 , filters: null }
+  methods:  [GET,POST]
+
+district_entry_and_exit_of_vehicles_control_add:
+  path: /create
+  defaults: { _controller: App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Infrastructure\UserInterface\Web\DistrictEntryAndExitOfVehiclesControlAddController}
+  methods:  [GET]
+
+district_entry_and_exit_of_vehicles_control_create:
+  path: /create
+  defaults: { _controller: App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Infrastructure\UserInterface\Web\DistrictEntryAndExitOfVehiclesControlPostController}
+  methods:  [POST]
+
+district_entry_and_exit_of_vehicles_control_edit:
+  path: /edit/{id}
+  defaults: { _controller: App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Infrastructure\UserInterface\Web\DistrictEntryAndExitOfVehiclesControlEditController}
+  methods:  [GET]
+
+district_entry_and_exit_of_vehicles_control_update:
+  path: /update
+  defaults: { _controller: App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Infrastructure\UserInterface\Web\DistrictEntryAndExitOfVehiclesControlPutController}
+  methods:  [POST]
+
+
+district_entry_and_exit_of_vehicles_control_delete:
+  path: /delete
+  defaults: { _controller: App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Infrastructure\UserInterface\Web\DistrictEntryAndExitOfVehiclesControlDeleteController}
+  methods:  [POST]

@@ -7,7 +7,6 @@
             <index name="vehicle_make_name" columns="vehicle_make_name_id"/>
         </indexes>
         <unique-constraints>
-            <unique-constraint name="description" columns="description"/>
             <unique-constraint name="id" columns="id"/>
         </unique-constraints>
         <id name="id" type="string" column="id" length="36"/>

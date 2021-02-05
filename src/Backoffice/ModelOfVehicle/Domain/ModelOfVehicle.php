@@ -23,8 +23,8 @@
 			DateTime $createAt,
 			UniqueModelOfVehicleDescriptionSpecification $uniqueModelOfVehicleDescriptionSpecification
 		): self {
-			
-			if (!$uniqueModelOfVehicleDescriptionSpecification->isSatisfiedBy($description)) {
+            if ( !$uniqueModelOfVehicleDescriptionSpecification->isSatisfiedBy( $description,
+                $vehicleMakerName->getId() ) ) {
 				throw new NonUniqueModelOfVehicleDescription($description);
 			}
 			
@@ -63,8 +63,8 @@
 			string $description,
 			UniqueModelOfVehicleDescriptionSpecification $uniqueTagDescriptionSpecification
 		): void {
-			
-			if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($description)) {
+            if ( !$uniqueTagDescriptionSpecification->isSatisfiedBy( $description,
+                $this->geTVehicleMakerName()->getId() ) ) {
 				throw new NonUniqueModelOfVehicleDescription($description);
 			}
 			

@@ -27,6 +27,23 @@
                         </small>
                     </div>
                 </div>
+                <div class="col-lg-12">
+                    <div class="form-group {% if flash.has('errors.image') %} has-error {% endif %}">
+                        <label>Link de la imagen</label>
+                        <input type="text"
+                               placeholder=" - Opcional -"
+                               name="image"
+                               value="{{ image }}"
+                               maxlength="255"
+                               class="form-control"
+                        >
+                        <small class="errorLabelContainer form-text text-muted text-danger">
+                            {% if flash.has('errors.image') %}
+                                <span class="has-error">{{ flash.get('errors.image') }} </span>
+                            {% endif %}
+                        </small>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="card-action">

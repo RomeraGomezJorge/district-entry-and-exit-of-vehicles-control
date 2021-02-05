@@ -19,7 +19,8 @@
 	
 	final class UserCreator
 	{
-		private UserRepository $repository;
+        
+        private UserRepository $repository;
 		private UniqueUserNameSpecification $uniqueUserNameSpecification;
 		private UniqueUserEmailSpecification $uniqueUserEmailSpecification;
 		private EventBus $bus;
