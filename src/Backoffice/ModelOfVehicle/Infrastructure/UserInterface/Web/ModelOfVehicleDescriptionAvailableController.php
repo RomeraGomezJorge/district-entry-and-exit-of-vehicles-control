@@ -14,8 +14,9 @@
 			Request $request,
 			CheckModelOfVehicleDescriptionAvailability $checkModelOfVehicleDescriptionAvailability
 		): JsonResponse {
-			return new JsonResponse(
-				$checkModelOfVehicleDescriptionAvailability->__invoke($request->get('description', ''))
+			return new JsonResponse( $checkModelOfVehicleDescriptionAvailability->__invoke( $request->get( 'description',
+                '' ),
+                $request->get( 'vehicleMakerNameId', '' ) )
 			);
 		}
 	}

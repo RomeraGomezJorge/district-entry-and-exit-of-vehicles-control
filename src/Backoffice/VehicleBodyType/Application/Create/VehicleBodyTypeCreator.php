@@ -26,8 +26,12 @@
 			$this->uniqueVehicleBodyTypeDescriptionSpecification = $uniqueVehicleBodyTypeDescriptionSpecification;
 			$this->bus = $bus;
 		}
-		
-		public function __invoke(string $id, string $description)
+        
+        public function __invoke(
+            string $id,
+            string $description,
+            ?string $image
+        )
 		{
 			$id = new Uuid($id);
 			
@@ -36,6 +40,7 @@
 			$district = VehicleBodyType::create(
 				$id,
 				$description,
+                $image,
 				$createAt,
 				$this->uniqueVehicleBodyTypeDescriptionSpecification);
 			

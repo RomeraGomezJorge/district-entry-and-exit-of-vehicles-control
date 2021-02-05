@@ -27,6 +27,10 @@ model_of_vehicle_directory:
   resource: '../src/Backoffice/ModelOfVehicle/Infrastructure/UserInterface/Routes/model_of_vehicle_routes.yaml'
   prefix: /backoffice/model_of_vehicle
 
+district_entry_and_exit_of_vehicles_control_directory:
+  resource: '../src/Backoffice/DistrictEntryAndExitOfVehiclesControl/Infrastructure/UserInterface/Routes/district_entry_and_exit_of_vehicles_control.yaml'
+  prefix: /backoffice/district_entry_and_exit_of_vehicles_control
+
 delete_confirmation_modal:
     path: /delete-confirm-modal
     defaults: { _controller: App\Shared\Infrastructure\UserInterface\Web\DeleteConfirmationModalController}

@@ -143,8 +143,11 @@
                             <label>Rol ( * )</label><br>
                             {% for role in roles %}
                                 <label class="form-radio-label">
-                                    <input class="form-radio-input" type="radio" name="role_id"
-                                           value="{{ role.id }}" {{ role_id == role.id? 'checked':'' }}>
+                                    <input class="form-radio-input"
+                                           type="radio"
+                                           name="role_id"
+                                           value="{{ role.id }}" {{ role_id == role.id? 'checked':'' }}
+                                    >
                                     <span class="form-radio-sign">{{ role.description }}</span>
                                 </label>
                             {% endfor %}
@@ -175,7 +178,9 @@
                             {% for trafficPoliceBooth in trafficPoliceBooths %}
 
                                 <label class="form-radio-label">
-                                    <input class="form-radio-input" type="radio" name="trafficPoliceBooth_id"
+                                    <input class="form-radio-input"
+                                           type="radio"
+                                           name="trafficPoliceBooth_id"
                                            value="{{ trafficPoliceBooth.id }}" {{ trafficPoliceBooth_id == trafficPoliceBooth.id? 'checked':'' }}>
                                     <span class="form-radio-sign">{{ trafficPoliceBooth.description }}</span>
                                 </label>

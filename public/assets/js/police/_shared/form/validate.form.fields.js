@@ -22,10 +22,16 @@ $(document).ready(function () {
 
         },
         highlight: function (element) {
-            $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+            $(element).closest('.form-group, .form-check').removeClass('has-success').addClass('has-error');
         },
         success: function (element) {
-            $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+            $(element).closest('.form-group, .form-check').removeClass('has-error').addClass('has-success');
+        },
+        errorPlacement: function (error, element) {
+
+            error.insertAfter(element.siblings(":last"));
+
+            error.insertAfter(element.parent('.form-radio-label').siblings(":last"));
         }
     });
 

@@ -60,8 +60,16 @@
 			$user->isActive = (bool)$isActive;
 			$user->trafficPoliceBooth = $trafficPoliceBooth;
 			$user->createAt = $createAt;
-			
-			$user->record(new UserCreatedDomainEvent($id->value(), $username, $name, $surname, $email->value(), $password->value(), $role->getId(), $isActive, $trafficPoliceBooth->getId()));
+            
+            $user->record( new UserCreatedDomainEvent( $id->value(),
+                    $username,
+                    $name,
+                    $surname,
+                    $email->value(),
+                    $password->value(),
+                    $role->getId(),
+                    $isActive,
+                    $trafficPoliceBooth->getId() ) );
 			
 			return $user;
 		}

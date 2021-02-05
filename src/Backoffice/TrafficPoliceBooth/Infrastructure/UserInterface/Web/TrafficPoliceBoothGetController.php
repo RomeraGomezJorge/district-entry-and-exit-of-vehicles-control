@@ -27,8 +27,8 @@ class TrafficPoliceBoothGetController extends WebController
         $page = $request->get('page');
 
         $limit = $request->get('limit');
-	
-	    $filters = FilterUtils::getAValidValueForFilter($request->get('filters'));
+    
+        $filters = FilterUtils::getValidValueForFilter( $request->get( 'filters' ) );
 
         $trafficPoliceBooths = $itemsByCriteriaSearcher->__invoke($filters, $order, $orderBy, $limit,OffsetPaginationUtil::calculate($limit,$page));
 	    

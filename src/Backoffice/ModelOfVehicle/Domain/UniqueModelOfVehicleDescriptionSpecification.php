@@ -5,5 +5,8 @@
 	
 	interface UniqueModelOfVehicleDescriptionSpecification
 	{
-		public function isSatisfiedBy(string $description): bool;
+        public function isSatisfiedBy(
+            string $description,
+            ?string $vehicleMakerNameId
+        ): bool;
 	}

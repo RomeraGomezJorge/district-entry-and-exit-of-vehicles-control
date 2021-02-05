@@ -30,8 +30,8 @@
 			$page = $request->get('page');
 			
 			$limit = $request->get('limit');
-			
-			$filters = $filters = FilterUtils::getAValidValueForFilter($request->get('filters'));
+            
+            $filters = $filters = FilterUtils::getValidValueForFilter( $request->get( 'filters' ) );
 			
 			$districts = $itemsByCriteriaSearcher->__invoke($filters, $order, $orderBy, $limit,
 				OffsetPaginationUtil::calculate($limit, $page));

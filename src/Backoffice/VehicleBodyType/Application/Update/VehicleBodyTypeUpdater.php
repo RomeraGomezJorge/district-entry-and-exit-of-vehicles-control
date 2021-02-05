@@ -23,14 +23,22 @@
 			$this->finder = new VehicleBodyTypeFinder($repository);
 			$this->uniqueVehicleBodyTypeDescriptionSpecification = $uniqueVehicleBodyTypeDescriptionSpecification;
 		}
-		
-		public function __invoke(string $id, string $newDescription): void
+        
+        public function __invoke(
+            string $id,
+            string $newDescription,
+            ?string $newImage
+        ): void
 		{
 			$vehicleBodyType = $this->finder->__invoke($id);
 			
 			if ($this->hasDescriptionChanged($newDescription, $vehicleBodyType)) {
 				$vehicleBodyType->setDescription($newDescription, $this->uniqueVehicleBodyTypeDescriptionSpecification);
 			}
+            
+            if ( $this->hasImageChanged( $newImage, $vehicleBodyType ) ) {
+                $vehicleBodyType->setImage( $newImage );
+            }
 			
 			$this->repository->save($vehicleBodyType);
 		}
@@ -39,4 +47,12 @@
 		{
 			return strcmp($newDescription, $vehicleBodyType->getDescription()) !== 0 ? true : false;
 		}
+        
+        private function hasImageChanged(
+            string $newImage,
+            VehicleBodyType $vehicleBodyType
+        ): bool
+        {
+            return strcmp( $newImage, $vehicleBodyType->getDescription() ) !== 0 ? true : false;
+        }
 	}

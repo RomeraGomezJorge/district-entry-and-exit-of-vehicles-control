@@ -7,7 +7,8 @@
 	use App\Backoffice\ModelOfVehicle\Domain\ModelOfVehicleRepository;
 	use App\Backoffice\VehicleMakerName\Application\Find\VehicleMakerNameFinder;
 	use App\Backoffice\VehicleMakerName\Domain\VehicleMakerName;
-	use App\Shared\Domain\Criteria\Criteria;
+    use App\Backoffice\VehicleMakerName\Domain\VehicleMakerNameRepository;
+    use App\Shared\Domain\Criteria\Criteria;
 	use App\Shared\Domain\Criteria\Filters;
 	use App\Shared\Domain\Criteria\Order;
 	use App\Shared\Infrastructure\Utils\FilterUtilsForFieldThatNotBelongToAnEntity;
@@ -17,11 +18,15 @@
 		const FIELD_NAME_THAT_DOES_NOT_BELONG_TO_THE_ENTITY_IN_THE_FILTER_FORM = 'vehicleMakerName';
 		private ModelOfVehicleRepository $repository;
 		private VehicleMakerNameFinder $finderVehicleMakerName;
-		
-		public function __construct(ModelOfVehicleRepository $repository)
-		{
-			$this->repository = $repository;
-		}
+        
+        public function __construct(
+            ModelOfVehicleRepository $repository,
+            VehicleMakerNameRepository $vehicleMakerNameRepository
+        )
+        {
+            $this->repository = $repository;
+            $this->finderVehicleMakerName = new VehicleMakerNameFinder( $vehicleMakerNameRepository );
+        }
 		
 		public function __invoke($filters, $order, $orderBy, ?int $limit, ?int $offset): int
 		{

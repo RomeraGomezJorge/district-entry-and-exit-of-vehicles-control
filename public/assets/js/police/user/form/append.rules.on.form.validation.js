@@ -5,6 +5,8 @@ $(document).ready(function () {
     appendRuleAtLeastOneUppercase();
 
     appendRuleRequiredRoleId();
+
+    appendRuleRequiredTrafficPoliceBoothId()
 });
 
 function appendRuleAtLeastOneUppercase() {
@@ -29,6 +31,12 @@ function appendRuleAtLeastOneNumber() {
 
 function appendRuleRequiredRoleId() {
     $('input[name="role_id"]').rules("add", {
+        required: true
+    });
+}
+
+function appendRuleRequiredTrafficPoliceBoothId() {
+    $('input[name="trafficPoliceBooth_id"]').rules("add", {
         required: true
     });
 }

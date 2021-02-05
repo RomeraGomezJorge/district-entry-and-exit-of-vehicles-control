@@ -13,6 +13,9 @@
                     Descripción
                 </a>
             </th>
+            <th>
+                Imagen
+            </th>
             <th class="d-none d-sm-table-cell" style="width: 132.8px;">
                 Acción
             </th>
@@ -38,6 +41,11 @@
                     </div>
                 </td>
                 <td class="d-none d-sm-table-cell">{{ vehicleBodyType.description }}</td>
+                <td class="d-none d-sm-table-cell">
+                    {% if vehicleBodyType.image is empty %}
+                        <img src="{{ vehicleBodyType.image }}" width="50"/>
+                    {% endif %}
+                </td>
                 <td class="d-none d-sm-table-cell">
                     <div class="d-block d-sm-none">
                         <button type="button" class="btn btn-link text-dark">
