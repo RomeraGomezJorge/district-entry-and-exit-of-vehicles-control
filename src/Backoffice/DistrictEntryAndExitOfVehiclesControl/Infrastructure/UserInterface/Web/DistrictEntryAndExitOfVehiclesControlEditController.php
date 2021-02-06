@@ -3,6 +3,7 @@
 namespace App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Infrastructure\UserInterface\Web;
 
 use App\Shared\Infrastructure\Constant\FormConstant;
+use App\Shared\Infrastructure\RelatedEntities;
 use App\Shared\Infrastructure\Symfony\WebController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +24,7 @@ class DistrictEntryAndExitOfVehiclesControlEditController extends WebController
               'list_path'             => TwigTemplateConstants::LIST_PATH,
               'id'                    => $districtEntryAndExitOfVehiclesControl->getId(),
               'licensePlate'          => $districtEntryAndExitOfVehiclesControl->getLicensePlate(),
-              'vehicleBodyTypeId'     => $districtEntryAndExitOfVehiclesControl->getvehicleBodyType()->getId(),
+              'vehicleBodyTypeId'     => $districtEntryAndExitOfVehiclesControl->getModelOfVehicle()->getvehicleBodyType()->getId(),
               'vehicleMakerNameId'    => $districtEntryAndExitOfVehiclesControl->getModelOfVehicle()->getVehicleMakerName()->getId(),
               'modelOfVehicleId'      => $districtEntryAndExitOfVehiclesControl->getModelOfVehicle()->getId(),
               'tripOriginId'          => $districtEntryAndExitOfVehiclesControl->gettripOrigin()->getId(),
@@ -31,7 +32,7 @@ class DistrictEntryAndExitOfVehiclesControlEditController extends WebController
               'reasonForTripId'       => $districtEntryAndExitOfVehiclesControl->getReasonForTrip()->getId(),
               'trafficPoliceBoothId'  => $districtEntryAndExitOfVehiclesControl->getTrafficPoliceBooth()->getId(),
               'vehicleBodyTypes'      => $relatedEntities->getAllvehicleBodyTypesSortAlphabetically(),
-              'vehicleMakersName'     => $relatedEntities->getAllVehicleMarkersNameSortAlphabetically(),
+              'vehicleMakersName'     => $relatedEntities->getAllVehicleMakersNameWithHisVehicleBodyTypeSortAlphabetically(),
               'modelsOfVehicle'       => $relatedEntities->getAllModelsOfVehicleSortAlphabetically(),
               'districts'             => $relatedEntities->getAllDistrictsSortAlphabetically(),
               'reasonsForTrip'        => $relatedEntities->getAllReasonsForTriSortAlphabetically(),

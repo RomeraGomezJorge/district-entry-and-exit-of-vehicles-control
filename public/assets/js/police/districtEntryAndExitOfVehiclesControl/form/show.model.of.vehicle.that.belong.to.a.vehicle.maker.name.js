@@ -4,21 +4,31 @@ $(document).ready(function () {
 
     const modelOfVehicleIdSelect = $('select[name="modelOfVehicleId"]');
 
-    /* si el valor por que tiene del select que tiene la marcas de los vehiculos es distinto de null
+    const modelOfVehicleContainer = $("#modelOfVehicleIdContainer");
+
+
+    /* si el valor que tiene del select de la marcas de los vehiculos es distinto de null
     muestra los modelos que pertenecen a la marca seleccionada y ocultara el resto */
     if (vehicleMakerNameIdSelect.val() !== null) {
-        modelOfVehicleIdSelect.removeClass('d-none');
 
         const vehicleMakerNameChosen = vehicleMakerNameIdSelect.val();
 
+        /* muestra el select con los modelos de vehiculos */
+        modelOfVehicleContainer.removeClass('d-none');
+
+        /* oculta todos los modelos de vehiculos */
         $('select[name="modelOfVehicleId"] option').hide();
 
+        /* muestra solo los modelos que pertenecen al id de la marca de vehiculos seleccinada */
         $('select[name="modelOfVehicleId"] option[data-vehicle_maker_name_id="' + vehicleMakerNameChosen + '"]').show();
     }
+
 
     /*Al cambiar el valor de las marcas de los vehiculos muestra el select que tiene los modelos correspondiente
     a esa marca y ocultara el resto*/
     vehicleMakerNameIdSelect.on('change', function () {
+
+        showModelOfVehicleIfVehicleMakerNameIsNotNull(vehicleMakerNameIdSelect, modelOfVehicleContainer);
 
         /* limpia la seleccion previa*/
         modelOfVehicleIdSelect.val(null);
@@ -33,3 +43,14 @@ $(document).ready(function () {
         $('select[name="modelOfVehicleId"] option[data-vehicle_maker_name_id="' + vehicleMakerNameChosen + '"]').show();
     });
 });
+
+/* Muesta el select de los modelos de los vehiculos solo si la marca de vehiculos seleccinada no sea nulo*/
+function showModelOfVehicleIfVehicleMakerNameIsNotNull(vehicleMakerNameIdSelect, modelOfVehicleContainer) {
+
+    if (vehicleMakerNameIdSelect.val() !== null) {
+        modelOfVehicleContainer.removeClass('d-none');
+        return;
+    }
+
+    modelOfVehicleContainer.addClass('d-none');
+}

@@ -38,7 +38,6 @@ class DistrictEntryAndExitOfVehiclesControlPutController extends WebController
     {
         $updater->__invoke( $request->get( 'id' ),
             $request->get( 'licensePlate' ),
-            $request->get( 'vehicleBodyTypeId' ),
             $request->get( 'modelOfVehicleId' ),
             $request->get( 'tripOriginId' ),
             $request->get( 'tripDestinationId' ),

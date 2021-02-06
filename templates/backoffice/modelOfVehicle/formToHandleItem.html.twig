@@ -47,6 +47,28 @@
                     </div>
                 </div>
 
+                <div class="form-group {% if flash.has('errors.vehicleBodyTypeId') %} has-error {% endif %}">
+                    <div class="form-check" id="vehicleBodyTypeId">
+                        <label>Tipo de Carroceria ( * )</label><br>
+                        {% for vehicleBodyType in vehicleBodyTypes %}
+                            <label class="form-radio-label">
+                                <input class="form-radio-input"
+                                       type="radio"
+                                       name="vehicleBodyTypeId"
+                                       value="{{ vehicleBodyType.id }}"
+                                        {{ vehicleBodyTypeId == vehicleBodyType.id? 'checked':'' }}>
+                                <span class="form-radio-sign">{{ vehicleBodyType.description }}</span>
+                            </label>
+                            <br>
+                        {% endfor %}
+                        <small class="errorLabelContainer form-text text-muted text-danger">
+                            {% if flash.has('errors.vehicleBodyTypeId') %}
+                                <span class="has-error">{{ flash.get('errors.vehicleBodyTypeId') }} </span>
+                            {% endif %}
+                        </small>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="card-action">

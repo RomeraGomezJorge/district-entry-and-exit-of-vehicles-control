@@ -12,4 +12,6 @@ $(document).ready(function () {
             description_container.removeClass('d-none');
         }
     })
+
+    vehicleMakerName_id.focus();
 })

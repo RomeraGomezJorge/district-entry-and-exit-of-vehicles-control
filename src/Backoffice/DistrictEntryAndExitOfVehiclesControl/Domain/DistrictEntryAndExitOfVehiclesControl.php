@@ -18,8 +18,6 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
     
     private $licensePlate;
     
-    private $vehicleBodyType;
-    
     private $modelOfVehicle;
     
     private $tripOrigin;
@@ -37,7 +35,6 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
     public static function create(
         Uuid $id,
         string $licensePlate,
-        VehicleBodyType $vehicleBodyType,
         ModelOfVehicle $modelOfVehicle,
         District $tripOrigin,
         District $tripDestination,
@@ -49,7 +46,6 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
         $districtEntryAndExitOfVehiclesControl = new self();
         $districtEntryAndExitOfVehiclesControl->id = $id;
         $districtEntryAndExitOfVehiclesControl->licensePlate = $licensePlate;
-        $districtEntryAndExitOfVehiclesControl->vehicleBodyType = $vehicleBodyType;
         $districtEntryAndExitOfVehiclesControl->modelOfVehicle = $modelOfVehicle;
         $districtEntryAndExitOfVehiclesControl->tripOrigin = $tripOrigin;
         $districtEntryAndExitOfVehiclesControl->tripDestination = $tripDestination;
@@ -59,7 +55,6 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
         $districtEntryAndExitOfVehiclesControl->updateAt = new \DateTime();
         $districtEntryAndExitOfVehiclesControl->record( new DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent( $id->value(),
                 $licensePlate,
-                $vehicleBodyType->getId(),
                 $modelOfVehicle->getId(),
                 $tripOrigin->getId(),
                 $tripDestination->getId(),
@@ -86,16 +81,6 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
     public function setLicensePlate( string $licensePlate ): void
     {
         $this->licensePlate = $licensePlate;
-    }
-    
-    public function getVehicleBodyType(): VehicleBodyType
-    {
-        return $this->vehicleBodyType;
-    }
-    
-    public function setVehicleBodyType( VehicleBodyType $vehicleBodyType ): void
-    {
-        $this->vehicleBodyType = $vehicleBodyType;
     }
     
     public function getModelOfVehicle(): ModelOfVehicle

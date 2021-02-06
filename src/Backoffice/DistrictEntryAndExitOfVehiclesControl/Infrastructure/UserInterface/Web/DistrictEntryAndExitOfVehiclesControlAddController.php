@@ -8,8 +8,10 @@ use App\Backoffice\ReasonForTrip\Application\FindByCriteriaSearcher\ReasonsForTr
 use App\Backoffice\TrafficPoliceBooth\Application\FindByCriteriaSearcher\TrafficPoliceBoothsByCriteriaSearcher;
 use App\Backoffice\VehicleBodyType\Application\FindByCriteriaSearcher\VehicleBodyTypesByCriteriaSearcher;
 use App\Backoffice\VehicleMakerName\Application\FindByCriteriaSearcher\VehicleMakersNameByCriteriaSearcher;
+use App\Backoffice\VehicleMakerName\Domain\VehicleMakerNameRepository;
 use App\Shared\Infrastructure\Constant\FormConstant;
 use App\Shared\Infrastructure\RamseyUuidGenerator;
+use App\Shared\Infrastructure\RelatedEntities;
 use App\Shared\Infrastructure\Symfony\FlashSession;
 use App\Shared\Infrastructure\Symfony\WebController;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +31,8 @@ class DistrictEntryAndExitOfVehiclesControlAddController extends WebController
     public function __invoke(
         FlashSession $flashSession,
         RamseyUuidGenerator $ramseyUuidGenerator,
-        RelatedEntities $relatedEntities
+        RelatedEntities $relatedEntities,
+        VehicleMakerNameRepository $vehicleMakerNameRepository
     ): Response
     {
         $vehicleBodyTypes = $relatedEntities->getAllVehicleBodyTypesSortAlphabetically();
@@ -54,7 +57,7 @@ class DistrictEntryAndExitOfVehiclesControlAddController extends WebController
               'reasonForTripId'       => $flashSession->get( 'inputs.reasonForTripId' ),
               'trafficPoliceBoothId'  => $flashSession->get( 'inputs.trafficPoliceBoothId' ),
               'vehicleBodyTypes'      => $vehicleBodyTypes,
-              'vehicleMakersName'     => $relatedEntities->getAllVehicleMarkersNameSortAlphabetically(),
+              'vehicleMakersName'     => $relatedEntities->getAllVehicleMakersNameWithHisVehicleBodyTypeSortAlphabetically(),
               'modelsOfVehicle'       => $relatedEntities->getAllModelsOfVehicleSortAlphabetically(),
               'districts'             => $relatedEntities->getAllDistrictsSortAlphabetically(),
               'reasonsForTrip'        => $relatedEntities->getAllReasonsForTriSortAlphabetically(),
