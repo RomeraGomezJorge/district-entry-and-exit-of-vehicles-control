@@ -9,7 +9,6 @@
             <index name="trip_destination" columns="tripDestinationId"/>
             <index name="model_of_vehicle" columns="modelOfVehicleId"/>
             <index name="reason_for_trip_id" columns="reasonForTripId"/>
-            <index name="vehicle_body_type" columns="vehicleBodyTypeId"/>
             <index name="traffic_police_booth" columns="trafficPoliceBoothId"/>
         </indexes>
         <unique-constraints>
@@ -26,12 +25,6 @@
         <many-to-one field="tripOrigin" target-entity="App\Backoffice\District\Domain\District" fetch="LAZY">
             <join-columns>
                 <join-column name="tripOriginId" referenced-column-name="id"/>
-            </join-columns>
-        </many-to-one>
-        <many-to-one field="vehicleBodyType" target-entity="App\Backoffice\VehicleBodyType\Domain\VehicleBodyType"
-                     fetch="LAZY">
-            <join-columns>
-                <join-column name="vehicleBodyTypeId" referenced-column-name="id"/>
             </join-columns>
         </many-to-one>
         <many-to-one field="tripDestination" target-entity="App\Backoffice\District\Domain\District" fetch="LAZY">

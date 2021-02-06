@@ -5,7 +5,6 @@
     <entity name="App\Backoffice\ModelOfVehicle\Domain\ModelOfVehicle" table="model_of_vehicle">
         <indexes>
             <index name="vehicle_make_name" columns="vehicle_make_name_id"/>
-            <index name="vehicleBodyType" columns="vehicleBodyTypeId"/>
         </indexes>
         <unique-constraints>
             <unique-constraint name="id" columns="id"/>
@@ -21,12 +20,6 @@
                      fetch="LAZY">
             <join-columns>
                 <join-column name="vehicle_make_name_id" referenced-column-name="id"/>
-            </join-columns>
-        </many-to-one>
-        <many-to-one field="vehicleBodyType" target-entity="App\Backoffice\VehicleBodyType\Domain\VehicleBodyType"
-                     fetch="LAZY">
-            <join-columns>
-                <join-column name="vehicleBodyTypeId" referenced-column-name="id"/>
             </join-columns>
         </many-to-one>
     </entity>

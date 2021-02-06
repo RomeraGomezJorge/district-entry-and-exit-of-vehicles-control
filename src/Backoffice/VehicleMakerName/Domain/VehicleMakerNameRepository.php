@@ -18,4 +18,6 @@
 		public function totalMatchingRows(Criteria $criteria): int;
 		
 		public function delete(VehicleMakerName $vehicleMakerName): void;
+        
+        public function getAllVehicleMakerNameWithBodyType();
 	}

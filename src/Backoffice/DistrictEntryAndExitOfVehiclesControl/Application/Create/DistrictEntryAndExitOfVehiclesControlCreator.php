@@ -46,7 +46,6 @@ final class DistrictEntryAndExitOfVehiclesControlCreator
     )
     {
         $this->repository = $repository;
-        $this->finderVehicleBodyType = new VehicleBodyTypeFinder( $vehicleBodyTypeRepository );
         $this->finderModelOfVehicle = new ModelOfVehicleFinder( $modelOfVehicleRepository );
         $this->finderDistrict = new DistrictFinder( $districtRepository );
         $this->finderReasonForTrip = new ReasonForTripFinder( $reasonForTripRepository );
@@ -57,7 +56,6 @@ final class DistrictEntryAndExitOfVehiclesControlCreator
     public function __invoke(
         string $id,
         string $licensePlate,
-        string $vehicleBodyTypeId,
         string $modelOfVehicleId,
         string $tripOriginId,
         string $tripDestinationId,
@@ -67,8 +65,6 @@ final class DistrictEntryAndExitOfVehiclesControlCreator
     )
     {
         $id = new Uuid( $id );
-        
-        $vehicleBodyType = $this->finderVehicleBodyType->__invoke( $vehicleBodyTypeId );
         
         $modelOfVehicle = $this->finderModelOfVehicle->__invoke( $modelOfVehicleId );
         
@@ -84,7 +80,6 @@ final class DistrictEntryAndExitOfVehiclesControlCreator
         
         $districtEntryAndExitOfVehiclesControl = DistrictEntryAndExitOfVehiclesControl::create( $id,
             $licensePlate,
-            $vehicleBodyType,
             $modelOfVehicle,
             $tripOrigin,
             $tripDestination,

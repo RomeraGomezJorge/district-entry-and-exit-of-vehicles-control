@@ -35,7 +35,6 @@ class DistrictEntryAndExitOfVehiclesControlPostController extends WebController
     {
         $creator->__invoke( $request->get( 'id' ),
             $request->get( 'licensePlate' ),
-            $request->get( 'vehicleBodyTypeId' ),
             $request->get( 'modelOfVehicleId' ),
             $request->get( 'tripOriginId' ),
             $request->get( 'tripDestinationId' ),
