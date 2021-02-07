@@ -35,7 +35,8 @@
 			$updater->__invoke(
 				$request->get('id'),
 				$request->get('description'),
-				$request->get('vehicleMakerName_id')
+                $request->get( 'vehicleMakerName_id' ),
+                $request->get( 'vehicleBodyTypeId' )
 			);
 			
 			return $this->redirectWithMessage(

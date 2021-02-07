@@ -26,7 +26,6 @@ final class DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent extends Doma
     public function __construct(
         string $id,
         string $licensePlate,
-        string $vehicleBodyType,
         string $modelOfVehicle,
         string $tripOrigin,
         string $tripDestination,
@@ -39,7 +38,6 @@ final class DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent extends Doma
         parent::__construct( $id, $eventId, $occurredOn );
         $this->id = $id;
         $this->licensePlate = $licensePlate;
-        $this->vehicleBodyType = $vehicleBodyType;
         $this->modelOfVehicle = $modelOfVehicle;
         $this->tripOrigin = $tripOrigin;
         $this->tripDestination = $tripDestination;
@@ -61,7 +59,6 @@ final class DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent extends Doma
     {
         return new self( $aggregateId,
             $body['licensePlate'],
-            $body['vehicleBodyType'],
             $body['modelOfVehicle'],
             $body['tripOrigin'],
             $body['tripDestination'],
@@ -75,7 +72,6 @@ final class DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent extends Doma
     {
         return [ 'id'                 => $this->id,
                  'licensePlate'       => $this->licensePlate,
-                 'vehicleBodyType'    => $this->vehicleBodyType,
                  'modelOfVehicle'     => $this->modelOfVehicle,
                  'tripOrigin'         => $this->tripOrigin,
                  'tripDestination'    => $this->tripDestination,
@@ -91,11 +87,6 @@ final class DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent extends Doma
     public function licensePlate(): string
     {
         return $this->licensePlate;
-    }
-    
-    public function vehicleBodyType(): string
-    {
-        return $this->vehicleBodyType;
     }
     
     public function modelOfVehicle(): string

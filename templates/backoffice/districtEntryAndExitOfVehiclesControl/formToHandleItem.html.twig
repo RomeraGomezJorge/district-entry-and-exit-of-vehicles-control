@@ -47,7 +47,6 @@
                                                placeholder=" - Obligatorio -"
                                                name="vehiclePassenger[name][]"
                                                value=""
-                                               data-description_from_database=""
                                                maxlength="255"
                                                class="form-control"
                                                required=""
@@ -63,7 +62,6 @@
                                                placeholder=" - Obligatorio -"
                                                name="vehiclePassenger[surname][]"
                                                value=""
-                                               data-description_from_database=""
                                                maxlength="255"
                                                class="form-control"
                                                required="">
@@ -77,8 +75,6 @@
                                                placeholder=" - Obligatorio -"
                                                name="vehiclePassenger[identityCard][]"
                                                value=""
-                                               data-description_from_database=""
-                                               maxlength="255"
                                                class="form-control"
                                                required="">
                                         <small class="errorLabelContainer form-text text-muted text-danger"></small>
@@ -90,7 +86,6 @@
                                                placeholder=" - Opcional -"
                                                name="vehiclePassenger[phone][]"
                                                value=""
-                                               data-description_from_database=""
                                                maxlength="255"
                                                class="form-control"
                                                required="">
@@ -103,7 +98,6 @@
                                                placeholder=" - Opcional -"
                                                name="vehiclePassenger[address][]"
                                                value=""
-                                               data-description_from_database=""
                                                maxlength="255"
                                                class="form-control"
                                                required="">
@@ -116,7 +110,6 @@
                                                placeholder=" - Obligatorio -"
                                                name="vehiclePassenger[temperatureControl][]"
                                                value=""
-                                               data-description_from_database=""
                                                maxlength="255"
                                                class="form-control"
                                                required="">
@@ -169,6 +162,22 @@
                                     <div class="clearfix"></div>
                                 </div>
 
+                                <div class="form-group {% if flash.has('errors.licensePlate') %} has-error {% endif %}">
+                                    <label>Dominio ( * ) :</label>
+                                    <input type="text"
+                                           placeholder=" - Obligatorio -"
+                                           name="licensePlate"
+                                           value="{{ licensePlate }}"
+                                           maxlength="255"
+                                           class="form-control"
+                                           required="">
+                                    <small class="errorLabelContainer form-text text-muted text-danger">
+                                        {% if flash.has('errors.licensePlate') %}
+                                            <span class="has-error">{{ flash.get('errors.licensePlate') }} </span>
+                                        {% endif %}
+                                    </small>
+                                </div>
+
                                 <div class="form-group {% if flash.has('errors.vehicleBodyTypeId') %} has-error {% endif %}">
                                     <div class="" id="vehicleBodyType">
                                         <label>Tipo de Carrocería ( * )</label><br>
@@ -196,24 +205,13 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group {% if flash.has('errors.licensePlate') %} has-error {% endif %}">
-                                    <label>Dominio ( * ) :</label>
-                                    <input type="text"
-                                           placeholder=" - Obligatorio -"
-                                           name="licensePlate"
-                                           value="{{ licensePlate }}"
-                                           maxlength="255"
-                                           class="form-control"
-                                           required="">
-                                    <small class="errorLabelContainer form-text text-muted text-danger">
-                                        {% if flash.has('errors.licensePlate') %}
-                                            <span class="has-error">{{ flash.get('errors.licensePlate') }} </span>
-                                        {% endif %}
-                                    </small>
-                                </div>
 
-                                <div class="form-group {% if flash.has('errors.vehicleMakerNameId') %} has-error {% endif %}">
-                                    <label for="modelsOfVehicleId">Marca del vehiculo ( * )</label>
+                                <div class="form-group
+                                            {% if flash.has('errors.vehicleMakerNameId') %}
+                                                has-error
+                                            {% endif %}"
+                                >
+                                    <label for="vehicleMakerNameId">Marca del vehiculo ( * )</label>
                                     <select name="vehicleMakerNameId"
                                             id="vehicleMakerNameId"
                                             class="form-control"
@@ -222,6 +220,8 @@
                                         <option selected disabled> - Seleccioné -</option>
                                         {% for vehicleMakerName in vehicleMakersName %}
                                             <option value="{{ vehicleMakerName.id }}"
+                                                    data-vehicle_body_type_id="{{ vehicleMakerName.vehicleBodyTypeId }}"
+                                                    data-description="{{ vehicleMakerName.vehicleBodyTypeDescription }}"
                                                     {{ vehicleMakerName.id == vehicleMakerNameId ? 'selected':'' }}
                                             >
                                                 {{ vehicleMakerName.description }}
@@ -236,7 +236,8 @@
                                 </div>
 
                                 <div id="modelOfVehicleIdContainer"
-                                     class="form-group {% if flash.has('errors.modelOfVehicleId') %} has-error {% endif %}"
+                                     class=" d-none form-group {% if flash.has('errors.modelOfVehicleId') %} has-error
+{% endif %}"
                                 >
                                     <label for="modelOfVehicleId">Modelo del vehiculo ( * )</label>
                                     <select name="modelOfVehicleId" id="modelOfVehicleId" class="form-control"
@@ -308,8 +309,30 @@
                                     <div class="clearfix"></div>
                                 </div>
 
+                                <div class="form-group {% if flash.has('errors.reasonForTripId') %} has-error {% endif %}">
+                                    <div class="form-check" id="reasonForTripId">
+                                        <label>Motivo del viaje ( * )</label><br>
+                                        {% for reasonForTrip in reasonsForTrip %}
+                                            <label class="form-radio-label">
+                                                <input class="form-radio-input"
+                                                       type="radio"
+                                                       name="reasonForTripId"
+                                                       value="{{ reasonForTrip.id }}"
+                                                        {{ reasonForTripId == reasonForTrip.id? 'checked':'' }}>
+                                                <span class="form-radio-sign">{{ reasonForTrip.description }}</span>
+                                            </label>
+                                            <br>
+                                        {% endfor %}
+                                        <small class="errorLabelContainer form-text text-muted text-danger">
+                                            {% if flash.has('errors.reasonForTripId') %}
+                                                <span class="has-error">{{ flash.get('errors.reasonForTripId') }} </span>
+                                            {% endif %}
+                                        </small>
+                                    </div>
+                                </div>
+
                                 <div class="form-group {% if flash.has('errors.tripOriginId') %} has-error {% endif %}">
-                                    <label for="tripOriginId">Destino ( * )</label>
+                                    <label for="tripOriginId">Origen ( * )</label>
                                     <select name="tripOriginId" id="tripOriginId" class="form-control" required>
                                         <option selected disabled> - Seleccioné -</option>
                                         {% for district in districts %}
@@ -349,27 +372,7 @@
                                     </small>
                                 </div>
 
-                                <div class="form-group {% if flash.has('errors.reasonForTripId') %} has-error {% endif %}">
-                                    <div class="form-check" id="reasonForTripId">
-                                        <label>Motivo del viaje ( * )</label><br>
-                                        {% for reasonForTrip in reasonsForTrip %}
-                                            <label class="form-radio-label">
-                                                <input class="form-radio-input"
-                                                       type="radio"
-                                                       name="reasonForTripId"
-                                                       value="{{ reasonForTrip.id }}"
-                                                        {{ reasonForTripId == reasonForTrip.id? 'checked':'' }}>
-                                                <span class="form-radio-sign">{{ reasonForTrip.description }}</span>
-                                            </label>
-                                            <br>
-                                        {% endfor %}
-                                        <small class="errorLabelContainer form-text text-muted text-danger">
-                                            {% if flash.has('errors.reasonForTripId') %}
-                                                <span class="has-error">{{ flash.get('errors.reasonForTripId') }} </span>
-                                            {% endif %}
-                                        </small>
-                                    </div>
-                                </div>
+
 
                                 <div class="form-group {% if flash.has('errors.trafficPoliceBoothId') %} has-error {% endif %}">
                                     <div class="form-check" id="trafficPoliceBoothId">
@@ -435,5 +438,51 @@
     <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/form/wizard.js') }}"></script>
     <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/form/append.rules.on.form.validation.js') }}"></script>
     <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/form/show.model.of.vehicle.that.belong.to.a.vehicle.maker.name.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+
+            const vehicleMakerNameIdSelect = $('select[name="vehicleMakerNameId"]');
+
+            const vehicleBodyTypeIdInput = $('input[name="vehicleBodyTypeId"]');
+
+            /*obtiene el id de tipo de carroceria selecionada */
+            const vehicleBodyTypeChosenValue = $("input[name='vehicleBodyTypeId']:checked").val();
+
+            /* solo muestra los modelo que pertenezcan a la marca seleccionada */
+            $('select[name="vehicleMakerNameId"] option[data-vehicle_body_type_id="' + vehicleBodyTypeChosenValue + '"]').show();
+
+            /*Al cambiar el valor del tipo de carroceria se muestra el select que tiene las marcas de vehiculos que hAY
+            dentro de ese tipo de carroceria */
+            vehicleBodyTypeIdInput.on('change', function () {
+
+                /* Se remueve cualquier notificacion sobre el campo marca de vehiculos, por ej:
+                cuando se selecciono un tipo de carroceria y una marca, luego de eso se decide cambiar el tipo de
+                carroceria esta accion dejaria una notficacion de exito sobre el campo marca de vehiculos*/
+                vehicleMakerNameIdSelect.parent('.form-group').removeClass('has-success');
+                vehicleMakerNameIdSelect.parent('.form-group').removeClass('has-error');
+
+                /* limpia la seleccion previa en las marcas de vehiculos*/
+                vehicleMakerNameIdSelect.val(null);
+
+                /*obtiene el id del tipo de carroceria selecionada */
+                const vehicleBodyTypeChosen = $("input[name='vehicleBodyTypeId']:checked").val();
+
+                /* oculta todas las marcas de vehiculos*/
+                $('select[name="vehicleMakerNameId"] option').hide();
+
+                /* solo muestra los modelo que pertenezcan a la marca seleccionada */
+                $('select[name="vehicleMakerNameId"] option[data-vehicle_body_type_id="' + vehicleBodyTypeChosen + '"]')
+                    .show();
+
+                /* limpia la seleccion previa en los modelos de vehiculos*/
+                vehicleMakerNameIdSelect.val(null);
+
+                /* al cambiar y no dejar ninguna marca de vehiculo seleccionada se oculta los modelos de vehiculos */
+                $("#modelOfVehicleIdContainer").addClass('d-none');
+            });
+        })
+    </script>
+
+
 
 {% endblock %}

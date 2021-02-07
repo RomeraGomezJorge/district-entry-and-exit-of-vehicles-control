@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Infrastructure\UserInterface\Web;
+namespace App\Shared\Infrastructure;
 
 use App\Backoffice\District\Application\FindByCriteriaSearcher\DistrictsByCriteriaSearcher;
 use App\Backoffice\ModelOfVehicle\Application\FindByCriteriaSearcher\ModelsOfVehicleByCriteriaSearcher;
@@ -8,6 +8,7 @@ use App\Backoffice\ReasonForTrip\Application\FindByCriteriaSearcher\ReasonsForTr
 use App\Backoffice\TrafficPoliceBooth\Application\FindByCriteriaSearcher\TrafficPoliceBoothsByCriteriaSearcher;
 use App\Backoffice\VehicleBodyType\Application\FindByCriteriaSearcher\VehicleBodyTypesByCriteriaSearcher;
 use App\Backoffice\VehicleMakerName\Application\FindByCriteriaSearcher\VehicleMakersNameByCriteriaSearcher;
+use App\Backoffice\VehicleMakerName\Domain\VehicleMakerNameRepository;
 
 final class RelatedEntities
 {
@@ -34,13 +35,19 @@ final class RelatedEntities
     
     private TrafficPoliceBoothsByCriteriaSearcher $trafficPoliceBoothsByCriteriaSearcher;
     
+    /**
+     * @var VehicleMakerNameRepository
+     */
+    private $vehicleMakerNameRepository;
+    
     public function __construct(
         VehicleBodyTypesByCriteriaSearcher $bodyTypesByCriteriaSearcher,
         VehicleMakersNameByCriteriaSearcher $vehicleMakersNameByCriteriaSearcher,
         ModelsOfVehicleByCriteriaSearcher $modelsOfVehicleByCriteriaSearcher,
         DistrictsByCriteriaSearcher $districtsByCriteriaSearcher,
         ReasonsForTripByCriteriaSearcher $reasonsForTripByCriteriaSearcher,
-        TrafficPoliceBoothsByCriteriaSearcher $trafficPoliceBoothsByCriteriaSearcher
+        TrafficPoliceBoothsByCriteriaSearcher $trafficPoliceBoothsByCriteriaSearcher,
+        VehicleMakerNameRepository $vehicleMakerNameRepository
     )
     {
         $this->bodyTypesByCriteriaSearcher = $bodyTypesByCriteriaSearcher;
@@ -49,6 +56,7 @@ final class RelatedEntities
         $this->districtsByCriteriaSearcher = $districtsByCriteriaSearcher;
         $this->reasonsForTripByCriteriaSearcher = $reasonsForTripByCriteriaSearcher;
         $this->trafficPoliceBoothsByCriteriaSearcher = $trafficPoliceBoothsByCriteriaSearcher;
+        $this->vehicleMakerNameRepository = $vehicleMakerNameRepository;
     }
     
     public function getAllVehicleBodyTypesSortAlphabetically(): array
@@ -104,5 +112,11 @@ final class RelatedEntities
             self::LIST_END_ON_1000,
             self::LIST_BEGIN_ON_0 );
     }
+    
+    public function getAllVehicleMakersNameWithHisVehicleBodyTypeSortAlphabetically()
+    {
+        return $this->vehicleMakerNameRepository->getAllVehicleMakerNameWithBodyType();
+    }
+    
     
 }

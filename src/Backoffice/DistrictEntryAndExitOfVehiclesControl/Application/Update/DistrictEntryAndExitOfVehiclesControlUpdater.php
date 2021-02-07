@@ -23,8 +23,6 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
     
     private DistrictEntryAndExitOfVehiclesControlFinder     $finder;
     
-    private VehicleBodyTypeFinder                           $finderVehicleBodyType;
-    
     private ModelOfVehicleFinder                            $finderModelOfVehicle;
     
     private DistrictFinder                                  $finderDistrict;
@@ -35,7 +33,6 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
     
     public function __construct(
         DistrictEntryAndExitOfVehiclesControlRepository $repository,
-        VehicleBodyTypeRepository $vehicleBodyTypeRepository,
         ModelOfVehicleRepository $modelOfVehicleRepository,
         DistrictRepository $districtRepository,
         ReasonForTripRepository $reasonForTripRepository,
@@ -44,7 +41,6 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
     {
         $this->repository = $repository;
         $this->finder = new DistrictEntryAndExitOfVehiclesControlFinder( $repository );
-        $this->finderVehicleBodyType = new VehicleBodyTypeFinder( $vehicleBodyTypeRepository );
         $this->finderModelOfVehicle = new ModelOfVehicleFinder( $modelOfVehicleRepository );
         $this->finderDistrict = new DistrictFinder( $districtRepository );
         $this->finderReasonForTrip = new ReasonForTripFinder( $reasonForTripRepository );
@@ -54,7 +50,6 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
     public function __invoke(
         string $id,
         string $newLicensePlate,
-        string $newVehicleBodyTypeId,
         string $newModelOfVehicleId,
         string $newTripOriginId,
         string $newTripDestinationId,
@@ -64,7 +59,6 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
     ): void
     {
         $districtEntryAndExitOfVehiclesControl = $this->finder->__invoke( $id );
-        $vehicleBodyType = $this->finderVehicleBodyType->__invoke( $newVehicleBodyTypeId );
         $modelOfVehicle = $this->finderModelOfVehicle->__invoke( $newModelOfVehicleId );
         $tripOrigin = $this->finderDistrict->__invoke( $newTripOriginId );
         $tripDestination = $this->finderDistrict->__invoke( $newTripDestinationId );
@@ -75,12 +69,10 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
             $districtEntryAndExitOfVehiclesControl->setLicensePlate( trim( $newLicensePlate ) );
         }
         
-        if ( $this->hasVehicleBodyTypeChanged( $newVehicleBodyTypeId, $districtEntryAndExitOfVehiclesControl ) ) {
-            $districtEntryAndExitOfVehiclesControl->setVehicleBodyType( $vehicleBodyType );
-        }
         if ( $this->hasModelOfVehicleChanged( $newModelOfVehicleId, $districtEntryAndExitOfVehiclesControl ) ) {
             $districtEntryAndExitOfVehiclesControl->setModelOfVehicle( $modelOfVehicle );
         }
+    
         if ( $this->hasTripOriginChanged( $newTripOriginId, $districtEntryAndExitOfVehiclesControl ) ) {
             $districtEntryAndExitOfVehiclesControl->setTripOrigin( $tripOrigin );
         }
@@ -88,9 +80,11 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
         if ( $this->hasTripDestinationChanged( $newTripDestinationId, $districtEntryAndExitOfVehiclesControl ) ) {
             $districtEntryAndExitOfVehiclesControl->setTripDestination( $tripDestination );
         }
+    
         if ( $this->hasReasonForTripChanged( $newReasonForTripId, $districtEntryAndExitOfVehiclesControl ) ) {
             $districtEntryAndExitOfVehiclesControl->setReasonForTrip( $reasonForTrip );
         }
+    
         if ( $this->hasTrafficPoliceBoothChanged( $newTrafficPoliceBoothId, $districtEntryAndExitOfVehiclesControl ) ) {
             $districtEntryAndExitOfVehiclesControl->setTrafficPoliceBooth( $trafficPoliceBooth );
         }
@@ -106,15 +100,6 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
     ): bool
     {
         return !StringUtils::equals( $newLicensePlate, $districtEntryAndExitOfVehiclesControl->getLicensePlate() );
-    }
-    
-    private function hasVehicleBodyTypeChanged(
-        string $newVehicleBodyType,
-        DistrictEntryAndExitOfVehiclesControl $districtEntryAndExitOfVehiclesControl
-    ): bool
-    {
-        return !StringUtils::equals( $newVehicleBodyType,
-            $districtEntryAndExitOfVehiclesControl->getVehicleBodyType()->getId() );
     }
     
     private function hasModelOfVehicleChanged(

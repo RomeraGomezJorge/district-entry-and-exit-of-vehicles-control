@@ -49,8 +49,9 @@
                                         {# Start create an item on desktop version #}
                                         <div class="col-sm-6 d-none d-sm-block">
                                             <a id="createItemLink"
-                                               class="btn btn-dark  btn-round ml-auto float-right"
-                                               href="{{ path(add_path) }}">
+                                               class="btn btn-dark  btn-round ml-auto float-right text-white"
+                                               href="{{ path(add_path) }}"
+                                            >
                                                 Crear
                                                 <span class=" ml-1 btn-label">
                                                     <i class="fas fa-plus-circle"></i>
@@ -93,7 +94,8 @@
                                                     </li>
 
                                                     <li class="paginate_button page-item previous" id="add-row_previous">
-                                                        <a href="{{ path(list_path) }}/page-{{ nextPage }}/order-{{ order }}-{{ orderBy }}/rows_per_page-{{ limit }}/{{ filters }}" class="page-link">
+                                                        <a href="{{ path(list_path) }}/page-{{ previousPage }}/order-{{ order }}-{{ orderBy }}/rows_per_page-{{ limit }}/{{ filters }}"
+                                                           class="page-link">
                                                             <i class="fas fa-angle-left" ></i>
                                                         </a>
                                                     </li>
@@ -263,4 +265,9 @@
     <script src="{{ asset('assets/js/police/_shared/list/show.action.mobile.modal.js') }}"></script>
     <script src="{{ asset('assets/js/police/_shared/list/delete.item.on.confirm.yes.from.delete.confirm.modal.js') }}"></script>
     <script src="{{ asset('assets/js/police/_shared/list/button.filter.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#createItemLink').focus();
+        })
+    </script>
 {% endblock %}

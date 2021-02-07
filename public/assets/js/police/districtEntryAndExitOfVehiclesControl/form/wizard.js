@@ -54,6 +54,8 @@ $(document).ready(function () {
 
             $(currentFieldSet).removeClass("show");
             $(nextFieldSet).addClass("show");
+
+            $(nextFieldSet).find('input:visible:first').focus();
         }
     });
 
