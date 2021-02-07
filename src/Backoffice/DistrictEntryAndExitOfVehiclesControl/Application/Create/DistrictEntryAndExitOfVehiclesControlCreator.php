@@ -79,7 +79,7 @@ final class DistrictEntryAndExitOfVehiclesControlCreator
         $createAt = new \DateTime();
         
         $districtEntryAndExitOfVehiclesControl = DistrictEntryAndExitOfVehiclesControl::create( $id,
-            $licensePlate,
+            trim( $licensePlate ),
             $modelOfVehicle,
             $tripOrigin,
             $tripDestination,

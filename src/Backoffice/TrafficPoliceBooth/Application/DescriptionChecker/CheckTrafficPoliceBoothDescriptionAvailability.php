@@ -16,6 +16,6 @@
 		
 		public function __invoke(string $description): bool
 		{
-			return $this->uniqueTrafficPoliceBoothDescriptionSpecification->isSatisfiedBy($description);
+			return $this->uniqueTrafficPoliceBoothDescriptionSpecification->isSatisfiedBy(trim($description));
 		}
 	}

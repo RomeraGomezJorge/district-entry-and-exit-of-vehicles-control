@@ -6,8 +6,9 @@
 	use App\Backoffice\District\Domain\District;
 	use App\Backoffice\District\Domain\DistrictRepository;
 	use App\Backoffice\District\Domain\UniqueDistrictDescriptionSpecification;
-	
-	final class DistrictUpdater
+    use App\Shared\Infrastructure\Utils\StringUtils;
+    
+    final class DistrictUpdater
 	{
 		private DistrictRepository $repository;
 		
@@ -38,6 +39,6 @@
 		
 		private function hasDescriptionChanged(string $newDescription, District $district): bool
 		{
-			return strcmp($newDescription, $district->getDescription()) !== 0 ? true : false;
+            return !StringUtils::equals( $newDescription, $district->getDescription() );
 		}
 	}

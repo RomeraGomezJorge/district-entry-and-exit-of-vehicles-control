@@ -39,7 +39,7 @@
 			}
             
             if ( $this->hasImageChanged( $newImage, $vehicleBodyType ) ) {
-                $vehicleBodyType->setImage( $newImage );
+                $vehicleBodyType->setImage( trim( $newImage ) );
             }
 			
 			$this->repository->save($vehicleBodyType);

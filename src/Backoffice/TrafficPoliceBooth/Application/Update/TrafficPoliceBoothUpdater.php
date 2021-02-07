@@ -6,8 +6,9 @@
 	use App\Backoffice\TrafficPoliceBooth\Domain\TrafficPoliceBooth;
 	use App\Backoffice\TrafficPoliceBooth\Domain\TrafficPoliceBoothRepository;
 	use App\Backoffice\TrafficPoliceBooth\Domain\UniqueTrafficPoliceBoothDescriptionSpecification;
-	
-	final class TrafficPoliceBoothUpdater
+    use App\Shared\Infrastructure\Utils\StringUtils;
+    
+    final class TrafficPoliceBoothUpdater
 	{
 		private TrafficPoliceBoothRepository $repository;
 		
@@ -38,6 +39,6 @@
 		
 		private function hasDescriptionChanged(string $newDescription, TrafficPoliceBooth $trafficPoliceBooth): bool
         {
-	        return strcmp($newDescription, $trafficPoliceBooth->getDescription()) !== 0 ? true : false;
+            return !StringUtils::equals( $newDescription, $trafficPoliceBooth->getDescription() );
         }
     }

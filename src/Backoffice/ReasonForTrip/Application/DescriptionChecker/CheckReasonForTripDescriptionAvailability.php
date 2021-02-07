@@ -17,6 +17,6 @@
 		
 		public function __invoke(string $description): bool
 		{
-			return $this->uniqueReasonForTripDescriptionSpecification->isSatisfiedBy($description);
+			return $this->uniqueReasonForTripDescriptionSpecification->isSatisfiedBy(trim($description));
 		}
 	}

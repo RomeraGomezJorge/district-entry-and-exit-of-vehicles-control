@@ -3,8 +3,14 @@ $(document).ready(function () {
     $("#form").validate({
 
         onfocusout: function (element) {
+            /* limpia los espacion en blanco de los inputs que puedan contener texto*/
+            if (element.tagName === "TEXTAREA" || (element.tagName === "INPUT" && element.type !== "password")) {
+                element.value = $.trim(element.value);
+            }
+
             /* validate a field on focus out*/
             $(element).valid();
+            console.log(element.tagName);
         },
         onkeyup: false,
         submitHandler: function(){

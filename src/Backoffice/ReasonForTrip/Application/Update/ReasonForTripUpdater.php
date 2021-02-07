@@ -6,8 +6,9 @@
 	use App\Backoffice\ReasonForTrip\Domain\ReasonForTrip;
 	use App\Backoffice\ReasonForTrip\Domain\ReasonForTripRepository;
 	use App\Backoffice\ReasonForTrip\Domain\UniqueReasonForTripDescriptionSpecification;
-	
-	final class ReasonForTripUpdater
+    use App\Shared\Infrastructure\Utils\StringUtils;
+    
+    final class ReasonForTripUpdater
 	{
 		private ReasonForTripRepository $repository;
 		
@@ -38,6 +39,6 @@
 		
 		private function hasDescriptionChanged(string $newDescription, ReasonForTrip $reasonForTrip): bool
 		{
-			return strcmp($newDescription, $reasonForTrip->getDescription()) !== 0 ? true : false;
+            return !StringUtils::equals( $newDescription, $reasonForTrip->getDescription() );
 		}
 	}

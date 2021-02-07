@@ -18,7 +18,8 @@ function addUniqueDescriptionRule(inputSelector) {
 
     const description_from_database = inputSelector.data('description_from_database');
 
-    if (description_from_database == inputSelector.val()) {
+    /* quita los espacion en blanco que contenga el input y lo compara con el valor que se encuentra en la DB */
+    if (description_from_database === $.trim(inputSelector.val())) {
         inputSelector.rules("remove", "remote");
         return;
     }
@@ -40,11 +41,14 @@ function addUniqueDescriptionRule(inputSelector) {
             complete: function (data) {
                 const isAvailable = data.responseText;
 
-                if (isAvailable === 'true') {
-                    inputSelector.closest('.form-group').removeClass('has-error').addClass('has-success');
-                } else {
+                if (isAvailable !== 'false') {
                     inputSelector.closest('.form-group').removeClass('has-success').addClass('has-error');
+                    return
                 }
+
+                inputSelector.closest('.form-group').removeClass('has-error').addClass('has-success');
+
+
             }, error: function () {
                 alert('erro');
             }

@@ -16,6 +16,6 @@
 		
 		public function __invoke(string $description): bool
 		{
-			return $this->uniqueVehicleMakerNameDescriptionSpecification->isSatisfiedBy($description);
+			return $this->uniqueVehicleMakerNameDescriptionSpecification->isSatisfiedBy(trim($description));
 		}
 	}

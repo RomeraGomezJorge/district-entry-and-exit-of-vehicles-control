@@ -16,6 +16,6 @@
 		
 		public function __invoke(string $description): bool
 		{
-			return $this->uniqueDistrictDescriptionSpecification->isSatisfiedBy($description);
+			return $this->uniqueDistrictDescriptionSpecification->isSatisfiedBy(trim($description));
 		}
 	}

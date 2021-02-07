@@ -16,6 +16,6 @@
 		
 		public function __invoke(string $username): bool
 		{
-			return $this->uniqueUserNameSpecification->isSatisfiedBy($username);
+			return $this->uniqueUserNameSpecification->isSatisfiedBy(trim($username));
 		}
 	}

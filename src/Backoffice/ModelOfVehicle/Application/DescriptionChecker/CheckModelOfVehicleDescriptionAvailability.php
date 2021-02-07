@@ -20,7 +20,7 @@ final class CheckModelOfVehicleDescriptionAvailability
         string $vehicleMakerNameId
     ): bool
     {
-        return $this->uniqueModelOfVehicleDescriptionSpecification->isSatisfiedBy( $description, $vehicleMakerNameId );
+        return $this->uniqueModelOfVehicleDescriptionSpecification->isSatisfiedBy( trim($description), $vehicleMakerNameId );
     }
     
 }
