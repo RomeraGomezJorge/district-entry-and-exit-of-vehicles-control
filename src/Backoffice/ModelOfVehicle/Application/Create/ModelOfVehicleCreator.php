@@ -55,7 +55,7 @@ final class ModelOfVehicleCreator
         $createAt = new \DateTime();
         
         $modelOfVehicle = ModelOfVehicle::create( $id,
-            $description,
+            trim( $description ),
             $vehicleMakerName,
             $vehicleBodyType,
             $createAt,
