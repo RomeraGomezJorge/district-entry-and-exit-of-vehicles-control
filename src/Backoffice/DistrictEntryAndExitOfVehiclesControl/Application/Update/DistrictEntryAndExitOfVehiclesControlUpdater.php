@@ -66,7 +66,7 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
         $trafficPoliceBooth = $this->finderTrafficPoliceBooth->__invoke( $newTrafficPoliceBoothId );
         
         if ( $this->hasLicensePlateChanged( $newLicensePlate, $districtEntryAndExitOfVehiclesControl ) ) {
-            $districtEntryAndExitOfVehiclesControl->setLicensePlate( $newLicensePlate );
+            $districtEntryAndExitOfVehiclesControl->setLicensePlate( trim( $newLicensePlate ) );
         }
         
         if ( $this->hasModelOfVehicleChanged( $newModelOfVehicleId, $districtEntryAndExitOfVehiclesControl ) ) {

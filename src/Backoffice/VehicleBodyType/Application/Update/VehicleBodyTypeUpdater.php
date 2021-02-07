@@ -6,8 +6,9 @@
 	use App\Backoffice\VehicleBodyType\Domain\VehicleBodyType;
 	use App\Backoffice\VehicleBodyType\Domain\VehicleBodyTypeRepository;
 	use App\Backoffice\VehicleBodyType\Domain\UniqueVehicleBodyTypeDescriptionSpecification;
-	
-	final class VehicleBodyTypeUpdater
+    use App\Shared\Infrastructure\Utils\StringUtils;
+    
+    final class VehicleBodyTypeUpdater
 	{
 		private VehicleBodyTypeRepository $repository;
 		
@@ -33,11 +34,12 @@
 			$vehicleBodyType = $this->finder->__invoke($id);
 			
 			if ($this->hasDescriptionChanged($newDescription, $vehicleBodyType)) {
-				$vehicleBodyType->setDescription($newDescription, $this->uniqueVehicleBodyTypeDescriptionSpecification);
+                $vehicleBodyType->setDescription( trim( $newDescription ),
+                    $this->uniqueVehicleBodyTypeDescriptionSpecification );
 			}
             
             if ( $this->hasImageChanged( $newImage, $vehicleBodyType ) ) {
-                $vehicleBodyType->setImage( $newImage );
+                $vehicleBodyType->setImage( trim( $newImage ) );
             }
 			
 			$this->repository->save($vehicleBodyType);
@@ -45,7 +47,7 @@
 		
 		private function hasDescriptionChanged(string $newDescription, VehicleBodyType $vehicleBodyType): bool
 		{
-			return strcmp($newDescription, $vehicleBodyType->getDescription()) !== 0 ? true : false;
+            return !StringUtils::equals( $newDescription, $vehicleBodyType->getDescription() );
 		}
         
         private function hasImageChanged(
@@ -53,6 +55,6 @@
             VehicleBodyType $vehicleBodyType
         ): bool
         {
-            return strcmp( $newImage, $vehicleBodyType->getDescription() ) !== 0 ? true : false;
+            return !StringUtils::equals( $newImage, $vehicleBodyType->getDescription() );
         }
 	}

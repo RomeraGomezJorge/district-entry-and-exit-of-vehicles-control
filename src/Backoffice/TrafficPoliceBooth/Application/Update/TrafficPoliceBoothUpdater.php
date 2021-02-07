@@ -6,8 +6,9 @@
 	use App\Backoffice\TrafficPoliceBooth\Domain\TrafficPoliceBooth;
 	use App\Backoffice\TrafficPoliceBooth\Domain\TrafficPoliceBoothRepository;
 	use App\Backoffice\TrafficPoliceBooth\Domain\UniqueTrafficPoliceBoothDescriptionSpecification;
-	
-	final class TrafficPoliceBoothUpdater
+    use App\Shared\Infrastructure\Utils\StringUtils;
+    
+    final class TrafficPoliceBoothUpdater
 	{
 		private TrafficPoliceBoothRepository $repository;
 		
@@ -29,7 +30,8 @@
 			$trafficPoliceBooth = $this->finder->__invoke($id);
 			
 			if ( $this->hasDescriptionChanged( $newDescription , $trafficPoliceBooth )  ) {
-                $trafficPoliceBooth->setDescription($newDescription,$this->uniqueTrafficPoliceBoothDescriptionSpecification);
+                $trafficPoliceBooth->setDescription( trim( $newDescription ),
+                    $this->uniqueTrafficPoliceBoothDescriptionSpecification );
             }
             
             $this->repository->save($trafficPoliceBooth);
@@ -37,6 +39,6 @@
 		
 		private function hasDescriptionChanged(string $newDescription, TrafficPoliceBooth $trafficPoliceBooth): bool
         {
-	        return strcmp($newDescription, $trafficPoliceBooth->getDescription()) !== 0 ? true : false;
+            return !StringUtils::equals( $newDescription, $trafficPoliceBooth->getDescription() );
         }
     }

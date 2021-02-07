@@ -55,7 +55,8 @@ final class ModelOfVehicleUpdater
         $newVehicleBodyTypeId = $this->finderVehicleBodyType->__invoke( new Uuid( $newVehicleBodyTypeId ) );
         
         if ( $this->hasDescriptionChanged( $newDescription, $modelOfVehicle ) ) {
-            $modelOfVehicle->setDescription( $newDescription, $this->uniqueModelOfVehicleDescriptionSpecification );
+            $modelOfVehicle->setDescription( trim( $newDescription ),
+                $this->uniqueModelOfVehicleDescriptionSpecification );
         }
         
         if ( $this->hasVehicleMakerNameChanged( $newVehicleMakerName, $modelOfVehicle ) ) {

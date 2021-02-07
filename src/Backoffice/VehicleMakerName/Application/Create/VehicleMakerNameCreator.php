@@ -34,7 +34,7 @@
 			
 			$district = VehicleMakerName::create(
 				$id,
-				$description,
+                trim( $description ),
 				$createAt,
 				$this->uniqueVehicleMakerNameDescriptionSpecification);
 			
