@@ -12,7 +12,7 @@ use App\Backoffice\User\Application\Find\UserFinder;
 use App\Backoffice\User\Domain\User;
 use App\Backoffice\User\Domain\UserEmail;
 use App\Backoffice\User\Domain\UserRepository;
-
+use App\Shared\Infrastructure\Utils\StringUtils;
 
 final class UserUpdater
 {
@@ -48,7 +48,7 @@ final class UserUpdater
 		int $isActive,
 		string $trafficPoliceBooth_id
 	): void {
-		$email = new UserEmail($email);
+        $email = new UserEmail( trim( $email ) );
 		
 		$user = $this->finder->__invoke($id);
 		
@@ -57,15 +57,15 @@ final class UserUpdater
 		$trafficPoliceBooth = $this->trafficPoliceBoothFinder->__invoke($trafficPoliceBooth_id);
 		
 		if ($this->hasUserNameChanged($username, $user)) {
-			$user->setUsername($username, $this->uniqueUserNameSpecification);
+            $user->setUsername( trim( $username ), $this->uniqueUserNameSpecification );
 		}
 		
 		if ($this->hasNameChanged($name, $user)) {
-			$user->setName($name);
+            $user->setName( trim( $name ) );
 		}
 		
 		if ($this->hasSurnameChanged($surname, $user)) {
-			$user->setSurname($surname);
+            $user->setSurname( trim( $surname ) );
 		}
 		
 		if ($this->hasEmailChanged($email, $user)) {
@@ -91,32 +91,32 @@ final class UserUpdater
 	
 	private function hasUserNameChanged(string $newUserName, User $user): bool
 	{
-		return strcmp($newUserName, $user->getUsername()) !== 0 ? true : false;
+        return !StringUtils::equals( $newUserName, $user->getUsername() );
 	}
 	
 	private function hasNameChanged(string $newName, User $user): bool
 	{
-		return strcmp($newName, $user->getName()) !== 0 ? true : false;
+        return !StringUtils::equals( $newName, $user->getName() );
 	}
 	
 	private function hasSurnameChanged(string $newSurname, User $user): bool
 	{
-		return strcmp($newSurname, $user->getSurname()) !== 0 ? true : false;
+        return !StringUtils::equals( $newSurname, $user->getSurname() );
 	}
 	
 	private function hasEmailChanged(UserEmail $newEmail, User $user): bool
 	{
-		return strcmp($newEmail->value(), $user->getEmail()) !== 0 ? true : false;
+        return !StringUtils::equals( $newEmail->value(), $user->getEmail() );
 	}
 	
 	private function hasRoleChanged(Role $newRole, User $user): bool
 	{
-		return strcmp($newRole->getId(), $user->getRole()->getId()) !== 0 ? true : false;
+        return !StringUtils::equals( $newRole->getId(), $user->getRole()->getId() );
 	}
 	
 	private function hasTrafficPoliceBoothChanged(TrafficPoliceBooth $newTrafficPoliceBooth, User $user): bool
 	{
-		return strcmp($newTrafficPoliceBooth->getId(), $user->getTrafficPoliceBooth()->getId()) !== 0 ? true : false;
+        return !StringUtils::equals( $newTrafficPoliceBooth->getId(), $user->getTrafficPoliceBooth()->getId() );
 	}
 	
 	private function hasIsActiveChanged(int $newStatus, User $user): bool

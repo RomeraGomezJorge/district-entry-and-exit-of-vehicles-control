@@ -29,7 +29,7 @@
 			$district = $this->finder->__invoke($id);
 			
 			if ($this->hasDescriptionChanged($newDescription, $district)) {
-				$district->setDescription($newDescription, $this->uniqueDistrictDescriptionSpecification);
+                $district->setDescription( trim( $newDescription ), $this->uniqueDistrictDescriptionSpecification );
 			}
 			
 			$this->repository->save($district);

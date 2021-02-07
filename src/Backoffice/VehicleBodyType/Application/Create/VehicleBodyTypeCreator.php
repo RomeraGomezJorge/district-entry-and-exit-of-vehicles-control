@@ -39,8 +39,8 @@
 			
 			$district = VehicleBodyType::create(
 				$id,
-				$description,
-                $image,
+                trim( $description ),
+                trim( $image ),
 				$createAt,
 				$this->uniqueVehicleBodyTypeDescriptionSpecification);
 			

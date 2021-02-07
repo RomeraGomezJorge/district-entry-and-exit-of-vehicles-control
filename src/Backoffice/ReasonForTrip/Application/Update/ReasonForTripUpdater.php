@@ -29,7 +29,8 @@
 			$reasonForTrip = $this->finder->__invoke($id);
 			
 			if ($this->hasDescriptionChanged($newDescription, $reasonForTrip)) {
-				$reasonForTrip->setDescription($newDescription, $this->uniqueReasonForTripDescriptionSpecification);
+                $reasonForTrip->setDescription( trim( $newDescription ),
+                    $this->uniqueReasonForTripDescriptionSpecification );
 			}
 			
 			$this->repository->save($reasonForTrip);

@@ -41,7 +41,7 @@
 			
 			$modelOfVehicle = ModelOfVehicle::create(
 				$id,
-				$description,
+                trim( $description ),
 				$vehicleMakerName,
 				$createAt,
 				$this->uniqueModelOfVehicleDescriptionSpecification);

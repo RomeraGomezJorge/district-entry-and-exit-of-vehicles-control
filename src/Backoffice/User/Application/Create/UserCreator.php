@@ -58,8 +58,8 @@
 			string $trafficPoliceBooth_id
 		) {
 			$id = new Uuid($id);
-			
-			$email = new UserEmail($email);
+            
+            $email = new UserEmail( trim( $email ) );
 			
 			$plainPassword = new UserPassword($plainPassword);
 			
@@ -71,9 +71,9 @@
 			
 			$user = User::create(
 				$id,
-				$username,
-				$name,
-				$surname,
+                trim( $username ),
+                trim( $name ),
+                trim( $surname ),
 				$email,
 				$plainPassword,
 				$role,

@@ -10,8 +10,9 @@
 	use App\Backoffice\VehicleMakerName\Domain\VehicleMakerName;
 	use App\Backoffice\VehicleMakerName\Domain\VehicleMakerNameRepository;
 	use App\Shared\Domain\ValueObject\Uuid;
-	
-	final class ModelOfVehicleUpdater
+    use App\Shared\Infrastructure\Utils\StringUtils;
+    
+    final class ModelOfVehicleUpdater
 	{
 		private ModelOfVehicleRepository $repository;
 		
@@ -41,8 +42,8 @@
 			);
 			
 			if ($this->hasDescriptionChanged($newDescription, $modelOfVehicle)) {
-				$modelOfVehicle->setDescription($newDescription,
-					$this->uniqueModelOfVehicleDescriptionSpecification);
+                $modelOfVehicle->setDescription( trim( $newDescription ),
+                    $this->uniqueModelOfVehicleDescriptionSpecification );
 			}
 			
 			if ($this->hasVehicleMakerNameChanged($newVehicleMakerName, $modelOfVehicle)) {
@@ -62,7 +63,7 @@
 			VehicleMakerName $newVehicleMakerName,
 			ModelOfVehicle $modelOfVehicle
 		): bool {
-			return strcmp($newVehicleMakerName->getId(),
-				$modelOfVehicle->geTVehicleMakerName()->getId()) !== 0 ? true : false;
+            return !StringUtils::equals( $newVehicleMakerName->getId(),
+                $modelOfVehicle->geTVehicleMakerName()->getId() );
 		}
 	}

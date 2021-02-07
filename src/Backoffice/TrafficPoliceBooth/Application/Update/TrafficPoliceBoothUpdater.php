@@ -29,7 +29,8 @@
 			$trafficPoliceBooth = $this->finder->__invoke($id);
 			
 			if ( $this->hasDescriptionChanged( $newDescription , $trafficPoliceBooth )  ) {
-                $trafficPoliceBooth->setDescription($newDescription,$this->uniqueTrafficPoliceBoothDescriptionSpecification);
+                $trafficPoliceBooth->setDescription( trim( $newDescription ),
+                    $this->uniqueTrafficPoliceBoothDescriptionSpecification );
             }
             
             $this->repository->save($trafficPoliceBooth);
