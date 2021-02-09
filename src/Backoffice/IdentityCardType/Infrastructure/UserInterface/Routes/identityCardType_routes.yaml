@@ -1,0 +1,34 @@
+identityCardType_list:
+  path: /list/{pageLabel}-{page}/{orderLabel}-{order}-{orderBy}/{limitLabel}-{limit}/{filters}
+  defaults: { _controller: App\Backoffice\IdentityCardType\Infrastructure\UserInterface\Web\IdentityCardTypeGetController, pageLabel: 'page' , page: 1 , orderLabel: 'order' , order: 'createAt' , orderBy: 'desc' , limitLabel: 'rows_per_page' , limit: 10 , filters: null }
+  methods:  [GET,POST]
+
+identityCardType_add:
+  path: /create
+  defaults: { _controller: App\Backoffice\IdentityCardType\Infrastructure\UserInterface\Web\IdentityCardTypeAddController}
+  methods:  [GET]
+
+identityCardType_create:
+  path: /create
+  defaults: { _controller: App\Backoffice\IdentityCardType\Infrastructure\UserInterface\Web\IdentityCardTypePostController}
+  methods:  [POST]
+
+identityCardType_edit:
+  path: /edit/{id}
+  defaults: { _controller: App\Backoffice\IdentityCardType\Infrastructure\UserInterface\Web\IdentityCardTypeEditController}
+  methods:  [GET]
+
+identityCardType_update:
+  path: /update
+  defaults: { _controller: App\Backoffice\IdentityCardType\Infrastructure\UserInterface\Web\IdentityCardTypePutController}
+  methods:  [POST]
+
+identityCardType_description_available:
+  path: /description-available
+  defaults: { _controller: App\Backoffice\IdentityCardType\Infrastructure\UserInterface\Web\IdentityCardTypeDescriptionAvailableController}
+  methods:  [GET]
+
+identityCardType_delete:
+  path: /delete
+  defaults: { _controller: App\Backoffice\IdentityCardType\Infrastructure\UserInterface\Web\IdentityCardTypeDeleteController}
+  methods:  [POST]
