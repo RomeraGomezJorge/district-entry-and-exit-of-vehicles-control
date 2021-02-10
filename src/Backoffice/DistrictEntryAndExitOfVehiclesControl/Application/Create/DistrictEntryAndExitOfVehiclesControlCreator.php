@@ -85,6 +85,7 @@ final class DistrictEntryAndExitOfVehiclesControlCreator
             $tripDestination,
             $reasonForTrip,
             $trafficPoliceBooth,
+	        $vehiclePassenger,
             $createAt );
         
         $this->repository->save( $districtEntryAndExitOfVehiclesControl );

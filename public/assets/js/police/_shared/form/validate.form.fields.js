@@ -10,7 +10,7 @@ $(document).ready(function () {
 
             /* validate a field on focus out*/
             $(element).valid();
-            console.log(element.tagName);
+
         },
         onkeyup: false,
         submitHandler: function(){

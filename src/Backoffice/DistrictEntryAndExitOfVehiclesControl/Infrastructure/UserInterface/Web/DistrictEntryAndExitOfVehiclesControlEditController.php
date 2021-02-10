@@ -2,6 +2,8 @@
 
 namespace App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Infrastructure\UserInterface\Web;
 
+use App\Backoffice\VehiclePassenger\Application\FindByDistrictEntryAndExitOfVehiclesControl\FindVehiclePassengersByDistrictEntryAndExitOfVehiclesControl;
+use App\Backoffice\VehiclePassenger\Domain\VehiclePassengerRepository;
 use App\Shared\Infrastructure\Constant\FormConstant;
 use App\Shared\Infrastructure\RelatedEntities;
 use App\Shared\Infrastructure\Symfony\WebController;
@@ -14,15 +16,18 @@ class DistrictEntryAndExitOfVehiclesControlEditController extends WebController
     public function __invoke(
         Request $request,
         DistrictEntryAndExitOfVehiclesControlFinder $finder,
-        RelatedEntities $relatedEntities
+        RelatedEntities $relatedEntities,
+	    FindVehiclePassengersByDistrictEntryAndExitOfVehiclesControl $findVehiclePassengersByDistrictEntryAndExitOfVehiclesControl
     ): Response
     {
         $districtEntryAndExitOfVehiclesControl = $finder->__invoke( $request->get( 'id' ) );
+        
         
         return $this->render( TwigTemplateConstants::FORM_FILE_PATH,
             [ 'page_title'            => TwigTemplateConstants::SECTION_TITLE,
               'list_path'             => TwigTemplateConstants::LIST_PATH,
               'id'                    => $districtEntryAndExitOfVehiclesControl->getId(),
+              'vehiclePassengers'     => $findVehiclePassengersByDistrictEntryAndExitOfVehiclesControl->__invoke( $districtEntryAndExitOfVehiclesControl->getId()),
               'licensePlate'          => $districtEntryAndExitOfVehiclesControl->getLicensePlate(),
               'vehicleBodyTypeId'     => $districtEntryAndExitOfVehiclesControl->getModelOfVehicle()->getvehicleBodyType()->getId(),
               'vehicleMakerNameId'    => $districtEntryAndExitOfVehiclesControl->getModelOfVehicle()->getVehicleMakerName()->getId(),
