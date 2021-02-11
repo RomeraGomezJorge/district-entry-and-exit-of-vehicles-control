@@ -30,7 +30,6 @@
 			string $occurredOn = null
 		) {
 			parent::__construct($id, $eventId, $occurredOn);
-			$this->id = $id;
 			$this->licensePlate = $licensePlate;
 			$this->modelOfVehicle = $modelOfVehicle;
 			$this->tripOrigin = $tripOrigin;
@@ -45,6 +44,7 @@
 			return 'district_entry_and_exit_of_vehicles_control.created';
 		}
 		
+		/* se ejecuta cuando recuperamos un evento de dominio*/
 		public static function fromPrimitives(
 			string $aggregateId,
 			array $body,
@@ -63,10 +63,10 @@
 				$occurredOn);
 		}
 		
+		/* solo se pasa a primitivo el body del evento de dominio es decir sin id,ocurredOn y eventId */
 		public function toPrimitives(): array
 		{
 			return [
-				'id' => $this->id,
 				'licensePlate' => $this->licensePlate,
 				'modelOfVehicle' => $this->modelOfVehicle,
 				'tripOrigin' => $this->tripOrigin,
@@ -75,11 +75,6 @@
 				'trafficPoliceBooth' => $this->trafficPoliceBooth,
 				'vehiclePassengers' => $this->vehiclePassengers
 			];
-		}
-		
-		public function id(): string
-		{
-			return $this->id;
 		}
 		
 		public function licensePlate(): string

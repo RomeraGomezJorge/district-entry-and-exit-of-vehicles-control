@@ -29,10 +29,28 @@
 			$this->entityManager()->flush($entity);
 		}
 		
+		protected function persistMultipleEntities(array $arrayOfEntities): void
+		{
+			array_walk($arrayOfEntities, function ($entity) {
+				$this->entityManager()->persist($entity);
+			});
+			
+			$this->entityManager()->flush();
+		}
+		
 		protected function remove( $entity): void
 		{
 			$this->entityManager()->remove($entity);
 			$this->entityManager()->flush($entity);
+		}
+		
+		protected function removeMultipleEntities(array $arrayOfEntities): void
+		{
+			array_walk($arrayOfEntities, function ($entity) {
+				$this->entityManager()->persist($entity);
+			});
+			
+			$this->entityManager()->flush();
 		}
 		
 		protected function repository($entityClass): EntityRepository

@@ -18,7 +18,7 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="identityCard" type="integer" column="identityCard" nullable="false">
+    <field name="identityCard" type="string" column="identityCard" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>

@@ -14,32 +14,22 @@
 	{
 		private VehiclePassengerRepository $repository;
 		private DistrictEntryAndExitOfVehiclesControlFinder $finderDistrictEntryAndExitOfVehiclesControl;
-		const EMPTY_VEHICLE_PASSENGER = array(
-			0 => array(
-				'name' => '',
-				'surname' => '',
-				'identityCard' => '',
-				'phone' => '',
-				'address' => '',
-				'temperatureControl' => ''
-			));
 		
 		public function __construct(
 			VehiclePassengerRepository $vehiclePassengerRepository,
 			DistrictEntryAndExitOfVehiclesControlRepository $DistrictEntryAndExitOfVehiclesControlRepository
-		){
+		) {
 			$this->repository = $vehiclePassengerRepository;
 			$this->finderDistrictEntryAndExitOfVehiclesControl = new DistrictEntryAndExitOfVehiclesControlFinder($DistrictEntryAndExitOfVehiclesControlRepository);
 		}
 		
-		public function __invoke( string $districtEntryAndExitOfVehiclesControlId)
+		public function __invoke(string $districtEntryAndExitOfVehiclesControlId)
 		{
 			$districtEntryAndExitOfVehiclesControl = $this->finderDistrictEntryAndExitOfVehiclesControl->__invoke($districtEntryAndExitOfVehiclesControlId);
 			
 			$vehiclePassenger = $this->repository->findVehiclePassengersIn($districtEntryAndExitOfVehiclesControl->getId());
 			
-			
-			if ( empty($vehiclePassenger)) {
+			if (empty($vehiclePassenger)) {
 				throw new VehiclePassengerNotFound($districtEntryAndExitOfVehiclesControlId);
 			}
 			

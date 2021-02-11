@@ -43,6 +43,9 @@
 			$districtEntryAndExitOfVehiclesControl->trafficPoliceBooth = $trafficPoliceBooth;
 			$districtEntryAndExitOfVehiclesControl->createAt = $createAt;
 			$districtEntryAndExitOfVehiclesControl->updateAt = new \DateTime();
+			
+			/* registramos el evento de haber creado un "control de ingreso" en nuestra entidad en el array
+			"$this->domainEvents" que se encuentra en AggregateRoot el cual almacena todos eventos que va sucediendo */
 			$districtEntryAndExitOfVehiclesControl->record(
 				new DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent(
 					$id->value(),

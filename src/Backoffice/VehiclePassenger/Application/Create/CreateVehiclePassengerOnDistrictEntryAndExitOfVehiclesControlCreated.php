@@ -8,7 +8,7 @@
 	
 	class CreateVehiclePassengerOnDistrictEntryAndExitOfVehiclesControlCreated implements DomainEventSubscriber
 	{
-		private VehiclePassengerCreator $creator;
+		private AddVehiclePassengerInDistrictEntryAndExitOfVehiclesControl $addPassenger;
 		/**
 		 * @var UuidGenerator
 		 */
@@ -19,26 +19,23 @@
 			return [DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent::class];
 		}
 		
-		public function __construct(VehiclePassengerCreator $creator, UuidGenerator $uuidGenerator)
-		{
-			$this->creator = $creator;
+		public function __construct(
+			AddVehiclePassengerInDistrictEntryAndExitOfVehiclesControl $addPassenger,
+			UuidGenerator $uuidGenerator
+		) {
+			$this->addPassenger = $addPassenger;
 			$this->uuidGenerator = $uuidGenerator;
 		}
 		
-		public function __invoke(
-			DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent $event
-		): void {
+		public function __invoke(DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent $event): void
+		{
+			$districtEntryAndExitOfVehiclesControlId = $event->aggregateId();
 			
 			$vehiclePassengers = json_decode($event->vehiclePassengers());
 			
-			$this->creator->__invoke(
-				$this->uuidGenerator->generate(),
-				$vehiclePassengers[0]->name,
-				$vehiclePassengers[0]->surname,
-				$vehiclePassengers[0]->identityCard,
-				$vehiclePassengers[0]->phone,
-				$vehiclePassengers[0]->address,
-				$event->id(),
-				$vehiclePassengers[0]->temperatureControl);
+			$this->addPassenger->__invoke(
+				$districtEntryAndExitOfVehiclesControlId,
+				$vehiclePassengers
+			);
 		}
 	}

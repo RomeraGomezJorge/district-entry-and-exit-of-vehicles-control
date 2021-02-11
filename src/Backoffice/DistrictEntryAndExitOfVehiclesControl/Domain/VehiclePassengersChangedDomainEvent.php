@@ -1,11 +1,11 @@
 <?php
+	
 	namespace App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Domain;
 	
 	use App\Shared\Domain\Bus\Event\DomainEvent;
 	
 	final class VehiclePassengersChangedDomainEvent extends DomainEvent
 	{
-		private string $id;
 		private string $vehiclePassengers;
 		
 		public function __construct(
@@ -15,7 +15,6 @@
 			string $occurredOn = null
 		) {
 			parent::__construct($id, $eventId, $occurredOn);
-			$this->id = $id;
 			$this->vehiclePassengers = $vehiclePassengers;
 		}
 		
@@ -36,18 +35,11 @@
 				$occurredOn);
 		}
 		
-		
 		public function toPrimitives(): array
 		{
 			return [
-				'id' => $this->id,
 				'vehiclePassengers' => $this->vehiclePassengers
 			];
-		}
-		
-		public function id():string
-		{
-			return $this->id;
 		}
 		
 		public function vehiclePassengers(): string

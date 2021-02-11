@@ -13,9 +13,9 @@
 	
 	final class MySqlVehiclePassengerRepository extends DoctrineRepository implements VehiclePassengerRepository
 	{
-		public function save(VehiclePassenger $VehiclePassenger): void
+		public function saveMultiple(array $arrayOfVehiclePassenger): void
 		{
-			$this->persist($VehiclePassenger);
+			$this->persistMultipleEntities($arrayOfVehiclePassenger);
 		}
 		
 		public function search(Uuid $id): ?VehiclePassenger
@@ -42,24 +42,21 @@
 			return $this->repository(VehiclePassenger::class)->matching($doctrineCriteria)->count();
 		}
 		
-		public function delete(VehiclePassenger $VehiclePassenger): void
+		public function deleteMultiple(array $arrayOfVehiclePassenger): void
 		{
-			$this->remove($VehiclePassenger);
+			$this->removeMultipleEntities($arrayOfVehiclePassenger);
 		}
 		
-		
-		public function findVehiclePassengersIn( string $districtEntryAndExitOfVehiclesControlId):array
+		public function findVehiclePassengersIn(string $districtEntryAndExitOfVehiclesControlId): array
 		{
 			$qb = $this->entityManager()->createQueryBuilder();
 			
 			return $qb->select('VehiclePassenger')
-				->from(VehiclePassenger::class,'VehiclePassenger')
-				->join('VehiclePassenger.districtEntryAndExitOfVehiclesControl','control')
+				->from(VehiclePassenger::class, 'VehiclePassenger')
+				->join('VehiclePassenger.districtEntryAndExitOfVehiclesControl', 'control')
 				->where('control.id = :districtEntryAndExitOfVehiclesControlId')
-				->setParameter('districtEntryAndExitOfVehiclesControlId',$districtEntryAndExitOfVehiclesControlId)
+				->setParameter('districtEntryAndExitOfVehiclesControlId', $districtEntryAndExitOfVehiclesControlId)
 				->getQuery()
 				->execute();
-				
-				
 		}
 	}

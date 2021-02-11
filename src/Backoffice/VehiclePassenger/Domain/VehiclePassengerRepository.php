@@ -8,17 +8,9 @@
 	
 	interface VehiclePassengerRepository
 	{
-		public function save(VehiclePassenger $VehiclePassenger): void;
+		public function saveMultiple(array $arrayOfVehiclePassengers): void;
 		
-		public function search(Uuid $id): ?VehiclePassenger;
+		public function deleteMultiple(array $VehiclePassenger): void;
 		
-		public function searchAll(): array;
-		
-		public function matching(Criteria $criteria): array;
-		
-		public function totalMatchingRows(Criteria $criteria): int;
-		
-		public function delete(VehiclePassenger $VehiclePassenger): void;
-		
-		public function findVehiclePassengersIn(string $districtEntryAndExitOfVehiclesControlId):array ;
+		public function findVehiclePassengersIn(string $districtEntryAndExitOfVehiclesControlId): array;
 	}

@@ -21011,4 +21011,9 @@ a.dashboard-shortcut, a.dashboard-shortcut:visited{
     margin-top: 2.7rem !important;
 }
 
-a#createItemLink:fo
+.icon-passenger {
+    width: 22px;
+    margin-top: -5px;
+    margin-right: 5px;
+}
+

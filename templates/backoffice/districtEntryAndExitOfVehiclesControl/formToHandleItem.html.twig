@@ -37,102 +37,115 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <hr>
-                                <h7 class="my-1"><strong> Pasajero nº 1</strong></h7>
-                                <hr>
+
 
                                 <div class="field_wrapper">
+
                                     {% for vehiclePassenger in vehiclePassengers %}
-                                    <div class="form-group">
-                                        <label>Nombre ( * ) :</label>
-                                        <input type="text"
-                                               placeholder=" - Obligatorio -"
-                                               name="vehiclePassenger[0][name]"
-                                               value="{{ vehiclePassenger.name }}"
-                                               maxlength="255"
-                                               class="form-control"
-                                               required
-                                               autofocus
-                                        >
-                                        <small class="errorLabelContainer form-text text-muted text-danger">
-                                        </small>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label>Apellido ( * ) :</label>
-                                        <input type="text"
-                                               placeholder=" - Obligatorio -"
-                                               name="vehiclePassenger[0][surname]"
-                                               value="{{ vehiclePassenger.surname }}"
-                                               maxlength="255"
-                                               class="form-control"
-                                               required
-                                        >
-                                        <small class="errorLabelContainer form-text text-muted text-danger">
-                                        </small>
-                                    </div>
+                                        <hr>
 
-                                    <div class="form-group">
-                                        <label>Dni ( * ) :</label>
-                                        <input type="number"
-                                               placeholder=" - Obligatorio -"
-                                               name="vehiclePassenger[0][identityCard]"
-                                               value="{{ vehiclePassenger.identityCard }}"
-                                               class="form-control"
-                                               required
-                                        >
-                                        <small class="errorLabelContainer form-text text-muted text-danger"></small>
-                                    </div>
+                                        <i class="fas fa-user mr-1"></i>
 
-                                    <div class="form-group">
-                                        <label>Telefono :</label>
-                                        <input type="text"
-                                               placeholder=" - Opcional -"
-                                               name="vehiclePassenger[0][phone]"
-                                               value="{{ vehiclePassenger.phone }}"
-                                               maxlength="255"
-                                               class="form-control"
-                                        >
-                                        <small class="errorLabelContainer form-text text-muted text-danger"></small>
-                                    </div>
-                                    **
-                                    <div class="form-group">
-                                        <label>Dirección :</label>
-                                        <input type="text"
-                                               placeholder=" - Opcional -"
-                                               name="vehiclePassenger[0][address]"
-                                               value="{{ vehiclePassenger.address }}""
-                                        maxlength="255"
-                                        class="form-control"
-                                        * required
-                                        * >
-                                        <small class="errorLabelContainer form-text text-muted text-danger"></small>
-                                    </div>
-                                    -
-                                    <div class="form-group">
-                                        <label>Temperatura ( * ) :</label>
-                                        <input type="text"
-                                               placeholder=" - Obligatorio -"
-                                               name="vehiclePassenger[0][temperatureControl]"
-                                               value="{{ vehiclePassenger.temperatureControl }}"
-                                               maxlength="255"
-                                               class="form-control"
-                                               required="">
-                                        <small class="errorLabelContainer form-text text-muted text-danger"></small>
-                                    </div>
+                                        <h7 class="my-1"><strong> Pasajero nº {{ loop.index }}</strong></h7>
+
+                                        <hr>
+
+                                        <div class="form-group">
+                                            <label>Nombre ( * ) :</label>
+                                            <input type="text"
+                                                   placeholder=" - Obligatorio -"
+                                                   name="vehiclePassenger[{{ loop.index - 1 }}][name]"
+                                                   value="{{ vehiclePassenger.name }}"
+                                                   maxlength="255"
+                                                   class="form-control"
+                                                   required
+                                                   autofocus
+                                            >
+                                            <small class="errorLabelContainer form-text text-muted text-danger">
+                                            </small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Apellido ( * ) :</label>
+                                            <input type="text"
+                                                   placeholder=" - Obligatorio -"
+                                                   name="vehiclePassenger[{{ loop.index - 1 }}][surname]"
+                                                   value="{{ vehiclePassenger.surname }}"
+                                                   maxlength="255"
+                                                   class="form-control"
+                                                   required
+                                            >
+                                            <small class="errorLabelContainer form-text text-muted text-danger">
+                                            </small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Dni ( * ) :</label>
+                                            <input type="text"
+                                                   placeholder=" - Obligatorio -"
+                                                   name="vehiclePassenger[{{ loop.index - 1 }}][identityCard]"
+                                                   value="{{ vehiclePassenger.identityCard }}"
+
+                                                   class="form-control"
+                                                   required
+                                            >
+                                            <small class="errorLabelContainer form-text text-muted text-danger"></small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Telefono :</label>
+                                            <input type="text"
+                                                   placeholder=" - Opcional -"
+                                                   name="vehiclePassenger[{{ loop.index - 1 }}][phone]"
+                                                   value="{{ vehiclePassenger.phone }}"
+                                                   maxlength="255"
+                                                   class="form-control"
+                                            >
+                                            <small class="errorLabelContainer form-text text-muted text-danger"></small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Dirección :</label>
+                                            <input type="text"
+                                                   placeholder=" - Opcional -"
+                                                   name="vehiclePassenger[{{ loop.index - 1 }}][address]"
+                                                   value="{{ vehiclePassenger.address }}"
+                                                   maxlength="255"
+                                                   class="form-control"
+                                                   required
+                                            >
+                                            <small class="errorLabelContainer form-text text-muted text-danger"></small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Temperatura ( * ) :</label>
+                                            <input type="text"
+                                                   placeholder=" - Obligatorio -"
+                                                   name="vehiclePassenger[{{ loop.index - 1 }}][temperatureControl]"
+                                                   value="{{ vehiclePassenger.temperatureControl }}"
+                                                   min="35.0"
+                                                   max="42.0"
+                                                   maxlength="4"
+                                                   class="form-control"
+                                                   required="">
+                                            <small class="errorLabelContainer form-text text-muted text-danger"></small>
+                                        </div>
+
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
 
-                                <div>
-                                    <a href="javascript:void(0);" class="add_button btn btn-black btn-border mr-2">
-                                        <i class="fas fa-plus-circle"></i>
-                                        Agregar Pasajero
-                                    </a>
-                                    <b class="d-none d-sm-inline" id="passengerCounter">Cantidad de pasajeros ( 1 )</b>
-                                </div>
+
+                                <a href="javascript:void(0);" class="add_button btn btn-success btn-border mr-2">
+                                    <i class="fas fa-user-plus mr-1"></i>
+                                    <b>Agregar Pasajero</b>
+                                </a>
+
+                                <b class="d-none d-sm-inline" id="passengerCounter">
+                                    Cantidad de pasajeros ( {{ vehiclePassengers|length }} )
+                                </b>
 
                                 <hr>
-
                                 <button type="button"
                                         id="goToVehicleDetails"
                                         class="btn btn-dark btn-block next"
@@ -142,9 +155,7 @@
                                         <i class="fas fa-forward"></i>
                                     </span>
                                 </button>
-
                             </div>
-
                         </fieldset>
                         {#  Fin Datos de los pasajeros   #}
 
@@ -215,11 +226,7 @@
                                 </div>
 
 
-                                <div class="form-group
-                                            {% if flash.has('errors.vehicleMakerNameId') %}
-                                                has-error
-                                            {% endif %}"
-                                >
+                                <div class="form-group {% if flash.has('errors.vehicleMakerNameId') %}has-error{% endif %}">
                                     <label for="vehicleMakerNameId">Marca del vehiculo ( * )</label>
                                     <select name="vehicleMakerNameId"
                                             id="vehicleMakerNameId"
@@ -245,8 +252,7 @@
                                 </div>
 
                                 <div id="modelOfVehicleIdContainer"
-                                     class=" d-none form-group {% if flash.has('errors.modelOfVehicleId') %} has-error
-{% endif %}"
+                                     class="d-none form-group {% if flash.has('errors.modelOfVehicleId') %} has-error{% endif %}"
                                 >
                                     <label for="modelOfVehicleId">Modelo del vehiculo ( * )</label>
                                     <select name="modelOfVehicleId" id="modelOfVehicleId" class="form-control"

@@ -9,7 +9,7 @@
 	use App\Backoffice\VehiclePassenger\Domain\VehiclePassengerRepository;
 	use App\Shared\Domain\ValueObject\Uuid;
 	
-	final class VehiclePassengerCreator
+	final class AddVehiclePassengerInDistrictEntryAndExitOfVehiclesControl
 	{
 		private VehiclePassengerRepository $repository;
 		private EventBus $bus;
@@ -26,36 +26,37 @@
 		}
 		
 		public function __invoke(
-			string $id,
-			string $name,
-			string $surname,
-			string $identityCard,
-			string $phone,
-			string $address,
 			string $districtEntryAndExitOfVehiclesControlId,
-			string $temperatureControl
+			array $passengers
 		) {
-			$id = new Uuid($id);
-			
 			$districtEntryAndExitOfVehiclesControl = $this->finderDistrictEntryAndExitOfVehiclesControl
 				->__invoke($districtEntryAndExitOfVehiclesControlId);
 			
-			$createAt = new \DateTime();
+			$vehiclePassengers = [];
 			
-			$vehiclePassenger = VehiclePassenger::create(
-				$id,
-				trim($name),
-				trim($surname),
-				trim($identityCard),
-				trim($phone),
-				trim($address),
-				$districtEntryAndExitOfVehiclesControl,
-				trim($temperatureControl),
-				$createAt
-			);
+			foreach ($passengers as $passenger) {
+				$id = Uuid::random();
+				
+				$createAt = new \DateTime();
+				
+				$vehiclePassengers[] = VehiclePassenger::create(
+					$id,
+					trim($passenger->name),
+					trim($passenger->surname),
+					trim($passenger->identityCard),
+					trim($passenger->phone),
+					trim($passenger->address),
+					$districtEntryAndExitOfVehiclesControl,
+					trim($passenger->temperatureControl),
+					$createAt
+				);
+			}
 			
-			$this->repository->save($vehiclePassenger);
+			$this->repository->saveMultiple($vehiclePassengers);
 			
-			$this->bus->publish(...$vehiclePassenger->pullDomainEvents());
+			foreach ($vehiclePassengers as $vehiclePassenger) {
+				$this->bus->publish(...$vehiclePassenger->pullDomainEvents());
+			}
+			
 		}
 	}

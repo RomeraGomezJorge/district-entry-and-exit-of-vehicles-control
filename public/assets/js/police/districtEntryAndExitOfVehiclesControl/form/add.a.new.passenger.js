@@ -2,13 +2,15 @@ $(document).ready(function () {
     var maxField = 20; //Input fields increment limitation
     var addButton = $('.add_button'); //Add button selector
     var wrapper = $('.field_wrapper'); //Input field wrapper
-    var x = 1; //Initial field counter is 1
+    var x = $('input[name*="surname"]').length; //Initial field counter is 1
+
 
 
     //Once add button is clicked
     $(addButton).click(function () {
         var fieldHTML =
             '<div class="field_wrapper_1 mt-4">' +
+            '<i class="fas fa-user mr-1"></i>' +
             '<h7 class="my-1" id="numero_pasajero"><strong> Pasajero nº ' + (x + 1) + '</strong></h7><hr> ' +
             '<div class="form-group">\n' +
             '    <label>Nombre ( * ) :</label>\n' +
@@ -86,15 +88,15 @@ $(document).ready(function () {
             '           class="form-control"\n' +
             '           required="">\n' +
             '    <small class="errorLabelContainer form-text text-muted text-danger"></small>\n' +
-
-            '<a href="javascript:void(0);" class="remove_button btn btn-danger">Quitar pasajero</a><hr></div>'; //New input field html
+            ' </div>' +
+            '<a href="javascript:void(0);" class="remove_button btn btn-danger btn-border font-weight-bold"><i class="fas fa-user-times mr-1"></i> Quitar pasajero</a><hr></div>'; //New input field html
 
         addRules(x);
 
         //Check maximum number of input fields
         if (x < maxField) {
+            $('#passengerCounter').html('Cantidad de pasajeros ( ' + (x + 1) + ' )');
             x++; //Increment field counter
-            $('#passengerCounter').html('Cant. Pasajeros (' + x + ')');
             $(wrapper).append(fieldHTML); //Add field html
         }
 
