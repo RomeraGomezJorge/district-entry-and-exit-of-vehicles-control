@@ -43,7 +43,7 @@ reset_password_request_directory:
   resource: '../src/ResetPasswordRequest/Infrastructure/UserInterface/Routes/reset_password_routes.yaml'
 
 login:
-    path: login
+    path: /
     defaults: { _controller: App\SymfonyAuthentication\SecurityController:login}
     methods:  [GET,POST]
 
