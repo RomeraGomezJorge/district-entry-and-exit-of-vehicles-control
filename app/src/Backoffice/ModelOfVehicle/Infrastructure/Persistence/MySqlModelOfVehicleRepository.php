@@ -17,8 +17,8 @@ final class MySqlModelOfVehicleRepository extends DoctrineRepository implements 
 {
     const NOT_SETTING_VALUE = null;
     const ENTITY_CLASS = ModelOfVehicle::class;
-    const   DESCRIPTION_IS_NOT_IN_USE = false;
-    const   DESCRIPTION_HAS_ALREADY_BEEN_CREATED_FOR_THIS_VEHICLE_MAKER_NAME = true;
+    const DESCRIPTION_IS_NOT_IN_USE = false;
+    const DESCRIPTION_HAS_ALREADY_BEEN_CREATED_FOR_THIS_VEHICLE_MAKER_NAME = true;
     const NOT_FOUND = null;
     private ?int $totalMatchingRows = null;
 

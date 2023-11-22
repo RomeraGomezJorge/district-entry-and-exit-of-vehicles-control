@@ -10,11 +10,12 @@ final class ValidationRulesToCreateAndUpdate
 {
     public static function verify($request): ConstraintViolationListInterface
     {
-        $constraint = new Assert\Collection(['id'                    => new Assert\Uuid(),
-                                             'description'           => new Assert\NotBlank(),
-                                             'csrf_token'            => new Assert\NotBlank(),
-                                             'vehicle_maker_name_id' => new Assert\Uuid(),
-                                             'vehicle_body_type_id'  => new Assert\Uuid(),]);
+        $constraint = new Assert\Collection([
+            'id'                 => new Assert\Uuid(),
+            'description'        => new Assert\NotBlank(),
+            'csrf_token'         => new Assert\NotBlank(),
+            'vehicleMakerNameId' => new Assert\Uuid(),
+            'vehicleBodyTypeId'  => new Assert\Uuid(),]);
 
         $input = $request->request->all();
 

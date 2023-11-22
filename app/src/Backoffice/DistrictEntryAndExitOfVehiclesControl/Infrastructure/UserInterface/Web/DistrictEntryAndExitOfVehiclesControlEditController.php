@@ -21,7 +21,6 @@ class DistrictEntryAndExitOfVehiclesControlEditController extends WebController
     {
         $districtEntryAndExitOfVehiclesControl = $finder->__invoke($request->get('id'));
 
-
         return $this->render(
             TwigTemplateConstants::FORM_FILE_PATH,
             [

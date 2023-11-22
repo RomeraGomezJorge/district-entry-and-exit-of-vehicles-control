@@ -50,7 +50,7 @@ final class ModelOfVehicleUpdater
             $this->uniqueModelOfVehicleDescriptionSpecification
         );
 
-        $modelOfVehicle->chcleMakeName($newVehicleMakerName);
+        $modelOfVehicle->changeVehicleMakeName($newVehicleMakerName);
 
         $modelOfVehicle->changeVehicleBodyType($newVehicleBodyTypeId);
 

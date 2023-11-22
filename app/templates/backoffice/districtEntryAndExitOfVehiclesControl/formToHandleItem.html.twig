@@ -117,7 +117,7 @@
 
                                     <div class="form-group {% if flash.has('errors.vehicle_passenger'~ (passengerCounter) ~'identityCard') %} has-error {% endif %}">
                                         <label>Documento ( * ) :</label>
-                                        <input type="text"
+                                        <input type="number"
                                                placeholder=" - Obligatorio -"
                                                name="vehicle_passenger[{{ passengerCounter }}][identityCard]"
                                                value="{{ vehicle_passenger.identityCard }}"
@@ -134,7 +134,7 @@
 
                                     <div class="form-group {% if flash.has('errors.vehicle_passenger'~ (passengerCounter) ~'phone') %} has-error {% endif %}">
                                         <label>Telefono :</label>
-                                        <input type="text"
+                                        <input type="number"
                                                placeholder=" - Opcional -"
                                                name="vehicle_passenger[{{ passengerCounter }}][phone]"
                                                value="{{ vehicle_passenger.phone }}"
@@ -168,7 +168,7 @@
 
                                     <div class="form-group {% if flash.has('errors.vehicle_passenger'~ (passengerCounter) ~'temperatureControl') %} has-error {% endif %}">
                                         <label>Temperatura ( * ) :</label>
-                                        <input type="text"
+                                        <input type="number"
                                                placeholder=" - Obligatorio -"
                                                name="vehicle_passenger[{{ passengerCounter }}][temperatureControl]"
                                                value="{{ vehicle_passenger.temperatureControl }}"
@@ -246,7 +246,7 @@
 
 
                         <div class="form-group {% if flash.has('errors.vehicle_body_type_id') %} has-error {% endif %}">
-                            <div class="" id="vehicleBodyType">
+                            <div class="" id="vehicle_body_type">
                                 <label>Tipo de Carrocería ( * )</label><br>
                                 <div class="selectgroup w-100 mt-3">
                                     {% for vehicle_body_type in vehicle_body_types %}
@@ -517,48 +517,49 @@
     <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/form/append.rules.on.form.validation.js') }}"></script>
     <script src="{{ asset('assets/js/police/districtEntryAndExitOfVehiclesControl/form/show.model.of.vehicle.that.belong.to.a.vehicle.maker.name.js') }}"></script>
     <script>
+        /*
         $(document).ready(function () {
 
-            const vehicleMakerNameIdSelect = $('select[name="vehicle_maker_name_id"]');
+            const vehicle_maker_name_idSelect = $('select[name="vehicle_maker_name_id"]');
 
-            const vehicleBodyTypeIdInput = $('input[name="vehicleBodyTypeId"]');
+            const vehicle_body_type_idInput = $('input[name="vehicle_body_type_id"]');
 
-            /*obtiene el id de tipo de carroceria selecionada */
-            const vehicleBodyTypeChosenValue = $("input[name='vehicleBodyTypeId']:checked").val();
+            /!*obtiene el id de tipo de carroceria selecionada *!/
+            const vehicle_body_typeChosenValue = $("input[name='vehicle_body_type_id']:checked").val();
 
-            /* solo muestra los modelo que pertenezcan a la marca seleccionada */
-            $('select[name="vehicle_maker_name_id"] option[data-vehicle_body_type_id="' + vehicleBodyTypeChosenValue + '"]').show();
+            /!* solo muestra los modelo que pertenezcan a la marca seleccionada *!/
+            // $('select[name="vehicle_maker_name_id"] option[data-vehicle_body_type_id="' + vehicle_body_typeChosenValue + '"]').show();
 
-            /*Al cambiar el valor del tipo de carroceria se muestra el select que tiene las marcas de vehiculos que hAY
-            dentro de ese tipo de carroceria */
-            vehicleBodyTypeIdInput.on('change', function () {
+            /!*Al cambiar el valor del tipo de carroceria se muestra el select que tiene las marcas de vehiculos que hAY
+            dentro de ese tipo de carroceria *!/
+            vehicle_body_type_idInput.on('change', function () {
 
-                /* Se remueve cualquier notificacion sobre el campo marca de vehiculos, por ej:
+                /!* Se remueve cualquier notificacion sobre el campo marca de vehiculos, por ej:
                 cuando se selecciono un tipo de carroceria y una marca, luego de eso se decide cambiar el tipo de
-                carroceria esta accion dejaria una notficacion de exito sobre el campo marca de vehiculos*/
-                vehicleMakerNameIdSelect.parent('.form-group').removeClass('has-success');
-                vehicleMakerNameIdSelect.parent('.form-group').removeClass('has-error');
+                carroceria esta accion dejaria una notficacion de exito sobre el campo marca de vehiculos*!/
+                vehicle_maker_name_idSelect.parent('.form-group').removeClass('has-success');
+                vehicle_maker_name_idSelect.parent('.form-group').removeClass('has-error');
 
-                /* limpia la seleccion previa en las marcas de vehiculos*/
-                vehicleMakerNameIdSelect.val(null);
+                /!* limpia la seleccion previa en las marcas de vehiculos*!/
+                vehicle_maker_name_idSelect.val(null);
 
-                /*obtiene el id del tipo de carroceria selecionada */
-                const vehicleBodyTypeChosen = $("input[name='vehicleBodyTypeId']:checked").val();
+                /!*obtiene el id del tipo de carroceria selecionada *!/
+                const vehicle_body_typeChosen = $("input[name='vehicle_body_type_id']:checked").val();
 
-                /* oculta todas las marcas de vehiculos*/
+                /!* oculta todas las marcas de vehiculos*!/
                 $('select[name="vehicle_maker_name_id"] option').hide();
 
-                /* solo muestra los modelo que pertenezcan a la marca seleccionada */
-                $('select[name="vehicle_maker_name_id"] option[data-vehicle_body_type_id="' + vehicleBodyTypeChosen + '"]')
+                /!* solo muestra los modelo que pertenezcan a la marca seleccionada *!/
+                $('select[name="vehicle_maker_name_id"] option[data-vehicle_body_type_id="' + vehicle_body_typeChosen + '"]')
                     .show();
 
-                /* limpia la seleccion previa en los modelos de vehiculos*/
-                vehicleMakerNameIdSelect.val(null);
+                /!* limpia la seleccion previa en los modelos de vehiculos*!/
+                vehicle_maker_name_idSelect.val(null);
 
-                /* al cambiar y no dejar ninguna marca de vehiculo seleccionada se oculta los modelos de vehiculos */
+                /!* al cambiar y no dejar ninguna marca de vehiculo seleccionada se oculta los modelos de vehiculos *!/
                 $("#modelOfVehicleIdContainer").addClass('d-none');
             });
-        })
+        })*/
     </script>
 
 

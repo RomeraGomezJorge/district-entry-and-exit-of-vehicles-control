@@ -30,8 +30,8 @@ class ModelOfVehiclePutController extends WebController
         $updater->__invoke(
             $request->get('id'),
             $request->get('description'),
-            $request->get('vehicle_maker_name_id'),
-            $request->get('vehicle_body_type_id')
+            $request->get('vehicleMakerNameId'),
+            $request->get('vehicleBodyTypeId')
         );
 
         return $this->redirectWithMessage(

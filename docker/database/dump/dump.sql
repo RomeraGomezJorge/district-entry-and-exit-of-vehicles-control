@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database
--- Tiempo de generación: 21-11-2023 a las 18:17:03
+-- Tiempo de generación: 22-11-2023 a las 02:02:18
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.12
 
@@ -24,114 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `district`
---
-
-CREATE TABLE `district` (
-  `id` char(36) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `createAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `district`
---
-
-INSERT INTO `district` (`id`, `description`, `createAt`) VALUES
-('055eefe9-7cf6-4895-972e-1408d96dba10', 'Buenos Aires', '2021-02-01 19:14:33'),
-('11701c16-a756-4774-809c-fa523582af46', 'Santa Fe', '2021-02-01 19:18:36'),
-('16af89e7-4079-414b-b2b7-8ac377b40f7a', 'Neuquen', '2021-02-01 19:17:35'),
-('243e132c-32e4-4828-8191-70643eb568af', 'Santa Cruz', '2021-02-01 19:18:23'),
-('2838f0e3-f208-42a8-9a34-75b68828e5c7', 'Santiago del Estero', '2021-02-01 19:18:53'),
-('2c8ee470-328b-4500-95ad-a24530cc0e52', 'La Rioja', '2021-01-28 21:27:06'),
-('3addf080-28ff-4d1b-b13c-3768eb8ed579', 'Tierra del Fuego', '2021-02-01 19:19:03'),
-('41631d13-d6bc-4831-893e-2ac864ed652e', 'San Luis', '2021-02-01 19:20:53'),
-('50fa3e6a-5239-4438-91b0-3bc712f75e04', 'Jujuy', '2021-02-01 19:16:29'),
-('58b854e1-4968-48f9-b00a-d20190887044', 'Rio Negro', '2021-02-01 19:17:52'),
-('5db330ef-efac-46ee-8370-99e138aa73f1', 'Salta', '2021-02-01 19:18:02'),
-('886d27a0-6491-44ff-8587-243781457290', 'Misiones', '2021-02-01 19:17:13'),
-('95769492-046f-45a7-b973-2098fc82e02c', 'Chaco', '2021-02-01 19:14:44'),
-('987d5208-4743-4be9-a46f-b3ef84d567c2', 'Corrientes', '2021-02-01 19:15:43'),
-('99b05134-1290-48e2-8345-9237635eaa00', 'Tucuman', '2021-02-01 19:19:10'),
-('9c49a5d7-c6cf-4ef5-8f68-0ab9bdc4b9f3', 'Entre Rios', '2021-02-01 19:15:54'),
-('9ccda7c7-89a1-4d5d-ab39-7d7c2ada15b6', 'Formosa', '2021-02-01 19:16:18'),
-('a1b752f0-94fa-4aed-8c88-484434ea21a0', 'La Pampa', '2021-02-01 19:16:41'),
-('b62439f3-ec3f-4e70-b358-e7a99628220c', 'Cordoba', '2021-02-01 19:15:32'),
-('c932b340-0ef1-412b-978d-6dddda39956a', 'San Juan', '2021-02-01 19:18:09'),
-('cf61689c-3881-47b5-ba63-4f542f7d8cae', 'Mendoza', '2021-02-01 19:17:07'),
-('dc2f221e-f1a3-40b0-8494-338fb6846166', 'Catamarca', '2021-01-28 21:26:57'),
-('f2c8bed8-19c3-4659-bae7-95e42cc77ccc', 'Chubut', '2021-02-01 19:14:54');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `district_entry_and_exit_of_vehicles_control`
---
-
-CREATE TABLE `district_entry_and_exit_of_vehicles_control` (
-  `id` char(36) NOT NULL,
-  `licensePlate` varchar(100) NOT NULL,
-  `vehicleBodyTypeId` char(36) NOT NULL,
-  `vehicleMakerNameId` char(36) NOT NULL,
-  `modelOfVehicleId` char(36) NOT NULL,
-  `tripOriginId` char(36) NOT NULL,
-  `tripDestinationId` char(36) NOT NULL,
-  `reasonForTripId` char(36) NOT NULL,
-  `trafficPoliceBoothId` char(36) NOT NULL,
-  `createAt` datetime NOT NULL,
-  `updateAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `identity_card_type`
---
-
-CREATE TABLE `identity_card_type` (
-  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `createAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `identity_card_type`
---
-
-INSERT INTO `identity_card_type` (`id`, `description`, `createAt`) VALUES
-('93b544cb-dfa8-47e9-98b9-a0ea91b9bcd2', 'Cedula', '2023-11-21 18:14:40'),
-('b5281eb2-2366-4844-b2cf-d7bee2fe8527', 'Pasaporte', '2023-11-21 18:14:30'),
-('f109a12e-e9a9-4e75-a89f-fcceedf7da08', 'Dni', '2023-11-21 18:14:19');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `model_of_vehicle`
 --
 
-CREATE TABLE `model_of_vehicle` (
-  `id` char(36) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `vehicle_make_name_id` char(36) NOT NULL,
-  `vehicle_body_type_id` char(36) NOT NULL,
-  `createAt` datetime NOT NULL
+CREATE TABLE `model_of_vehicle`
+(
+    `id`                char(36)                                                  NOT NULL,
+    `description`       varchar(100)                                              NOT NULL,
+    `vehicleMakeNameId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+    `vehicleBodyTypeId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+    `createAt`          datetime                                                  NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `model_of_vehicle`
 --
 
-INSERT INTO `model_of_vehicle` (`id`, `description`, `vehicle_make_name_id`, `vehicle_body_type_id`, `createAt`) VALUES
-('00e606e5-f455-4d0a-84eb-07356b5ce211', 'F 612', 'abcbacc2-50c5-40fe-9000-b5e355e3c1d6', '', '2021-02-02 02:43:28'),
-('03c0c73e-bf0a-4bab-92ff-8610146bc7ab', 'GLB 250', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '', '2021-02-04 20:37:29'),
-('04eac324-0877-4104-b1bf-7ab5425aefd0', 'CLC 230', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '', '2021-02-04 20:32:37'),
-('0646be59-09fb-4e7c-addc-915175833fa5', 'Q7', '0bdaf627-29b8-4e91-8692-de73e6895d66', '', '2021-02-01 20:09:46'),
-('06590318-03f4-43f9-a15b-14bd65560b80', 'FiT', '7bb4a435-19d6-4396-82a2-abed558f1e76', '', '2021-02-04 19:42:52'),
-('065fa723-b6b9-4573-ad60-537d3ccdc212', 'S3', 'b18a2705-3998-4714-b44a-c7c6fd2c8dd9', '', '2021-02-04 19:50:43'),
-('0693d7a9-12f6-4cb4-a957-c3c3a7db9429', 'AMG GT s', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '', '2021-02-04 20:40:42'),
-('06db1d03-133d-47f8-82dc-01a3e5c1221e', '535', '9f9111d9-2f57-43c8-a4a5-8661511e3e0e', '', '2021-02-02 01:48:32'),
-('08361483-0383-4e40-b380-606c724fa69c', 'CLS 63', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '', '2021-02-04 20:33:44'),
-('08ad278b-b257-482a-a840-dd09f9dee70c', 'SLS', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '', '2021-02-04 20:42:26'),
+INSERT INTO `model_of_vehicle` (`id`, `description`, `vehicleMakeNameId`, `vehicleBodyTypeId`, `createAt`)
+VALUES ('00e606e5-f455-4d0a-84eb-07356b5ce211', 'F 612', 'abcbacc2-50c5-40fe-9000-b5e355e3c1d6', '',
+        '2021-02-02 02:43:28'),
+       ('03c0c73e-bf0a-4bab-92ff-8610146bc7ab', 'GLB 250', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '',
+        '2021-02-04 20:37:29'),
+       ('04eac324-0877-4104-b1bf-7ab5425aefd0', 'CLC 230', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '',
+        '2021-02-04 20:32:37'),
+       ('0646be59-09fb-4e7c-addc-915175833fa5', 'Q7', '0bdaf627-29b8-4e91-8692-de73e6895d66', '',
+        '2021-02-01 20:09:46'),
+       ('06590318-03f4-43f9-a15b-14bd65560b80', 'FiT', '7bb4a435-19d6-4396-82a2-abed558f1e76', '',
+        '2021-02-04 19:42:52'),
+       ('065fa723-b6b9-4573-ad60-537d3ccdc212', 'S3', 'b18a2705-3998-4714-b44a-c7c6fd2c8dd9', '',
+        '2021-02-04 19:50:43'),
+       ('0693d7a9-12f6-4cb4-a957-c3c3a7db9429', 'AMG GT s', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '',
+        '2021-02-04 20:40:42'),
+       ('06db1d03-133d-47f8-82dc-01a3e5c1221e', '535', '9f9111d9-2f57-43c8-a4a5-8661511e3e0e', '',
+        '2021-02-02 01:48:32'),
+       ('08361483-0383-4e40-b380-606c724fa69c', 'CLS 63', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '',
+        '2021-02-04 20:33:44'),
+       ('08ad278b-b257-482a-a840-dd09f9dee70c', 'SLS', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '',
+        '2021-02-04 20:42:26'),
 ('08b57c3f-aae0-43e7-afc4-c80b1edba8f5', 'Legend', '7bb4a435-19d6-4396-82a2-abed558f1e76', '', '2021-02-04 19:43:21'),
 ('08ca33d3-668d-4001-956f-bd18218c092d', 'Territory', '69c2661a-1184-49c6-a2d7-e48ec61dac50', '', '2021-02-04 18:54:55'),
 ('096617b9-266a-45be-b978-0900b6a24386', 'S 500', '43dba27b-7c86-44fa-8bde-1c516c7e865d', '', '2021-02-04 20:41:08'),
@@ -522,327 +451,28 @@ INSERT INTO `model_of_vehicle` (`id`, `description`, `vehicle_make_name_id`, `ve
 ('fc7c9b88-7a25-4c52-8896-fd0ad60706db', 'Opirus', 'fd489104-ff31-464c-82d7-802d3414977e', '', '2021-02-04 20:01:17'),
 ('fe8d803b-d489-4f25-8055-b3250559cb17', '640', '9f9111d9-2f57-43c8-a4a5-8661511e3e0e', '', '2021-02-02 01:49:58');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `reason_for_trip`
---
-
-CREATE TABLE `reason_for_trip` (
-  `id` char(36) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `createAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `reason_for_trip`
---
-
-INSERT INTO `reason_for_trip` (`id`, `description`, `createAt`) VALUES
-('44ea298e-4435-4458-b5c6-e1b8e9b45b3e', 'Vacaciones', '2021-01-29 04:48:02'),
-('81cd3dd7-e3fb-4c98-bbdd-419f4de37ebd', 'Otro', '2021-01-29 04:49:02'),
-('b0b43151-e917-4511-9a1b-697d46156002', 'Salud', '2021-01-29 04:48:54'),
-('d1983751-459d-4bd8-a509-95af85e98539', 'Trabajo', '2021-01-29 04:48:42');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `role`
---
-
-CREATE TABLE `role` (
-  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `description` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `role`
---
-
-INSERT INTO `role` (`id`, `description`) VALUES
-('ROLE_ADMIN', 'Administrador'),
-('ROLE_USER', 'Usuario');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `traffic_police_booth`
---
-
-CREATE TABLE `traffic_police_booth` (
-  `id` char(36) NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `createAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `traffic_police_booth`
---
-
-INSERT INTO `traffic_police_booth` (`id`, `description`, `createAt`) VALUES
-('0a6ce05f-e4ad-41bc-9547-8f25b061d93d', 'Catamarca', '2021-01-17 19:20:45'),
-('a1b27830-0b1e-40b4-a712-299a4e0c31a5', 'consectetur', '2021-01-28 19:28:25');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `user`
---
-
-CREATE TABLE `user` (
-  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `role_id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `createAt` datetime NOT NULL,
-  `updateAt` datetime DEFAULT NULL,
-  `isActive` tinyint(1) NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `surname` varchar(100) NOT NULL,
-  `trafficPoliceBooth_id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `user`
---
-
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `role_id`, `createAt`, `updateAt`, `isActive`, `name`, `surname`, `trafficPoliceBooth_id`) VALUES
-('b1d3f9d6-fda1-4dc4-b453-7b8a770b50e1', 'admin', 'admin@example.com', '$2y$13$nLJfI/BRzAThSUqFzuZsU.7HATvQrEGqCwbBlrbxo5OeCbXTQUUHm', 'ROLE_ADMIN', '2023-11-20 23:52:14', '2023-11-20 23:52:14', 0, 'admin', 'admin', '0a6ce05f-e4ad-41bc-9547-8f25b061d93d');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `vehicle_body_type`
---
-
-CREATE TABLE `vehicle_body_type` (
-  `id` char(36) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `image` varchar(100) DEFAULT NULL,
-  `createAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `vehicle_body_type`
---
-
-INSERT INTO `vehicle_body_type` (`id`, `description`, `image`, `createAt`) VALUES
-('132a064a-e0ca-4b16-8047-663201e8c376', 'Moto', 'https://i.imgur.com/2xsVtgM.png', '2021-01-29 02:25:38'),
-('63a5ca03-91a1-4c53-9f88-2b676fd195ed', 'Auto', 'https://i.imgur.com/rSmHH8D.png', '2021-01-29 02:26:00'),
-('9d7b2782-181b-4725-a645-67acb96bb693', 'Utilitario', 'https://i.imgur.com/NwbdPrs.png', '2021-01-29 02:25:29'),
-('f9bb1ad1-0063-45cf-bea3-a4bf1939e971', 'Camión', 'https://i.imgur.com/qfp7IRR.png', '2021-01-29 02:25:53');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `vehicle_maker_name`
---
-
-CREATE TABLE `vehicle_maker_name` (
-  `id` char(36) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `createAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `vehicle_maker_name`
---
-
-INSERT INTO `vehicle_maker_name` (`id`, `description`, `createAt`) VALUES
-('056d3d5c-36f8-4e6a-ae1a-33301e1f3e73', 'Agrale', '2021-02-01 03:23:32'),
-('06078773-492f-4301-95cc-cb542716c499', 'Foton', '2021-02-04 19:31:29'),
-('0bdaf627-29b8-4e91-8692-de73e6895d66', 'Audi', '2021-02-01 03:29:21'),
-('19aec273-ec59-4a34-aca6-9cd37b5d5cef', 'Land Rover', '2021-02-04 19:34:13'),
-('1cef28af-80ad-4d6f-b0ec-d73a360e048a', 'Geely', '2021-02-04 19:31:49'),
-('23b0578d-53ef-4e33-8654-c44921519e7e', 'Baic', '2021-02-01 03:32:12'),
-('38da68fb-8811-4c52-bf1d-c29323f7f2ce', 'DFSK', '2021-02-02 02:34:04'),
-('3fb4a3ff-a47b-415c-8002-aa1a8021fa7d', 'Dodge', '2021-02-02 02:34:12'),
-('43dba27b-7c86-44fa-8bde-1c516c7e865d', 'Mercedes Benz', '2021-02-04 20:26:16'),
-('44372c91-95ad-4797-b55e-dc12e0a7d003', 'Lotus', '2021-02-04 19:34:38'),
-('49094d27-19eb-47f5-8a86-a71a04f4fdb3', 'Jetour', '2021-02-04 19:33:42'),
-('4969df58-aeb8-4e15-9088-f8f70675d960', 'Maserati', '2021-02-04 19:34:50'),
-('505db8d9-0092-4b85-b096-829f77b38204', 'Citroen', '2021-02-02 02:21:21'),
-('590345e7-2f29-4fd7-9792-689c549781e2', 'Jeep', '2021-02-04 19:33:33'),
-('62be96dc-8f42-4a6b-83de-6dc06f9f91ca', 'Jaguar', '2021-02-04 19:33:21'),
-('65fd1c93-19c0-4569-aa36-78165b85eaf6', 'Chevrolet', '2021-02-02 02:14:09'),
-('69c2661a-1184-49c6-a2d7-e48ec61dac50', 'Ford', '2021-02-04 18:47:49'),
-('6dcc52f6-65a9-4024-ae59-18502292bae3', 'Alfa Romeo', '2021-02-01 03:23:44'),
-('78ddf6a2-1836-4536-ae40-af2044430199', 'Hyundai', '2021-02-04 19:32:46'),
-('7949582d-e2a2-49bd-9845-dace8aadafc2', 'Chrysler', '2021-02-02 02:20:59'),
-('7bb4a435-19d6-4396-82a2-abed558f1e76', 'Honda', '2021-02-04 19:32:33'),
-('7f98d438-5a70-4752-839c-e5c8efa657e9', 'Chery', '2021-02-02 02:12:52'),
-('820dddcf-86e4-4f5c-bb0a-1a99146c903c', 'Isuzu', '2021-02-04 19:33:08'),
-('8390dee5-7ab8-4a22-a4a7-c82db9e6ee50', 'Haval', '2021-02-04 19:32:26'),
-('889d2ea9-d0db-4c47-9ba7-3614c36fb9ec', 'Lexus', '2021-02-04 19:34:22'),
-('8a13a965-56a2-4f5d-9dfa-e4370a61de05', 'Fiat', '2021-02-02 02:44:56'),
-('91aad5a3-1a6f-43f5-a129-68cbfa9c0a40', 'Lifan', '2021-02-04 19:34:28'),
-('9f9111d9-2f57-43c8-a4a5-8661511e3e0e', 'BMW', '2021-02-01 03:30:16'),
-('abcbacc2-50c5-40fe-9000-b5e355e3c1d6', 'Ferrari', '2021-02-02 02:42:09'),
-('ae521e16-09cd-4d9a-8dde-21acffffde75', 'Changan', '2021-02-02 02:09:33'),
-('b18a2705-3998-4714-b44a-c7c6fd2c8dd9', 'Jac', '2021-02-04 19:33:15'),
-('daa80474-e65b-4f27-bcc0-2a67fa0ccd86', 'DS', '2021-02-02 02:34:17'),
-('e1894462-57d9-429b-996e-28fbada17993', 'KYC', '2021-02-04 19:34:05'),
-('f092628f-8c38-44cb-a6cd-157fcece1692', 'Great Wall', '2021-02-04 19:32:06'),
-('fd489104-ff31-464c-82d7-802d3414977e', 'Kia', '2021-02-04 19:33:50');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `vehicle_passenger`
---
-
-CREATE TABLE `vehicle_passenger` (
-  `id` char(36) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `surname` varchar(100) NOT NULL,
-  `identityCard` int NOT NULL,
-  `phone` varchar(100) NOT NULL,
-  `adress` varchar(100) NOT NULL,
-  `districtEntryAndExitOfVehiclesControlId` char(36) NOT NULL,
-  `identityCardTypeId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `temperatureControl` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `district`
---
-ALTER TABLE `district`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `description` (`description`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Indices de la tabla `district_entry_and_exit_of_vehicles_control`
---
-ALTER TABLE `district_entry_and_exit_of_vehicles_control`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `trip_origin` (`tripOriginId`),
-  ADD KEY `vehicle_body_type` (`vehicleBodyTypeId`) USING BTREE,
-  ADD KEY `trip_destination` (`tripDestinationId`),
-  ADD KEY `vehicle_maker_name` (`vehicleMakerNameId`),
-  ADD KEY `model_of_vehicle` (`modelOfVehicleId`),
-  ADD KEY `traffic_police_booth` (`trafficPoliceBoothId`) USING BTREE,
-  ADD KEY `reason_for_trip_id` (`reasonForTripId`);
-
---
--- Indices de la tabla `identity_card_type`
---
-ALTER TABLE `identity_card_type`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `description` (`description`);
-
---
 -- Indices de la tabla `model_of_vehicle`
 --
 ALTER TABLE `model_of_vehicle`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `vehicle_make_name` (`vehicle_make_name_id`),
-  ADD KEY `vehicle_body_type_id` (`vehicle_body_type_id`);
-
---
--- Indices de la tabla `reason_for_trip`
---
-ALTER TABLE `reason_for_trip`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `description` (`description`);
-
---
--- Indices de la tabla `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `description` (`description`);
-
---
--- Indices de la tabla `traffic_police_booth`
---
-ALTER TABLE `traffic_police_booth`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `description` (`description`);
-
---
--- Indices de la tabla `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`) USING BTREE,
-  ADD UNIQUE KEY `userName` (`username`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `role_id` (`id`),
-  ADD KEY `role_id_2` (`role_id`),
-  ADD KEY `id_trafficPoliceBooth` (`trafficPoliceBooth_id`);
-
---
--- Indices de la tabla `vehicle_body_type`
---
-ALTER TABLE `vehicle_body_type`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `description` (`description`);
-
---
--- Indices de la tabla `vehicle_maker_name`
---
-ALTER TABLE `vehicle_maker_name`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `description` (`description`);
-
---
--- Indices de la tabla `vehicle_passenger`
---
-ALTER TABLE `vehicle_passenger`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `district_entry_and_exit_of_vehicles_control_id` (`districtEntryAndExitOfVehiclesControlId`),
-  ADD KEY `identity_card_type_id` (`identityCardTypeId`) USING BTREE;
+  ADD KEY `vehicle_make_name` (`vehicleMakeNameId`),
+  ADD KEY `vehicle_body_type_id` (`vehicleBodyTypeId`);
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `district_entry_and_exit_of_vehicles_control`
---
-ALTER TABLE `district_entry_and_exit_of_vehicles_control`
-  ADD CONSTRAINT `district_entry_and_exit_of_vehicles_control_ibfk_1` FOREIGN KEY (`tripOriginId`) REFERENCES `district` (`id`),
-  ADD CONSTRAINT `district_entry_and_exit_of_vehicles_control_ibfk_2` FOREIGN KEY (`vehicleBodyTypeId`) REFERENCES `vehicle_body_type` (`id`),
-  ADD CONSTRAINT `district_entry_and_exit_of_vehicles_control_ibfk_3` FOREIGN KEY (`tripDestinationId`) REFERENCES `district` (`id`),
-  ADD CONSTRAINT `district_entry_and_exit_of_vehicles_control_ibfk_5` FOREIGN KEY (`vehicleMakerNameId`) REFERENCES `vehicle_maker_name` (`id`),
-  ADD CONSTRAINT `district_entry_and_exit_of_vehicles_control_ibfk_6` FOREIGN KEY (`modelOfVehicleId`) REFERENCES `model_of_vehicle` (`id`),
-  ADD CONSTRAINT `district_entry_and_exit_of_vehicles_control_ibfk_7` FOREIGN KEY (`trafficPoliceBoothId`) REFERENCES `traffic_police_booth` (`id`),
-  ADD CONSTRAINT `district_entry_and_exit_of_vehicles_control_ibfk_8` FOREIGN KEY (`reasonForTripId`) REFERENCES `reason_for_trip` (`id`) ON DELETE CASCADE;
-
---
 -- Filtros para la tabla `model_of_vehicle`
 --
 ALTER TABLE `model_of_vehicle`
-  ADD CONSTRAINT `model_of_vehicle_ibfk_1` FOREIGN KEY (`vehicle_make_name_id`) REFERENCES `vehicle_maker_name` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
-  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`trafficPoliceBooth_id`) REFERENCES `traffic_police_booth` (`id`);
-
---
--- Filtros para la tabla `vehicle_passenger`
---
-ALTER TABLE `vehicle_passenger`
-  ADD CONSTRAINT `vehicle_passenger_ibfk_1` FOREIGN KEY (`districtEntryAndExitOfVehiclesControlId`) REFERENCES `district_entry_and_exit_of_vehicles_control` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `vehicle_passenger_ibfk_2` FOREIGN KEY (`identityCardTypeId`) REFERENCES `identity_card_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+    ADD CONSTRAINT `model_of_vehicle_ibfk_1` FOREIGN KEY (`vehicleMakeNameId`) REFERENCES `vehicle_maker_name` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

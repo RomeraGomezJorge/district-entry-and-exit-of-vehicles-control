@@ -5,18 +5,18 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="form-group {% if flash.has('errors.vehicle_maker_name_id') %} has-error {% endif %}">
+                    <div class="form-group {% if flash.has('errors.vehicleMakerNameId') %} has-error {% endif %}">
                         <label>Marca ( * )</label>
-                        <select name="vehicle_maker_name_id" class="form-control" required>
+                        <select name="vehicleMakerNameId" class="form-control" required>
                             <option selected disabled> - Obligatorio -</option>
                             {% for vehicle_maker_name in vehicle_makers_name %}
-                                <option {{ vehicle_maker_name_id == vehicle_maker_name.id ? 'selected':'' }}
+                                <option {{ vehicleMakerNameId == vehicle_maker_name.id ? 'selected':'' }}
                                         value="{{ vehicle_maker_name.id }}">{{ vehicle_maker_name.description }}</option>
                             {% endfor %}
                         </select>
                         <small class="errorLabelContainer form-text text-muted text-danger">
-                            {% if flash.has('errors.vehicle_maker_name_id') %}
-                                <span class="has-error">{{ flash.get('errors.vehicle_maker_name_id') }} </span>
+                            {% if flash.has('errors.vehicleMakerNameId') %}
+                                <span class="has-error">{{ flash.get('errors.vehicleMakerNameId') }} </span>
                             {% endif %}
                         </small>
                     </div>
@@ -50,23 +50,23 @@
                     </div>
                 </div>
 
-                <div class="form-group {% if flash.has('errors.vehicle_body_type_id') %} has-error {% endif %}">
-                    <div class="form-check" id="vehicle_body_type_id">
+                <div class="form-group {% if flash.has('errors.vehicleBodyTypeId') %} has-error {% endif %}">
+                    <div class="form-check" id="vehicleBodyTypeId">
                         <label>Tipo de Carroceria ( * )</label><br>
                         {% for vehicle_body_type in vehicle_body_types %}
                             <label class="form-radio-label">
                                 <input class="form-radio-input"
                                        type="radio"
-                                       name="vehicle_body_type_id"
+                                       name="vehicleBodyTypeId"
                                        value="{{ vehicle_body_type.id }}"
-                                        {{ vehicle_body_type_id == vehicle_body_type.id? 'checked':'' }}>
+                                        {{ vehicleBodyTypeId == vehicle_body_type.id? 'checked':'' }}>
                                 <span class="form-radio-sign">{{ vehicle_body_type.description }}</span>
                             </label>
                             <br>
                         {% endfor %}
                         <small class="errorLabelContainer form-text text-muted text-danger">
-                            {% if flash.has('errors.vehicle_body_type_id') %}
-                                <span class="has-error">{{ flash.get('errors.vehicle_body_type_id') }} </span>
+                            {% if flash.has('errors.vehicleBodyTypeId') %}
+                                <span class="has-error">{{ flash.get('errors.vehicleBodyTypeId') }} </span>
                             {% endif %}
                         </small>
                     </div>

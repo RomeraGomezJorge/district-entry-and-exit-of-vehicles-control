@@ -75,10 +75,10 @@ final class MySqlVehicleMakerNameRepository extends DoctrineRepository implement
                 vehicle_maker_name AS maker
             INNER JOIN model_of_vehicle AS model
             ON
-                maker.id = model.vehicle_make_name_id
-            INNER JOIN vehicle_body_type AS body
+                maker.id = model.vehicleMakerNameId
+            LEFT JOIN vehicle_body_type AS body
             ON
-                body.id = model.vehicleBodyTypeId
+                model.vehicleBodyTypeId = body.id
             GROUP BY
                 maker.description,
                 body.description
