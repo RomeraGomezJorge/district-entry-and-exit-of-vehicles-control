@@ -9,7 +9,7 @@ use App\Shared\Domain\Bus\Event\DomainEvent;
 final class TrafficPoliceBoothCreatedDomainEvent extends DomainEvent
 {
     private string $description;
-    
+
     public function __construct(
         string $id,
         string $description,
@@ -17,7 +17,7 @@ final class TrafficPoliceBoothCreatedDomainEvent extends DomainEvent
         string $occurredOn = null
     ) {
         parent::__construct($id, $eventId, $occurredOn);
-        
+
         $this->description = $description;
     }
 

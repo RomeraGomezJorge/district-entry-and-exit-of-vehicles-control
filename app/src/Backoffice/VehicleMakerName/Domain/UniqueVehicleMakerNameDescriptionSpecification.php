@@ -1,9 +1,8 @@
 <?php
-	
-	
-	namespace App\Backoffice\VehicleMakerName\Domain;
-	
-	interface UniqueVehicleMakerNameDescriptionSpecification
-	{
-		public function isSatisfiedBy(string $description): bool;
-	}
+
+namespace App\Backoffice\VehicleMakerName\Domain;
+
+interface UniqueVehicleMakerNameDescriptionSpecification
+{
+    public function isSatisfiedBy(string $description): bool;
+}

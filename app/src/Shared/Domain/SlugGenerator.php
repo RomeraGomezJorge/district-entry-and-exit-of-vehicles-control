@@ -4,5 +4,5 @@ namespace App\Shared\Domain;
 
 interface SlugGenerator
 {
-    public function generate( string $string): string;
+    public function generate(string $string): string;
 }

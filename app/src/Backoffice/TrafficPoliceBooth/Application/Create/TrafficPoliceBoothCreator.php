@@ -2,49 +2,50 @@
 
 namespace App\Backoffice\TrafficPoliceBooth\Application\Create;
 
-use App\Shared\Domain\Bus\Event\EventBus;
 use App\Backoffice\TrafficPoliceBooth\Domain\TrafficPoliceBooth;
 use App\Backoffice\TrafficPoliceBooth\Domain\TrafficPoliceBoothRepository;
 use App\Backoffice\TrafficPoliceBooth\Domain\UniqueTrafficPoliceBoothDescriptionSpecification;
+use App\Shared\Domain\Bus\Event\EventBus;
 use App\Shared\Domain\ValueObject\Uuid;
 
 final class TrafficPoliceBoothCreator
 {
-    private TrafficPoliceBoothRepository                     $repository;
-    
+    private TrafficPoliceBoothRepository $repository;
+
     private UniqueTrafficPoliceBoothDescriptionSpecification $uniqueTrafficPoliceBoothDescriptionSpecification;
-    
-    private EventBus                                         $bus;
-    
+
+    private EventBus $bus;
+
     public function __construct(
-        TrafficPoliceBoothRepository $repository,
+        TrafficPoliceBoothRepository                     $repository,
         UniqueTrafficPoliceBoothDescriptionSpecification $uniqueTrafficPoliceBoothDescriptionSpecification,
-        EventBus $bus
+        EventBus                                         $bus
     )
-    
     {
-        $this->repository = $repository;
+
+        $this->repository                                       = $repository;
         $this->uniqueTrafficPoliceBoothDescriptionSpecification = $uniqueTrafficPoliceBoothDescriptionSpecification;
-        $this->bus = $bus;
+        $this->bus                                              = $bus;
     }
-    
+
     public function __invoke(
         string $id,
         string $description
     )
     {
-        $id = new Uuid( $id );
-        
+        $id = new Uuid($id);
+
         $createAt = new \DateTime();
-    
-        $trafficPoliceBooth = TrafficPoliceBooth::create( $id,
-            trim( $description ),
+
+        $trafficPoliceBooth = TrafficPoliceBooth::create(
+            $id,
+            trim($description),
             $createAt,
-            $this->uniqueTrafficPoliceBoothDescriptionSpecification );
-        
-        $this->repository->save( $trafficPoliceBooth );
-        
-        $this->bus->publish( ...$trafficPoliceBooth->pullDomainEvents() );
+            $this->uniqueTrafficPoliceBoothDescriptionSpecification
+        );
+
+        $this->repository->save($trafficPoliceBooth);
+
+        $this->bus->publish(...$trafficPoliceBooth->pullDomainEvents());
     }
-    
 }

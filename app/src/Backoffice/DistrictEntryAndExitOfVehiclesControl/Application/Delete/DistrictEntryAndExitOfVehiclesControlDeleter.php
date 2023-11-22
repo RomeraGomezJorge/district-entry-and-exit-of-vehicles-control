@@ -8,22 +8,21 @@ use App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Domain\DistrictEntryAnd
 final class DistrictEntryAndExitOfVehiclesControlDeleter
 {
     private DistrictEntryAndExitOfVehiclesControlRepository $repository;
-    
-    private DistrictEntryAndExitOfVehiclesControlFinder     $finder;
-    
+
+    private DistrictEntryAndExitOfVehiclesControlFinder $finder;
+
     public function __construct(
         DistrictEntryAndExitOfVehiclesControlRepository $repository
     )
     {
         $this->repository = $repository;
-        $this->finder = new DistrictEntryAndExitOfVehiclesControlFinder( $repository );
+        $this->finder     = new DistrictEntryAndExitOfVehiclesControlFinder($repository);
     }
-    
-    public function __invoke( string $id )
+
+    public function __invoke(string $id)
     {
-        $districtEntryAndExitOfVehiclesControl = $this->finder->__invoke( $id );
-        
-        $this->repository->delete( $districtEntryAndExitOfVehiclesControl );
+        $districtEntryAndExitOfVehiclesControl = $this->finder->__invoke($id);
+
+        $this->repository->delete($districtEntryAndExitOfVehiclesControl);
     }
-    
 }

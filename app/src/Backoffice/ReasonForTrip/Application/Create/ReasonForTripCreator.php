@@ -4,47 +4,48 @@ namespace App\Backoffice\ReasonForTrip\Application\Create;
 
 use App\Backoffice\ReasonForTrip\Domain\District;
 use App\Backoffice\ReasonForTrip\Domain\ReasonForTrip;
-use App\Shared\Domain\Bus\Event\EventBus;
 use App\Backoffice\ReasonForTrip\Domain\ReasonForTripRepository;
 use App\Backoffice\ReasonForTrip\Domain\UniqueReasonForTripDescriptionSpecification;
+use App\Shared\Domain\Bus\Event\EventBus;
 use App\Shared\Domain\ValueObject\Uuid;
 
 final class ReasonForTripCreator
 {
-    private ReasonForTripRepository                     $repository;
-    
+    private ReasonForTripRepository $repository;
+
     private UniqueReasonForTripDescriptionSpecification $uniqueReasonForTripDescriptionSpecification;
-    
-    private EventBus                                    $bus;
-    
+
+    private EventBus $bus;
+
     public function __construct(
-        ReasonForTripRepository $repository,
+        ReasonForTripRepository                     $repository,
         UniqueReasonForTripDescriptionSpecification $uniqueReasonForTripDescriptionSpecification,
-        EventBus $bus
+        EventBus                                    $bus
     )
     {
-        $this->repository = $repository;
+        $this->repository                                  = $repository;
         $this->uniqueReasonForTripDescriptionSpecification = $uniqueReasonForTripDescriptionSpecification;
-        $this->bus = $bus;
+        $this->bus                                         = $bus;
     }
-    
+
     public function __invoke(
         string $id,
         string $description
     )
     {
-        $id = new Uuid( $id );
-        
+        $id = new Uuid($id);
+
         $createAt = new \DateTime();
-        
-        $reasonForTrip = ReasonForTrip::create( $id,
-            trim( $description ),
+
+        $reasonForTrip = ReasonForTrip::create(
+            $id,
+            trim($description),
             $createAt,
-            $this->uniqueReasonForTripDescriptionSpecification );
-        
-        $this->repository->save( $reasonForTrip );
-        
-        $this->bus->publish( ...$reasonForTrip->pullDomainEvents() );
+            $this->uniqueReasonForTripDescriptionSpecification
+        );
+
+        $this->repository->save($reasonForTrip);
+
+        $this->bus->publish(...$reasonForTrip->pullDomainEvents());
     }
-    
 }

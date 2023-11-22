@@ -18,16 +18,14 @@ final class TrafficPoliceBoothsByCriteriaSearcher
         $this->repository = $repository;
     }
 
-    public function __invoke( $filters,$order, $orderBy,?int $limit, ?int $offset): array
+    public function __invoke($filters, $order, $orderBy, ?int $limit, ?int $offset): array
     {
         $filters = Filters::fromValues($filters);
 
-        $order   = Order::fromValues($order,$orderBy);
+        $order = Order::fromValues($order, $orderBy);
 
         $criteria = new Criteria($filters, $order, $offset, $limit);
 
-        return  $this->repository->matching($criteria);
+        return $this->repository->matching($criteria);
     }
-
-
 }

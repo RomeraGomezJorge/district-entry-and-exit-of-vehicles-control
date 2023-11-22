@@ -4,5 +4,5 @@
 /app/vendor/
 /app/var/cache
 /app/var/log
-docker/database/data/
+docker/database/data
 

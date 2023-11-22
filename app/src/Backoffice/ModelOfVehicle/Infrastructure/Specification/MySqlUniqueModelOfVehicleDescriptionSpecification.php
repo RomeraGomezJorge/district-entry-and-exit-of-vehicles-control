@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types = 1 );
+declare(strict_types=1);
 
 namespace App\Backoffice\ModelOfVehicle\Infrastructure\Specification;
 
@@ -10,19 +10,20 @@ use App\Backoffice\ModelOfVehicle\Infrastructure\Persistence\MySqlModelOfVehicle
 final class MySqlUniqueModelOfVehicleDescriptionSpecification implements UniqueModelOfVehicleDescriptionSpecification
 {
     private MySqlModelOfVehicleRepository $repository;
-    
-    public function __construct( MySqlModelOfVehicleRepository $repository )
+
+    public function __construct(MySqlModelOfVehicleRepository $repository)
     {
         $this->repository = $repository;
     }
-    
+
     public function isSatisfiedBy(
-        string $description,
+        string  $description,
         ?string $vehicleMakerNameId
     ): bool
     {
-        return !$this->repository->isDescriptionExits( [ 'description' => $description ],
-            $vehicleMakerNameId );
+        return !$this->repository->isDescriptionExits(
+            ['description' => $description],
+            $vehicleMakerNameId
+        );
     }
-    
 }

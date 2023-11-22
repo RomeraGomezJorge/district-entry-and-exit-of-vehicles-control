@@ -3,7 +3,8 @@
                   xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
     <entity name="App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Domain\DistrictEntryAndExitOfVehiclesControl"
-            table="district_entry_and_exit_of_vehicles_control">
+            table="district_entry_and_exit_of_vehicles_control"
+    >
         <indexes>
             <index name="trip_origin" columns="tripOriginId"/>
             <index name="trip_destination" columns="tripDestinationId"/>
