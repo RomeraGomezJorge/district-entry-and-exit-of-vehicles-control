@@ -13,7 +13,7 @@ final class ValidationRulesToCreateAndUpdate
         $constraint = new Assert\Collection([
             'id'                      => new Assert\Uuid(),
             'csrf_token'              => new Assert\NotBlank(),
-            'license_plate'           => new Assert\NotBlank(),
+            'license_plate'           => [new Assert\NotBlank(), new Assert\Length(null, null, 100)],
             'vehicle_body_type_id'    => new Assert\Uuid(),
             'vehicle_maker_name_id'   => new Assert\Uuid(),
             'model_of_vehicle_id'     => new Assert\Uuid(),
@@ -26,12 +26,12 @@ final class ValidationRulesToCreateAndUpdate
                 new Assert\Count(['min' => 1]),
                 new Assert\All([
                     new Assert\Collection([
-                        'name'               => [new Assert\NotBlank()],
-                        'surname'            => [new Assert\NotBlank()],
+                        'name'               => [new Assert\NotBlank(), new Assert\Length(null, null, 100)],
+                        'surname'            => [new Assert\NotBlank(), new Assert\Length(null, null, 100)],
                         'identityCardTypeId' => [new Assert\NotBlank()],
-                        'identityCard'       => [new Assert\NotBlank()],
-                        'phone'              => [new Assert\Optional()],
-                        'address'            => [new Assert\Optional()],
+                        'identityCard'       => [new Assert\NotBlank(), new Assert\Length(null, 8), new Assert\Positive()],
+                        'phone'              => [new Assert\Optional(), new Assert\Length(null, null, 100)],
+                        'address'            => [new Assert\Optional(), new Assert\Length(null, null, 100)],
                         'temperatureControl' => [new Assert\Range(['min' => '35', 'max' => '42'])],
                     ]),
                 ]),

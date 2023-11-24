@@ -57,7 +57,7 @@
                                                name="vehicle_passenger[{{ passengerCounter }}][name]"
                                                value="{{ vehicle_passenger.name }}"
                                                data-passenger_number="{{ passengerCounter }}"
-                                               maxlength="255"
+                                               maxlength="100"
                                                class="form-control"
                                                required
                                                autofocus
@@ -76,7 +76,7 @@
                                                name="vehicle_passenger[{{ passengerCounter }}][surname]"
                                                value="{{ vehicle_passenger.surname }}"
                                                data-passenger_number="{{ passengerCounter }}"
-                                               maxlength="255"
+                                               maxlength="100"
                                                class="form-control"
                                                required
                                         >
@@ -118,6 +118,7 @@
                                     <div class="form-group {% if flash.has('errors.vehicle_passenger'~ (passengerCounter) ~'identityCard') %} has-error {% endif %}">
                                         <label>Documento ( * ) :</label>
                                         <input type="number"
+                                               minlength="6"
                                                placeholder=" - Obligatorio -"
                                                name="vehicle_passenger[{{ passengerCounter }}][identityCard]"
                                                value="{{ vehicle_passenger.identityCard }}"
@@ -139,7 +140,7 @@
                                                name="vehicle_passenger[{{ passengerCounter }}][phone]"
                                                value="{{ vehicle_passenger.phone }}"
                                                data-passenger_number="{{ passengerCounter }}"
-                                               maxlength="255"
+                                               maxlength="100"
                                                class="form-control"
                                         >
                                         <small class="errorLabelContainer form-text text-muted text-danger">
@@ -156,7 +157,7 @@
                                                name="vehicle_passenger[{{ passengerCounter }}][address]"
                                                value="{{ vehicle_passenger.address }}"
                                                data-passenger_number="{{ passengerCounter }}"
-                                               maxlength="255"
+                                               maxlength="100"
                                                class="form-control"
                                         >
                                         <small class="errorLabelContainer form-text text-muted text-danger">
@@ -327,7 +328,7 @@
                                    name="license_plate"
                                    id="license_plate"
                                    value="{{ license_plate }}"
-                                   maxlength="255"
+                                   maxlength="100"
                                    class="form-control"
                                    required="">
                             <small class="errorLabelContainer form-text text-muted text-danger">

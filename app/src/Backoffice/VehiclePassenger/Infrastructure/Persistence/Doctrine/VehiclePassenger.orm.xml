@@ -22,7 +22,7 @@
                 <option name="fixed"/>
             </options>
         </field>
-        <field name="identityCard" type="string" column="identityCard" length="100" nullable="false">
+        <field name="identityCard" type="string" column="identityCard" length="12" nullable="false">
             <options>
                 <option name="fixed"/>
             </options>

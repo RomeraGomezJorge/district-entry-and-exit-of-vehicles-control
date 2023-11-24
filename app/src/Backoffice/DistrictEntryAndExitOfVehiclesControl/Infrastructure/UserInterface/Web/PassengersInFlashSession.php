@@ -6,6 +6,7 @@ use App\Shared\Infrastructure\Symfony\FlashSession;
 
 final class PassengersInFlashSession
 {
+
     const EMPTY_VEHICLE_PASSENGER = array(
         'name'               => '',
         'surname'            => '',
@@ -15,7 +16,8 @@ final class PassengersInFlashSession
         'address'            => '',
         'temperatureControl' => ''
     );
-    const PASSENGER_PREFIX_TO_SESSION_VALUES = 'inputs.vehiclePassenger.0.';
+    private const MAX_IN_VEHICLE_PASSENGERS = 20;
+    const PASSENGER_PREFIX_TO_SESSION_VALUES = 'inputs.vehicle_passenger.0.';
     private FlashSession $flashSession;
 
     public function __construct(FlashSession $flashSession)
@@ -25,68 +27,40 @@ final class PassengersInFlashSession
 
     public function __invoke()
     {
-        $passengerInFlashSession = array();
+        $passengerInFlashSession = [];
 
-        for ($passengerCounter = 0; $passengerCounter < 20; $passengerCounter++) {
-            /* en caso de no existir confirma que no hay mas pasajeros en la flash session*/
+        for ($passengerCounter = 0; $passengerCounter < self::MAX_IN_VEHICLE_PASSENGERS; $passengerCounter++) {
+
             if (!$this->isThereAnotherPassengerStoredInSession($passengerCounter)) {
                 break;
             }
 
-            $passengerInFlashSession[$passengerCounter]['surname'] = $this->getPassengerFieldFromFlashSession(
-                $passengerCounter,
-                'surname'
-            );
+            $passengerInFlashSession[$passengerCounter] = [
+                'name'               => $this->getPassengerFieldFromFlashSession($passengerCounter, 'name'),
+                'surname'            => $this->getPassengerFieldFromFlashSession($passengerCounter, 'surname'),
+                'identityCardType'   => ['id' => $this->getPassengerFieldFromFlashSession($passengerCounter, 'identityCardTypeId')],
+                'identityCard'       => $this->getPassengerFieldFromFlashSession($passengerCounter, 'identityCard'),
+                'phone'              => $this->getPassengerFieldFromFlashSession($passengerCounter, 'phone'),
+                'address'            => $this->getPassengerFieldFromFlashSession($passengerCounter, 'address'),
+                'temperatureControl' => $this->getPassengerFieldFromFlashSession($passengerCounter, 'temperatureControl'),
+            ];
 
-            $passengerInFlashSession[$passengerCounter]['name'] = $this->getPassengerFieldFromFlashSession(
-                $passengerCounter,
-                'name'
-            );
-
-            $passengerInFlashSession[$passengerCounter]['identityCardType']['id'] = $this->getPassengerFieldFromFlashSession(
-                $passengerCounter,
-                'identityCardTypeId'
-            );
-
-            $passengerInFlashSession[$passengerCounter]['identityCard'] = $this->getPassengerFieldFromFlashSession(
-                $passengerCounter,
-                'identityCard'
-            );
-
-            $passengerInFlashSession[$passengerCounter]['phone'] = $this->getPassengerFieldFromFlashSession(
-                $passengerCounter,
-                'phone'
-            );
-
-            $passengerInFlashSession[$passengerCounter]['address'] = $this->getPassengerFieldFromFlashSession(
-                $passengerCounter,
-                'address'
-            );
-
-            $passengerInFlashSession[$passengerCounter]['temperatureControl'] = $this->getPassengerFieldFromFlashSession(
-                $passengerCounter,
-                'temperatureControl'
-            );
         }
 
-        return (empty($passengerInFlashSession)) ? array(self::EMPTY_VEHICLE_PASSENGER) : $passengerInFlashSession;
+        return (empty($passengerInFlashSession))
+            ? [self::EMPTY_VEHICLE_PASSENGER]
+            : $passengerInFlashSession;
     }
 
     private function isThereAnotherPassengerStoredInSession($passengerCounter): bool
     {
-        return !empty($this->flashSession->get(self::PASSENGER_PREFIX_TO_SESSION_VALUES . $passengerCounter . '.name'))
-            ? true
-            : false;
+        return $this->flashSession->has(self::PASSENGER_PREFIX_TO_SESSION_VALUES . $passengerCounter . '.name');
     }
 
     private function getPassengerFieldFromFlashSession(int $passengerNumber, string $fieldName)
     {
-        $passengerFieldFromFlashSession = $this->flashSession->get(self::PASSENGER_PREFIX_TO_SESSION_VALUES . $passengerNumber . '.' . $fieldName);
+        $valueFromFlashSession = $this->flashSession->get(self::PASSENGER_PREFIX_TO_SESSION_VALUES . $passengerNumber . '.' . $fieldName);
 
-        if (empty($passengerFieldFromFlashSession)) {
-            $newPassenger[$passengerNumber][$fieldName] = '';
-        }
-
-        return $newPassenger[$passengerNumber][$fieldName] = $passengerFieldFromFlashSession;
+        return $valueFromFlashSession ?? '';
     }
 }

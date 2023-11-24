@@ -34,7 +34,7 @@ $(document).ready(function () {
             '           name="vehicle_passenger[' + passengerCounter + '][name]"\n' +
             '           value=""\n' +
             '           data-passenger_number="' + passengerCounter + '"' +
-            '           maxlength="255"\n' +
+            '           maxlength="100"\n' +
             '           class="form-control"\n' +
             '           required\n' +
             '           autofocus\n' +
@@ -50,7 +50,7 @@ $(document).ready(function () {
             '           name="vehicle_passenger[' + passengerCounter + '][surname]"\n' +
             '           value=""\n' +
             '           data-passenger_number="' + passengerCounter + '"' +
-            '           maxlength="255"\n' +
+            '           maxlength="100"\n' +
             '           class="form-control"\n' +
             '           required\n' +
             '    >\n' +
@@ -65,10 +65,11 @@ $(document).ready(function () {
             '\n' +
             '<div class="form-group">\n' +
             '    <label>Documento ( * ) :</label>\n' +
-            '    <input type="text"\n' +
+            '    <input type="number"\n' +
             '           placeholder=" - Obligatorio -"\n' +
             '           name="vehicle_passenger[' + passengerCounter + '][identityCard]"\n' +
             '           value=""\n' +
+            '           minlength="6"' +
             '           data-passenger_number="' + passengerCounter + '"' +
             '           class="form-control"\n' +
             '           required\n' +
@@ -78,12 +79,12 @@ $(document).ready(function () {
             '\n' +
             '<div class="form-group">\n' +
             '    <label>Telefono :</label>\n' +
-            '    <input type="text"\n' +
+            '    <input type="number"\n' +
             '           placeholder=" - Opcional -"\n' +
             '           name="vehicle_passenger[' + passengerCounter + '][phone]"\n' +
             '           value=""\n' +
             '           data-passenger_number="' + passengerCounter + '"' +
-            '           maxlength="255"\n' +
+            '           maxlength="100"\n' +
             '           class="form-control"\n' +
             '    >\n' +
             '    <small class="errorLabelContainer form-text text-muted text-danger"></small>\n' +
@@ -96,7 +97,7 @@ $(document).ready(function () {
             '           name="vehicle_passenger[' + passengerCounter + '][address]"\n' +
             '           value=""\n' +
             '           data-passenger_number="' + passengerCounter + '"' +
-            '           maxlength="255"\n' +
+            '           maxlength="100"\n' +
             '           class="form-control"\n' +
             '           required\n' +
             '    >\n' +
@@ -105,12 +106,14 @@ $(document).ready(function () {
             '\n' +
             '<div class="form-group">\n' +
             '    <label>Temperatura ( * ) :</label>\n' +
-            '    <input type="text"\n' +
+            '    <input type="number"\n' +
             '           placeholder=" - Obligatorio -"\n' +
             '           name="vehicle_passenger[' + passengerCounter + '][temperatureControl]"\n' +
             '           value=""\n' +
             '           data-passenger_number="' + passengerCounter + '"' +
-            '           maxlength="255"\n' +
+            '           min="35.0"' +
+            '           max="42.0"' +
+            '           maxlength="4"' +
             '           class="form-control"\n' +
             '           required="">\n' +
             '    <small class="errorLabelContainer form-text text-muted text-danger"></small>\n' +
