@@ -22,7 +22,7 @@ final class DistrictEntryAndExitOfVehiclesControlFinder
 
         $districtEntryAndExitOfVehiclesControl = $this->repository->search($id);
 
-        if (null === $districtEntryAndExitOfVehiclesControl) {
+        if (!$districtEntryAndExitOfVehiclesControl) {
             throw new DistrictEntryAndExitOfVehiclesControlNotExist($id);
         }
 

@@ -62,17 +62,19 @@ class User extends AggregateRoot implements UserInterface, \Serializable
         $user->createAt           = $createAt;
         $user->updateAt           = $createAt;
 
-        $user->record(new UserCreatedDomainEvent(
-            $id->value(),
-            $username,
-            $name,
-            $surname,
-            $email->value(),
-            $password->value(),
-            $role->getId(),
-            $isActive,
-            $trafficPoliceBooth->getId()
-        ));
+        $user->record(
+            new UserCreatedDomainEvent(
+                $id->value(),
+                $username,
+                $name,
+                $surname,
+                $email->value(),
+                $password->value(),
+                $role->getId(),
+                $isActive,
+                $trafficPoliceBooth->getId()
+            )
+        );
 
         return $user;
     }
@@ -246,12 +248,14 @@ class User extends AggregateRoot implements UserInterface, \Serializable
 
     public function serialize()
     {
-        return serialize([
-            $this->id,
-            $this->username,
-            $this->password,
-            $this->isActive
-        ]);
+        return serialize(
+            [
+                $this->id,
+                $this->username,
+                $this->password,
+                $this->isActive
+            ]
+        );
     }
 
     public function unserialize($serialized)

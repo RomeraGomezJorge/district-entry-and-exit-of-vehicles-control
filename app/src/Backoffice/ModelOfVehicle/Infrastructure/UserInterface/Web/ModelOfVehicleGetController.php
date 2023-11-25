@@ -61,26 +61,29 @@ class ModelOfVehicleGetController extends WebController
 
         $vehicleMakersName = $this->getVehicleMarkersNameSortAlphabetically($vehicleMakersNameByCriteriaSearcher);
 
-        return $this->render(TwigTemplateConstants::LIST_FILE_PATH, [
-            'page_title'                     => TwigTemplateConstants::SECTION_TITLE,
-            'list_path'                      => TwigTemplateConstants::LIST_PATH,
-            'edit_path'                      => TwigTemplateConstants::EDIT_PATH,
-            'add_path'                       => TwigTemplateConstants::ADD_PATH,
-            'delete_path'                    => TwigTemplateConstants::DELETE_PATH,
-            'delete_confirmation_modal_path' => TwigTemplateGlobalConstants::DELETE_CONFIRMATION_MODAL_PATH,
-            'orderBy'                        => $orderBy,
-            'order'                          => $order,
-            'limit'                          => $limit,
-            'filters'                        => $request->get('filters'),
-            'toggleSort'                     => SortUtils::toggle($orderBy),
-            'currentPage'                    => $page,
-            'nextPage'                       => NextPage::calculate($page, $totalNumberOfPages),
-            'previousPage'                   => PreviousPage::calculate($page),
-            'totalPage'                      => $totalNumberOfPages,
-            'totalItem'                      => $totalItem,
-            'models_of_vehicle'              => $modelsOfVehicle,
-            'vehicle_makers_name'            => $vehicleMakersName
-        ]);
+        return $this->render(
+            TwigTemplateConstants::LIST_FILE_PATH,
+            [
+                'page_title'                     => TwigTemplateConstants::SECTION_TITLE,
+                'list_path'                      => TwigTemplateConstants::LIST_PATH,
+                'edit_path'                      => TwigTemplateConstants::EDIT_PATH,
+                'add_path'                       => TwigTemplateConstants::ADD_PATH,
+                'delete_path'                    => TwigTemplateConstants::DELETE_PATH,
+                'delete_confirmation_modal_path' => TwigTemplateGlobalConstants::DELETE_CONFIRMATION_MODAL_PATH,
+                'orderBy'                        => $orderBy,
+                'order'                          => $order,
+                'limit'                          => $limit,
+                'filters'                        => $request->get('filters'),
+                'toggleSort'                     => SortUtils::toggle($orderBy),
+                'currentPage'                    => $page,
+                'nextPage'                       => NextPage::calculate($page, $totalNumberOfPages),
+                'previousPage'                   => PreviousPage::calculate($page),
+                'totalPage'                      => $totalNumberOfPages,
+                'totalItem'                      => $totalItem,
+                'models_of_vehicle'              => $modelsOfVehicle,
+                'vehicle_makers_name'            => $vehicleMakersName
+            ]
+        );
     }
 
     /* Se utiliza ese metodo y no un searchAll() para poder organizar alfabeticamente

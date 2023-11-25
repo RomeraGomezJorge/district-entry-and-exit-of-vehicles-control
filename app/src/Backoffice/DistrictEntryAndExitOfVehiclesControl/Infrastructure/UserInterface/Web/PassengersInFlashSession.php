@@ -6,7 +6,6 @@ use App\Shared\Infrastructure\Symfony\FlashSession;
 
 final class PassengersInFlashSession
 {
-
     const EMPTY_VEHICLE_PASSENGER = array(
         'name'               => '',
         'surname'            => '',
@@ -30,7 +29,6 @@ final class PassengersInFlashSession
         $passengerInFlashSession = [];
 
         for ($passengerCounter = 0; $passengerCounter < self::MAX_IN_VEHICLE_PASSENGERS; $passengerCounter++) {
-
             if (!$this->isThereAnotherPassengerStoredInSession($passengerCounter)) {
                 break;
             }
@@ -44,7 +42,6 @@ final class PassengersInFlashSession
                 'address'            => $this->getPassengerFieldFromFlashSession($passengerCounter, 'address'),
                 'temperatureControl' => $this->getPassengerFieldFromFlashSession($passengerCounter, 'temperatureControl'),
             ];
-
         }
 
         return (empty($passengerInFlashSession))

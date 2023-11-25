@@ -51,24 +51,27 @@ class VehicleMakerNameGetController extends WebController
 
         $totalNumberOfPages = TotalNumberOfPagesUtil::calculate($page, $limit, $totalItem);
 
-        return $this->render(TwigTemplateConstants::LIST_FILE_PATH, [
-            'page_title'                     => TwigTemplateConstants::SECTION_TITLE,
-            'list_path'                      => TwigTemplateConstants::LIST_PATH,
-            'edit_path'                      => TwigTemplateConstants::EDIT_PATH,
-            'add_path'                       => TwigTemplateConstants::ADD_PATH,
-            'delete_path'                    => TwigTemplateConstants::DELETE_PATH,
-            'delete_confirmation_modal_path' => TwigTemplateGlobalConstants::DELETE_CONFIRMATION_MODAL_PATH,
-            'orderBy'                        => $orderBy,
-            'order'                          => $order,
-            'limit'                          => $limit,
-            'filters'                        => $request->get('filters'),
-            'toggleSort'                     => SortUtils::toggle($orderBy),
-            'currentPage'                    => $page,
-            'nextPage'                       => NextPage::calculate($page, $totalNumberOfPages),
-            'previousPage'                   => PreviousPage::calculate($page),
-            'totalPage'                      => $totalNumberOfPages,
-            'totalItem'                      => $totalItem,
-            'vehicle_makers_name'            => $vehicleMakerName
-        ]);
+        return $this->render(
+            TwigTemplateConstants::LIST_FILE_PATH,
+            [
+                'page_title'                     => TwigTemplateConstants::SECTION_TITLE,
+                'list_path'                      => TwigTemplateConstants::LIST_PATH,
+                'edit_path'                      => TwigTemplateConstants::EDIT_PATH,
+                'add_path'                       => TwigTemplateConstants::ADD_PATH,
+                'delete_path'                    => TwigTemplateConstants::DELETE_PATH,
+                'delete_confirmation_modal_path' => TwigTemplateGlobalConstants::DELETE_CONFIRMATION_MODAL_PATH,
+                'orderBy'                        => $orderBy,
+                'order'                          => $order,
+                'limit'                          => $limit,
+                'filters'                        => $request->get('filters'),
+                'toggleSort'                     => SortUtils::toggle($orderBy),
+                'currentPage'                    => $page,
+                'nextPage'                       => NextPage::calculate($page, $totalNumberOfPages),
+                'previousPage'                   => PreviousPage::calculate($page),
+                'totalPage'                      => $totalNumberOfPages,
+                'totalItem'                      => $totalItem,
+                'vehicle_makers_name'            => $vehicleMakerName
+            ]
+        );
     }
 }

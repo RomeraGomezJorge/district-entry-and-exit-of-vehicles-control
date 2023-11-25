@@ -48,16 +48,18 @@ class VehiclePassenger extends AggregateRoot
         $vehiclePassenger->createAt                              = $createAt;
         $vehiclePassenger->updateAt                              = $createAt;
 
-        $vehiclePassenger->record(new VehiclePassengerCreatedDomainEvent(
-            $id->value(),
-            $name,
-            $surname,
-            $identityCard,
-            $phone,
-            $address,
-            $districtEntryAndExitOfVehiclesControl->getId(),
-            $temperatureControl
-        ));
+        $vehiclePassenger->record(
+            new VehiclePassengerCreatedDomainEvent(
+                $id->value(),
+                $name,
+                $surname,
+                $identityCard,
+                $phone,
+                $address,
+                $districtEntryAndExitOfVehiclesControl->getId(),
+                $temperatureControl
+            )
+        );
 
 
         return $vehiclePassenger;

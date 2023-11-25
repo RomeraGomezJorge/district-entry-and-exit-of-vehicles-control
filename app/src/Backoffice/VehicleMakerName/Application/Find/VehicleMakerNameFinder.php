@@ -22,7 +22,7 @@ final class VehicleMakerNameFinder
 
         $vehicleMakerName = $this->repository->search($id);
 
-        if (null === $vehicleMakerName) {
+        if (!$vehicleMakerName) {
             throw new VehicleMakerNameNotExist($id);
         }
 

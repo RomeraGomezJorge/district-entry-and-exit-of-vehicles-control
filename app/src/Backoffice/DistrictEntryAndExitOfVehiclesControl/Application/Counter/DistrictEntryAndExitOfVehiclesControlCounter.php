@@ -2,7 +2,7 @@
 
 namespace App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Application\Counter;
 
-use App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Application\Shared\FilterUtilsForDistrictEntryAndExitOfVehiclesControl;
+use App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Application\Shared\FilterUtils;
 use App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Domain\DistrictEntryAndExitOfVehiclesControlRepository;
 use App\Shared\Domain\Criteria\Criteria;
 use App\Shared\Domain\Criteria\Filters;
@@ -11,11 +11,11 @@ use App\Shared\Domain\Criteria\Order;
 final class DistrictEntryAndExitOfVehiclesControlCounter
 {
     private DistrictEntryAndExitOfVehiclesControlRepository $repository;
-    private FilterUtilsForDistrictEntryAndExitOfVehiclesControl $filterUtils;
+    private FilterUtils $filterUtils;
 
     public function __construct(
-        DistrictEntryAndExitOfVehiclesControlRepository     $repository,
-        FilterUtilsForDistrictEntryAndExitOfVehiclesControl $filterUtils
+        DistrictEntryAndExitOfVehiclesControlRepository $repository,
+        FilterUtils                                     $filterUtils
     )
     {
         $this->repository  = $repository;
@@ -24,7 +24,7 @@ final class DistrictEntryAndExitOfVehiclesControlCounter
 
     public function __invoke($filters, $order, $orderBy, ?int $limit, ?int $offset): int
     {
-        $passengers = $this->filterUtils->findPassengersByFilters(
+        $passengers = $this->filterUtils->findPassengersByFiltersOrNull(
             $filters,
             $order,
             $orderBy,

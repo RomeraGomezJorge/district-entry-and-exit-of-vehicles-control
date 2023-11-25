@@ -19,19 +19,22 @@ class ModelOfVehicleEditController extends WebController
     {
         $modelOfVehicle = $finder->__invoke($request->get('id'));
 
-        return $this->render(TwigTemplateConstants::FORM_FILE_PATH, [
-            'page_title'                 => TwigTemplateConstants::SECTION_TITLE,
-            'list_path'                  => TwigTemplateConstants::LIST_PATH,
-            'id'                         => $modelOfVehicle->getId(),
-            'description'                => $modelOfVehicle->getDescription(),
-            'vehicleMakerNameId'         => $modelOfVehicle->geTVehicleMakerName()->getId(),
-            'vehicle_makers_name'        => $relatedEntities->getAllVehicleMarkersNameSortAlphabetically(),
-            'vehicleBodyTypeId'          => $modelOfVehicle->getVehicleBodyType()->getId(),
-            'vehicle_body_types'         => $relatedEntities->getAllVehicleBodyTypesSortAlphabetically(),
-            'description_available_path' => TwigTemplateConstants::DESCRIPTION_AVAILABLE_PATH,
-            'form_action_attribute'      => TwigTemplateConstants::UPDATE_PATH,
-            'submit_button_label'        => FormConstant::SUBMIT_BUTTON_VALUE_TO_UPDATE,
-            'action_to_do'               => FormConstant::UPDATE_LABEL_TEXT
-        ]);
+        return $this->render(
+            TwigTemplateConstants::FORM_FILE_PATH,
+            [
+                'page_title'                 => TwigTemplateConstants::SECTION_TITLE,
+                'list_path'                  => TwigTemplateConstants::LIST_PATH,
+                'id'                         => $modelOfVehicle->getId(),
+                'description'                => $modelOfVehicle->getDescription(),
+                'vehicleMakerNameId'         => $modelOfVehicle->geTVehicleMakerName()->getId(),
+                'vehicle_makers_name'        => $relatedEntities->getAllVehicleMarkersNameSortAlphabetically(),
+                'vehicleBodyTypeId'          => $modelOfVehicle->getVehicleBodyType()->getId(),
+                'vehicle_body_types'         => $relatedEntities->getAllVehicleBodyTypesSortAlphabetically(),
+                'description_available_path' => TwigTemplateConstants::DESCRIPTION_AVAILABLE_PATH,
+                'form_action_attribute'      => TwigTemplateConstants::UPDATE_PATH,
+                'submit_button_label'        => FormConstant::SUBMIT_BUTTON_VALUE_TO_UPDATE,
+                'action_to_do'               => FormConstant::UPDATE_LABEL_TEXT
+            ]
+        );
     }
 }

@@ -48,12 +48,14 @@ class ModelOfVehicle extends AggregateRoot
 
         $modelOfVehicle->createAt = $createAt;
 
-        $modelOfVehicle->record(new ModelOfVehicleCreatedDomainEvent(
-            $id->value(),
-            $description,
-            $vehicleMakerName->getId(),
-            $vehicleBodyType->getId()
-        ));
+        $modelOfVehicle->record(
+            new ModelOfVehicleCreatedDomainEvent(
+                $id->value(),
+                $description,
+                $vehicleMakerName->getId(),
+                $vehicleBodyType->getId()
+            )
+        );
 
         return $modelOfVehicle;
     }

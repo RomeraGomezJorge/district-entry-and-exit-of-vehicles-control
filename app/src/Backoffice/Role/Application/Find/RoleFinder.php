@@ -19,7 +19,7 @@ final class RoleFinder
     {
         $role = $this->repository->search($id);
 
-        if (null === $role) {
+        if (!$role) {
             throw new RoleNotExist($id);
         }
 

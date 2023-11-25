@@ -22,7 +22,7 @@ final class ModelOfVehicleFinder
 
         $modelOfVehicle = $this->repository->search($id);
 
-        if (null === $modelOfVehicle) {
+        if (!$modelOfVehicle) {
             throw new ModelOfVehicleNameNotExist($id);
         }
 

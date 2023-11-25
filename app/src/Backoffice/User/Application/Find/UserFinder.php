@@ -22,7 +22,7 @@ final class UserFinder
 
         $user = $this->repository->search($id);
 
-        if (null === $user) {
+        if (!$user) {
             throw new UserNotExist($id);
         }
 

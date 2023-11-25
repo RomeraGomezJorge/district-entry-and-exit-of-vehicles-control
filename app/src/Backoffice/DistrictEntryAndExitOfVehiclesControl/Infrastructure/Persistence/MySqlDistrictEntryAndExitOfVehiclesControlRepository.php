@@ -12,9 +12,8 @@ use Doctrine\Common\Collections\Criteria as DoctrineCriteria;
 
 final class MySqlDistrictEntryAndExitOfVehiclesControlRepository extends DoctrineRepository implements DistrictEntryAndExitOfVehiclesControlRepository
 {
-    const PASSENGERS_NOT_FOUND_AFTER_SEARCH_USING_PASSENGER_CRITERIA = null;
+    const NOT_PASSENGERS_FOUND_AFTER_SEARCH = [];
     const NO_RESULTS_FOUND = [];
-    const PASSENGER_CRITERIA_NOT_FOUND_IN_REQUEST = [];
     const NOT_SETTING_VALUE = null;
     private ?int $totalMatchingRows = null;
 
@@ -44,9 +43,13 @@ final class MySqlDistrictEntryAndExitOfVehiclesControlRepository extends Doctrin
     {
         $matching = $this->getMatchingFrom($criteria, $vehiclePassengersFound);
 
-        $this->totalMatchingRows = $matching->count();
+        $this->totalMatchingRows = ($matching === self::NO_RESULTS_FOUND)
+            ? 0
+            : $matching->count();
 
-        return $matching->toArray();
+        return ($matching === self::NO_RESULTS_FOUND)
+            ? self::NO_RESULTS_FOUND
+            : $matching->toArray();
     }
 
     public function totalMatchingRows(Criteria $criteria, ?array $vehiclePassengersFound): int
@@ -63,46 +66,26 @@ final class MySqlDistrictEntryAndExitOfVehiclesControlRepository extends Doctrin
         $this->remove($districtEntryAndExitOfVehiclesControl);
     }
 
-    protected function getMatchingFrom(Criteria $criteria, ?array $vehiclePassengersFound)
+    protected function getMatchingFrom(Criteria $criteria, ?array $vehiclePassengers)
     {
         $doctrineCriteria = DoctrineCriteriaConverter::convert($criteria);
 
-        /* si no se encontraron pasajeros cuando se busco por los campos de esa entidad y tampoco
-        se han  definido filtros en $criteria retorna un array vacio  */
-        if ($vehiclePassengersFound === self::PASSENGERS_NOT_FOUND_AFTER_SEARCH_USING_PASSENGER_CRITERIA) {
-            if (!$criteria->hasfilters()) {
-                return self::NO_RESULTS_FOUND;
-            }
-
+        if ($vehiclePassengers === null) {
             return $this->repository(DistrictEntryAndExitOfVehiclesControl::class)->matching($doctrineCriteria);
         }
 
-        /* se encontraron filtros del tipo pasajero y con esos filtros se encontraron resultados */
-        if ($this->arePassengerIn($vehiclePassengersFound) and $this->arePassengerCriteriaInRequest($vehiclePassengersFound)) {
-            $passengersCriteria = $this->getCriteriaToPassengers($vehiclePassengersFound);
-
-            /*Primero aplica los criterios de busqueda de los pasajeros y a los resultados obtenidos aplica el criterios
-            de buscaque enviado */
-            return $this->repository(DistrictEntryAndExitOfVehiclesControl::class)
-                ->matching($passengersCriteria)
-                ->matching($doctrineCriteria);
+        if ($vehiclePassengers === self::NOT_PASSENGERS_FOUND_AFTER_SEARCH) {
+            return self::NO_RESULTS_FOUND;
         }
 
-        /* retorna todos los items sin nigun tipo de filtro de pasajeros */
-        return $this->repository(DistrictEntryAndExitOfVehiclesControl::class)->matching($doctrineCriteria);
+        $passengersCriteria = $this->getCriteriaToPassengers($vehiclePassengers);
+
+        return $this->repository(DistrictEntryAndExitOfVehiclesControl::class)
+            ->matching($passengersCriteria)
+            ->matching($doctrineCriteria);
     }
 
-    private function arePassengerIn(array $vehiclePassengersFound): bool
-    {
-        return !empty($vehiclePassengersFound);
-    }
-
-    private function arePassengerCriteriaInRequest(array $vehiclePassengersFound): bool
-    {
-        return ($vehiclePassengersFound === self::PASSENGER_CRITERIA_NOT_FOUND_IN_REQUEST) ? false : true;
-    }
-
-    private function getCriteriaToPassengers(?array $vehiclePassengers): ?DoctrineCriteria
+    private function getCriteriaToPassengers(array $vehiclePassengers): DoctrineCriteria
     {
         $doctrineCriteria = DoctrineCriteria::create();
 

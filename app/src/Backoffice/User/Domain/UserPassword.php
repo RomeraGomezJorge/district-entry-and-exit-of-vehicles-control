@@ -28,21 +28,25 @@ final class UserPassword
         $length = $this->stringLength($aPassword);
 
         if ($length < self::MINIMUM_LENGTH) {
-            throw new InvalidArgumentException(sprintf(
-                '%s debe tener entre %s y %s  caracteres.',
-                __METHOD__,
-                self::MINIMUM_LENGTH,
-                self::MAXIMUM_LENGTH
-            ));
+            throw new InvalidArgumentException(
+                sprintf(
+                    '%s debe tener entre %s y %s  caracteres.',
+                    __METHOD__,
+                    self::MINIMUM_LENGTH,
+                    self::MAXIMUM_LENGTH
+                )
+            );
         }
 
         if ($length > self::MAXIMUM_LENGTH) {
-            throw new InvalidArgumentException(sprintf(
-                '%s debe tener entre %s y %s  caracteres.',
-                __METHOD__,
-                self::MINIMUM_LENGTH,
-                self::MAXIMUM_LENGTH
-            ));
+            throw new InvalidArgumentException(
+                sprintf(
+                    '%s debe tener entre %s y %s  caracteres.',
+                    __METHOD__,
+                    self::MINIMUM_LENGTH,
+                    self::MAXIMUM_LENGTH
+                )
+            );
         }
     }
 

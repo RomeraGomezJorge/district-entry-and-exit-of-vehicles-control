@@ -10,10 +10,13 @@ final class ResetPasswordModalPopupController extends WebController
 {
     public function __invoke(Request $request): JsonResponse
     {
-        $html = $this->render('backoffice/user/resetPassword.html.twig', [
-            'id'          => $request->get('id'),
-            'form_action' => TwigTemplateConstants::RESET_PASSWORD_PATH
-        ])->getContent();
+        $html = $this->render(
+            'backoffice/user/resetPassword.html.twig',
+            [
+                'id'          => $request->get('id'),
+                'form_action' => TwigTemplateConstants::RESET_PASSWORD_PATH
+            ]
+        )->getContent();
 
         return new JsonResponse(array('status' => 'success', 'html' => $html));
     }

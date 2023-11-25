@@ -21,25 +21,28 @@ class UserEditController extends WebController
     {
         $user = $finder->__invoke($request->get('id'));
 
-        return $this->render(TwigTemplateConstants::FORM_FILE_PATH, [
-            'page_title'                => TwigTemplateConstants::SECTION_TITLE,
-            'list_path'                 => TwigTemplateConstants::LIST_PATH,
-            'user_name_available_path'  => TwigTemplateConstants::USER_NAME_AVAILABLE_PATH,
-            'email_available_path'      => TwigTemplateConstants::EMAIL_AVAILABLE_PATH,
-            'reset_password_modal_path' => TwigTemplateConstants::RESET_PASSWORD_MODAL_PATH,
-            'id'                        => $user->getId(),
-            'username'                  => $user->getUsername(),
-            'name'                      => $user->getName(),
-            'surname'                   => $user->getSurname(),
-            'email'                     => $user->getEmail(),
-            'role_id'                   => $user->getRole()->getId(),
-            'is_active'                 => $user->getIsActive(),
-            'roles'                     => $roleRepository->searchAll(),
-            'traffic_police_booth_id'   => $user->getTrafficPoliceBooth()->getId(),
-            'traffic_police_booths'     => $trafficPoliceBoothRepository->searchAll(),
-            'form_action_attribute'     => TwigTemplateConstants::UPDATE_PATH,
-            'submit_button_label'       => FormConstant::SUBMIT_BUTTON_VALUE_TO_UPDATE,
-            'action_to_do'              => FormConstant::UPDATE_LABEL_TEXT,
-        ]);
+        return $this->render(
+            TwigTemplateConstants::FORM_FILE_PATH,
+            [
+                'page_title'                => TwigTemplateConstants::SECTION_TITLE,
+                'list_path'                 => TwigTemplateConstants::LIST_PATH,
+                'user_name_available_path'  => TwigTemplateConstants::USER_NAME_AVAILABLE_PATH,
+                'email_available_path'      => TwigTemplateConstants::EMAIL_AVAILABLE_PATH,
+                'reset_password_modal_path' => TwigTemplateConstants::RESET_PASSWORD_MODAL_PATH,
+                'id'                        => $user->getId(),
+                'username'                  => $user->getUsername(),
+                'name'                      => $user->getName(),
+                'surname'                   => $user->getSurname(),
+                'email'                     => $user->getEmail(),
+                'role_id'                   => $user->getRole()->getId(),
+                'is_active'                 => $user->getIsActive(),
+                'roles'                     => $roleRepository->searchAll(),
+                'traffic_police_booth_id'   => $user->getTrafficPoliceBooth()->getId(),
+                'traffic_police_booths'     => $trafficPoliceBoothRepository->searchAll(),
+                'form_action_attribute'     => TwigTemplateConstants::UPDATE_PATH,
+                'submit_button_label'       => FormConstant::SUBMIT_BUTTON_VALUE_TO_UPDATE,
+                'action_to_do'              => FormConstant::UPDATE_LABEL_TEXT,
+            ]
+        );
     }
 }

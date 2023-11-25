@@ -22,7 +22,7 @@ final class ReasonForTripFinder
 
         $reasonForTrip = $this->repository->search($id);
 
-        if (null === $reasonForTrip) {
+        if (!$reasonForTrip) {
             throw new ReasonForTripNotExist($id);
         }
 

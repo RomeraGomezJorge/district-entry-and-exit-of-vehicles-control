@@ -55,9 +55,11 @@ class ResetPasswordPostByAjaxController extends WebController
 
     private function failResponse($message = ''): JsonResponse
     {
-        return JsonResponse::create(array(
-            'status'  => 'fail',
-            'message' => $message
-        ));
+        return JsonResponse::create(
+            array(
+                'status'  => 'fail',
+                'message' => $message
+            )
+        );
     }
 }

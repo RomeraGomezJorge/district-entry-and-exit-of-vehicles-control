@@ -9,9 +9,12 @@ class UserGetLoginController extends WebController
 {
     public function __invoke(): Response
     {
-        return $this->render('user/login.html.twig', [
-            'username' => '',
-            'password' => '',
-        ]);
+        return $this->render(
+            'user/login.html.twig',
+            [
+                'username' => '',
+                'password' => '',
+            ]
+        );
     }
 }

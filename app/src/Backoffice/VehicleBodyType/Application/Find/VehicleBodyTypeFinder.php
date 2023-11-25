@@ -23,7 +23,7 @@ final class VehicleBodyTypeFinder
 
         $district = $this->repository->search($id);
 
-        if (null === $district) {
+        if (!$district) {
             throw new VehicleBodyTypeNotExist($id);
         }
 

@@ -16,10 +16,12 @@ class ReasonForTripDeleteController extends WebController
         $isCsrfTokenValid = $this->isCsrfTokenValid($request->get('id'), $request->get('csrf_token'));
 
         if (!$isCsrfTokenValid) {
-            return new JsonResponse(array(
-                'status'  => 'fail_invalid_csfr_token',
-                'message' => MessageConstant::INVALID_TOKEN_CSFR_MESSAGE
-            ));
+            return new JsonResponse(
+                array(
+                    'status'  => 'fail_invalid_csfr_token',
+                    'message' => MessageConstant::INVALID_TOKEN_CSFR_MESSAGE
+                )
+            );
         }
 
         $validationErrors = ValidationRulesToDelete::verify($request);

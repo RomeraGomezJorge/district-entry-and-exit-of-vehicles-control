@@ -22,7 +22,7 @@ final class TrafficPoliceBoothFinder
 
         $trafficPoliceBooth = $this->repository->search($id);
 
-        if (null === $trafficPoliceBooth) {
+        if (!$trafficPoliceBooth) {
             throw new TrafficPoliceBoothNotExist($id);
         }
 

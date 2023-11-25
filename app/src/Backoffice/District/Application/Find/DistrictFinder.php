@@ -22,7 +22,7 @@ final class DistrictFinder
 
         $district = $this->repository->search($id);
 
-        if (null === $district) {
+        if (!$district) {
             throw new DistrictNotExist($id);
         }
 

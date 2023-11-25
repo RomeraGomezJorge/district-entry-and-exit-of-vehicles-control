@@ -59,11 +59,13 @@ class DistrictEntryAndExitOfVehiclesControlExportToPdfController extends WebCont
         );
 
 
-        $mpdf = new mPDF([
-            'mode'        => 'utf-8',
-            'format'      => 'Legal',
-            'orientation' => 'landscape'
-        ]);
+        $mpdf = new mPDF(
+            [
+                'mode'        => 'utf-8',
+                'format'      => 'Legal',
+                'orientation' => 'landscape'
+            ]
+        );
 
 
         $mpdf->WriteHTML($html);

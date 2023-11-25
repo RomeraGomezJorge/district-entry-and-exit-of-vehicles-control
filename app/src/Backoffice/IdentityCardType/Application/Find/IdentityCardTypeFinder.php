@@ -22,7 +22,7 @@ final class IdentityCardTypeFinder
 
         $identityCardType = $this->repository->search($id);
 
-        if (null === $identityCardType) {
+        if (!$identityCardType) {
             throw new IdentityCardTypeNotExist($id);
         }
 
