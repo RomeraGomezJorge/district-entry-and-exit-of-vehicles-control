@@ -54,9 +54,9 @@ class NewPasswordPostController extends WebController
     {
         $constraint = new Assert\Collection(
             [
-                'id'         => [new Assert\Uuid()],
+                'id'         => new Assert\Uuid(),
                 'password'   => [new Assert\Length(['min' => 8, 'max' => 255]), new Assert\NotBlank()],
-                'csrf_token' => [new Assert\NotBlank()]
+                'csrf_token' => new Assert\NotBlank()
             ]
         );
 

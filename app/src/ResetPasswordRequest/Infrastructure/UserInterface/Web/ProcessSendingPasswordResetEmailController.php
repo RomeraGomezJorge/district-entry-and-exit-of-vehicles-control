@@ -89,7 +89,7 @@ class ProcessSendingPasswordResetEmailController extends WebController
         $constraint = new Assert\Collection(
             [
                 'email'      => [new Assert\NotBlank(), new  Assert\Email()],
-                'csrf_token' => [new Assert\NotBlank()]
+                'csrf_token' => new Assert\NotBlank()
             ]
         );
 

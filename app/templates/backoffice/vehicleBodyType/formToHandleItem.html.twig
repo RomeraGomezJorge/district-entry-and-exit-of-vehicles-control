@@ -15,10 +15,11 @@
                                value="{{ description }}"
                                data-description_from_database="{{ description }}"
                                data-available_description_url="{{ path(description_available_path) }}"
-                               maxlength="255"
+                               maxlength="100"
                                id="inputFloatingLabelDescription"
                                class="form-control"
                                required
+                               autofocus
                         >
                         <small class="errorLabelContainer form-text text-muted text-danger">
                             {% if flash.has('errors.description') %}

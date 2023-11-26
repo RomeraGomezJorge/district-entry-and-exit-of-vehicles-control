@@ -12,9 +12,9 @@ final class ValidationRulesToCreateAndUpdate
     {
         $constraint = new Assert\Collection(
             ['id'          => new Assert\Uuid(),
-             'description' => [new Assert\NotBlank()],
-             'image'       => [new Assert\Optional()],
-             'csrf_token'  => [new Assert\NotBlank()]]
+             'description' => [new Assert\NotBlank(), new Assert\Length(null, null, 100)],
+             'image'       => [new Assert\Optional(), new Assert\Length(null, null, 100)],
+             'csrf_token'  => new Assert\NotBlank()]
         );
 
         $input = $request->request->all();

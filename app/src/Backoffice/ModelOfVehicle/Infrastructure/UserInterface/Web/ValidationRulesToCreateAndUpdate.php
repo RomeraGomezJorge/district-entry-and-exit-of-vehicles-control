@@ -13,7 +13,7 @@ final class ValidationRulesToCreateAndUpdate
         $constraint = new Assert\Collection(
             [
                 'id'                 => new Assert\Uuid(),
-                'description'        => new Assert\NotBlank(),
+                'description'        => [new Assert\NotBlank(), new Assert\Length(null, null, 100)],
                 'csrf_token'         => new Assert\NotBlank(),
                 'vehicleMakerNameId' => new Assert\Uuid(),
                 'vehicleBodyTypeId'  => new Assert\Uuid(),]
