@@ -25,25 +25,25 @@ $(document).ready(function () {
             cache: false,
             success: function (response) {
 
-                if(response.status === 'fail_invalid_csfr_token'){
-                    replaceModalContentByFailMessage(modalSelector,response.message);
+                if (response.status === 'fail_invalid_csrf_token') {
+                    replaceModalContentByFailMessage(modalSelector, response.message);
                     return;
                 }
 
-                if(response.status === 'fail'){
-                    replaceModalContentByFailMessage(modalSelector,response.message);
+                if (response.status === 'fail') {
+                    replaceModalContentByFailMessage(modalSelector, response.message);
                     return;
                 }
 
                 changeStyleOfElementThatContainsDeleteItem();
 
-                replaceModalContentBySuccessMessage(modalSelector,'¡El registro ha sido eliminado!');
+                replaceModalContentBySuccessMessage(modalSelector, '¡El registro ha sido eliminado!');
 
                 enableCloseModalWhenClickOutside(modalSelector);
 
             },
-            error: function (responseText) {
-                replaceModalContentByFailMessage(modalSelector,"Error al eliminar archivo ");
+            error: function (responseText = "Error al eliminar") {
+                replaceModalContentByFailMessage(modalSelector, responseText);
             }
         });
     })

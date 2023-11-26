@@ -2,7 +2,9 @@
 
 namespace App\Shared\Infrastructure\Symfony;
 
+use App\Shared\Infrastructure\Constant\MessageConstant;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -57,5 +59,36 @@ abstract class WebController extends AbstractController
     private function isARouteToCreateAnItem(string $routeName): bool
     {
         return strpos($routeName, "edit") !== false;
+    }
+
+    protected function redirectOnInvalidCsrfToken(): RedirectResponse
+    {
+        return $this->redirectOnInvalidCsrfToken();
+    }
+
+    protected function jsonResponseOnInvalidCsrfToken(): JsonResponse
+    {
+        return new JsonResponse([
+            'status'  => 'fail_invalid_csrf_token',
+            'message' => MessageConstant::INVALID_TOKEN_CSFR_MESSAGE
+        ]);
+    }
+
+    protected function jsonResponseSuccess(): JsonResponse
+    {
+        return new JsonResponse(['status' => 'success']);
+    }
+
+    protected function jsonResponseUnexpectedErrorOnDelete(): JsonResponse
+    {
+        return $this->jsonResponseFail(MessageConstant::UNEXPECTED_ERROR_HAS_OCCURRED_ON_DELETE);
+    }
+
+    protected function jsonResponseFail(string $message): JsonResponse
+    {
+        return new JsonResponse([
+            'status'  => 'fail',
+            'message' => $message
+        ]);
     }
 }

@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Backoffice\User\Infrastructure\UserInterface\Web;
+namespace App\Shared\Infrastructure\UserInterface\Web;
 
-use App\Backoffice\User\Application\Delete\UserDeleter as Deleter;
 use App\Shared\Infrastructure\Symfony\WebController;
-use App\Shared\Infrastructure\UserInterface\Web\ValidationRulesToDelete;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class UserDeleteController extends WebController
+class DeleterController extends WebController
 {
-    public function __invoke(Request $request, Deleter $deleter): JsonResponse
+    public function __invoke(Request $request, $deleter, bool $hasValidationErrors): JsonResponse
     {
         $isCsrfTokenValid = $this->isCsrfTokenValid($request->get('id'), $request->get('csrf_token'));
 
@@ -18,14 +16,12 @@ class UserDeleteController extends WebController
             return $this->jsonResponseOnInvalidCsrfToken();
         }
 
-        $validationErrors = ValidationRulesToDelete::verify($request);
-
-        return ($validationErrors->count())
+        return ($hasValidationErrors)
             ? $this->jsonResponseUnexpectedErrorOnDelete()
             : $this->delete($deleter, $request->get('id'));
     }
 
-    private function delete(Deleter $deleter, string $id): JsonResponse
+    private function delete($deleter, string $id): JsonResponse
     {
         try {
             $deleter->__invoke($id);
@@ -34,5 +30,4 @@ class UserDeleteController extends WebController
             return $this->jsonResponseFail($exception->getMessage());
         }
     }
-
 }
