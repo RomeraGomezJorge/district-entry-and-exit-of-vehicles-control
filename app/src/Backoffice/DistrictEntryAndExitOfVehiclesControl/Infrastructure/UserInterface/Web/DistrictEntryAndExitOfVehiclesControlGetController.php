@@ -12,8 +12,6 @@ use App\Shared\Infrastructure\Utils\FilterUtils;
 use App\Shared\Infrastructure\Utils\NextPage;
 use App\Shared\Infrastructure\Utils\PreviousPage;
 use App\Shared\Infrastructure\Utils\SortUtils;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -33,7 +31,7 @@ class DistrictEntryAndExitOfVehiclesControlGetController extends WebController
 
         $limit = $request->get('limit');
 
-        $filters = $filters = FilterUtils::createAnArrayToUseAsAFilter($request->get('filters'));
+        $filters = FilterUtils::createAnArrayToUseAsAFilter($request->get('filters'));
 
         $districtEntryAndExitOfVehiclesControl = $itemsByCriteriaSearcher->__invoke(
             $filters,

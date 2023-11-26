@@ -144,33 +144,27 @@ class User extends AggregateRoot implements UserInterface, \Serializable
         UniqueUserNameSpecification $uniqueUserNameSpecification
     ): void
     {
-        if (StringUtils::equals($newUsername, $this->username)) {
-            return;
-        }
+        if (!StringUtils::equals($newUsername, $this->username)) {
+            if (!$uniqueUserNameSpecification->isSatisfiedBy($newUsername)) {
+                throw new NonUniqueUserName($newUsername);
+            }
 
-        if (!$uniqueUserNameSpecification->isSatisfiedBy($newUsername)) {
-            throw new NonUniqueUserName($newUsername);
+            $this->username = $newUsername;
         }
-
-        $this->username = $newUsername;
     }
 
     public function changeName(string $newName): void
     {
-        if (StringUtils::equals($newName, $this->name)) {
-            return;
+        if (!StringUtils::equals($newName, $this->name)) {
+            $this->name = $newName;
         }
-
-        $this->name = $newName;
     }
 
     public function changeSurname(string $newSurname): void
     {
-        if (StringUtils::equals($newSurname, $this->surname)) {
-            return;
+        if (!StringUtils::equals($newSurname, $this->surname)) {
+            $this->surname = $newSurname;
         }
-
-        $this->surname = $newSurname;
     }
 
     public function changeEmail(
@@ -178,15 +172,13 @@ class User extends AggregateRoot implements UserInterface, \Serializable
         UniqueUserEmailSpecification $uniqueUserEmailSpecification
     ): void
     {
-        if (StringUtils::equals($newEmail->value(), $this->email)) {
-            return;
-        }
+        if (!StringUtils::equals($newEmail->value(), $this->email)) {
+            if (!$uniqueUserEmailSpecification->isSatisfiedBy($newEmail->value())) {
+                throw new NonUniqueUserEmail($newEmail->value());
+            }
 
-        if (!$uniqueUserEmailSpecification->isSatisfiedBy($newEmail->value())) {
-            throw new NonUniqueUserEmail($newEmail->value());
+            $this->email = $newEmail->value();
         }
-
-        $this->email = $newEmail->value();
     }
 
     public function setPassword(UserPassword $password): void
@@ -201,25 +193,21 @@ class User extends AggregateRoot implements UserInterface, \Serializable
 
     public function changeRole(Role $newRole): void
     {
-        if (StringUtils::equals($newRole->getId(), $this->role->getId())) {
-            return;
+        if (!StringUtils::equals($newRole->getId(), $this->role->getId())) {
+            $this->role = $newRole;
         }
-
-        $this->role = $newRole;
     }
 
     public function changeIsActive(int $newStatus): void
     {
-        $this->isActive = $newStatus == $this->isActive ? true : false;
+        $this->isActive = ($newStatus == $this->isActive);
     }
 
     public function changeTrafficPoliceBooth(TrafficPoliceBooth $newTrafficPoliceBooth)
     {
-        if (StringUtils::equals($newTrafficPoliceBooth->getId(), $this->trafficPoliceBooth->getId())) {
-            return;
+        if (!StringUtils::equals($newTrafficPoliceBooth->getId(), $this->trafficPoliceBooth->getId())) {
+            $this->trafficPoliceBooth = $newTrafficPoliceBooth;
         }
-
-        $this->trafficPoliceBooth = $newTrafficPoliceBooth;
     }
 
     public function setUpdateAt(DateTime $updateAt): void

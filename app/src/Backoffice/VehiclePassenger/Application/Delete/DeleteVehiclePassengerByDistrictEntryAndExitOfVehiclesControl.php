@@ -2,7 +2,6 @@
 
 namespace App\Backoffice\VehiclePassenger\Application\Delete;
 
-use App\Backoffice\VehiclePassenger\Application\Find\VehiclePassengerFinder;
 use App\Backoffice\VehiclePassenger\Application\FindByDistrictEntryAndExitOfVehiclesControl\FindVehiclePassengersByDistrictEntryAndExitOfVehiclesControl;
 use App\Backoffice\VehiclePassenger\Domain\VehiclePassengerRepository;
 

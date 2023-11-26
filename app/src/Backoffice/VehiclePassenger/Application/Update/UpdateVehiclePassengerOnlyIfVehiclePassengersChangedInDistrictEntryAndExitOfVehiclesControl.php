@@ -6,13 +6,11 @@ use App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Domain\VehiclePassenger
 use App\Backoffice\VehiclePassenger\Application\Create\AddVehiclePassengerInDistrictEntryAndExitOfVehiclesControl;
 use App\Backoffice\VehiclePassenger\Application\Delete\DeleteVehiclePassengerByDistrictEntryAndExitOfVehiclesControl;
 use App\Shared\Domain\Bus\Event\DomainEventSubscriber;
-use App\Shared\Domain\UuidGenerator;
 
 class UpdateVehiclePassengerOnlyIfVehiclePassengersChangedInDistrictEntryAndExitOfVehiclesControl implements DomainEventSubscriber
 {
     private AddVehiclePassengerInDistrictEntryAndExitOfVehiclesControl $creator;
     private DeleteVehiclePassengerByDistrictEntryAndExitOfVehiclesControl $deleter;
-    private UuidGenerator $uuidGenerator;
 
     public static function subscribedTo(): array
     {
@@ -21,13 +19,11 @@ class UpdateVehiclePassengerOnlyIfVehiclePassengersChangedInDistrictEntryAndExit
 
     public function __construct(
         AddVehiclePassengerInDistrictEntryAndExitOfVehiclesControl    $creator,
-        DeleteVehiclePassengerByDistrictEntryAndExitOfVehiclesControl $deleter,
-        UuidGenerator                                                 $uuidGenerator
+        DeleteVehiclePassengerByDistrictEntryAndExitOfVehiclesControl $deleter
     )
     {
-        $this->creator       = $creator;
-        $this->deleter       = $deleter;
-        $this->uuidGenerator = $uuidGenerator;
+        $this->creator = $creator;
+        $this->deleter = $deleter;
     }
 
     public function __invoke(VehiclePassengersChangedDomainEvent $event): void

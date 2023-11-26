@@ -59,15 +59,13 @@ class ReasonForTrip extends AggregateRoot
         UniqueReasonForTripDescriptionSpecification $uniqueReasonForTripDescriptionSpecification
     ): void
     {
-        if (StringUtils::equals($newDescription, $this->description)) {
-            return;
-        }
+        if (!StringUtils::equals($newDescription, $this->description)) {
+            if (!$uniqueReasonForTripDescriptionSpecification->isSatisfiedBy($newDescription)) {
+                throw new NonUniqueReasonForTripDescription($newDescription);
+            }
 
-        if (!$uniqueReasonForTripDescriptionSpecification->isSatisfiedBy($newDescription)) {
-            throw new NonUniqueReasonForTripDescription($newDescription);
+            $this->description = $newDescription;
         }
-
-        $this->description = $newDescription;
     }
 
     public function getCreateAt()

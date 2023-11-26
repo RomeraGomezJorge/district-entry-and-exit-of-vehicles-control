@@ -59,15 +59,13 @@ class TrafficPoliceBooth extends AggregateRoot
         UniqueTrafficPoliceBoothDescriptionSpecification $uniqueTagDescriptionSpecification
     ): void
     {
-        if (StringUtils::equals($newDescription, $this->description)) {
-            return;
-        }
+        if (!StringUtils::equals($newDescription, $this->description)) {
+            if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
+                throw new NonUniqueTrafficPoliceBoothDescription($newDescription);
+            }
 
-        if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
-            throw new NonUniqueTrafficPoliceBoothDescription($newDescription);
+            $this->description = $newDescription;
         }
-
-        $this->description = $newDescription;
     }
 
     public function getCreateAt()

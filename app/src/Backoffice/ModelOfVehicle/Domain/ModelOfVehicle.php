@@ -77,23 +77,21 @@ class ModelOfVehicle extends AggregateRoot
 
     public function changeDescription(
         string                                       $newDescription,
-        UniqueModelOfVehicleDescriptionSpecification $uniqueTagDescriptionSpecification
+        UniqueModelOfVehicleDescriptionSpecification $uniqueDescriptionSpecification
     ): void
     {
-        if (StringUtils::equals($newDescription, $this->description)) {
-            return;
-        }
+        if (!StringUtils::equals($newDescription, $this->description)) {
+            if (
+                !$uniqueDescriptionSpecification->isSatisfiedBy(
+                    $newDescription,
+                    $this->geTVehicleMakerName()->getId()
+                )
+            ) {
+                throw new NonUniqueModelOfVehicleDescription($newDescription);
+            }
 
-        if (
-            !$uniqueTagDescriptionSpecification->isSatisfiedBy(
-                $newDescription,
-                $this->geTVehicleMakerName()->getId()
-            )
-        ) {
-            throw new NonUniqueModelOfVehicleDescription($newDescription);
+            $this->description = $newDescription;
         }
-
-        $this->description = $newDescription;
     }
 
     public function geTVehicleMakerName(): VehicleMakerName
@@ -103,11 +101,9 @@ class ModelOfVehicle extends AggregateRoot
 
     public function changeVehicleMakeName(VehicleMakerName $vehicleMakeName)
     {
-        if (StringUtils::equals($vehicleMakeName->getId(), $this->vehicleMakerName->getId())) {
-            return;
+        if (!StringUtils::equals($vehicleMakeName->getId(), $this->vehicleMakerName->getId())) {
+            $this->vehicleMakerName = $vehicleMakeName;
         }
-
-        $this->vehicleMakerName = $vehicleMakeName;
     }
 
     public function getVehicleBodyType(): VehicleBodyType
@@ -117,11 +113,9 @@ class ModelOfVehicle extends AggregateRoot
 
     public function changeVehicleBodyType(VehicleBodyType $newVehicleBodyType): void
     {
-        if (StringUtils::equals($newVehicleBodyType->getId(), $this->vehicleBodyType->getId())) {
-            return;
+        if (!StringUtils::equals($newVehicleBodyType->getId(), $this->vehicleBodyType->getId())) {
+            $this->vehicleBodyType = $newVehicleBodyType;
         }
-
-        $this->vehicleBodyType = $newVehicleBodyType;
     }
 
     public function getCreateAt()

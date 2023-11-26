@@ -59,15 +59,13 @@ class VehicleMakerName extends AggregateRoot
         UniqueVehicleMakerNameDescriptionSpecification $uniqueTagDescriptionSpecification
     ): void
     {
-        if (Stringutils::equals($newDescription, $this->description)) {
-            return;
-        }
+        if (!Stringutils::equals($newDescription, $this->description)) {
+            if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
+                throw new NonUniqueVehicleMakerNameDescription($newDescription);
+            }
 
-        if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
-            throw new NonUniqueVehicleMakerNameDescription($newDescription);
+            $this->description = $newDescription;
         }
-
-        $this->description = $newDescription;
     }
 
     public function getCreateAt(): DateTime

@@ -2,7 +2,6 @@
 
 namespace App\Backoffice\VehicleBodyType\Application\Create;
 
-use App\Backoffice\VehicleBodyType\Domain\District;
 use App\Backoffice\VehicleBodyType\Domain\UniqueVehicleBodyTypeDescriptionSpecification;
 use App\Backoffice\VehicleBodyType\Domain\VehicleBodyType;
 use App\Backoffice\VehicleBodyType\Domain\VehicleBodyTypeRepository;

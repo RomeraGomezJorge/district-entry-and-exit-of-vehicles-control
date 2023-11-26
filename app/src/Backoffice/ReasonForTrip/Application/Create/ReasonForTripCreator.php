@@ -2,7 +2,6 @@
 
 namespace App\Backoffice\ReasonForTrip\Application\Create;
 
-use App\Backoffice\ReasonForTrip\Domain\District;
 use App\Backoffice\ReasonForTrip\Domain\ReasonForTrip;
 use App\Backoffice\ReasonForTrip\Domain\ReasonForTripRepository;
 use App\Backoffice\ReasonForTrip\Domain\UniqueReasonForTripDescriptionSpecification;

@@ -85,13 +85,11 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
         return $this->licensePlate;
     }
 
-    public function changeLicensePlate(string $licensePlate): void
+    public function changeLicensePlate(string $newLicensePlate): void
     {
-        if (StringUtils::equals($licensePlate, $this->licensePlate)) {
-            return;
+        if (!StringUtils::equals($newLicensePlate, $this->licensePlate)) {
+            $this->licensePlate = $newLicensePlate;
         }
-
-        $this->licensePlate = $licensePlate;
     }
 
     public function getModelOfVehicle(): ModelOfVehicle
@@ -99,13 +97,11 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
         return $this->modelOfVehicle;
     }
 
-    public function changeModelOfVehicle(ModelOfVehicle $modelOfVehicle): void
+    public function changeModelOfVehicle(ModelOfVehicle $newModelOfVehicle): void
     {
-        if (StringUtils::equals($modelOfVehicle->getId(), $this->modelOfVehicle->getId())) {
-            return;
+        if (!StringUtils::equals($newModelOfVehicle->getId(), $this->modelOfVehicle->getId())) {
+            $this->modelOfVehicle = $newModelOfVehicle;
         }
-
-        $this->modelOfVehicle = $modelOfVehicle;
     }
 
     public function getTripOrigin(): District
@@ -115,11 +111,9 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
 
     public function changeTripOrigin(District $newTripOrigin): void
     {
-        if (StringUtils::equals($newTripOrigin->getId(), $this->tripOrigin->getId())) {
-            return;
+        if (!StringUtils::equals($newTripOrigin->getId(), $this->tripOrigin->getId())) {
+            $this->tripOrigin = $newTripOrigin;
         }
-
-        $this->tripOrigin = $newTripOrigin;
     }
 
     public function getTripDestination(): District
@@ -129,11 +123,9 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
 
     public function changeTripDestination(District $newTripDestination): void
     {
-        if (StringUtils::equals($newTripDestination->getId(), $this->tripDestination->getId())) {
-            return;
+        if (!StringUtils::equals($newTripDestination->getId(), $this->tripDestination->getId())) {
+            $this->tripDestination = $newTripDestination;
         }
-
-        $this->tripDestination = $newTripDestination;
     }
 
     public function getReasonForTrip(): ReasonForTrip
@@ -141,13 +133,11 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
         return $this->reasonForTrip;
     }
 
-    public function changeReasonForTrip(ReasonForTrip $mewReasonForTrip): void
+    public function changeReasonForTrip(ReasonForTrip $newReasonForTrip): void
     {
-        if (StringUtils::equals($mewReasonForTrip->getId(), $this->reasonForTrip->getId())) {
-            return;
+        if (!StringUtils::equals($newReasonForTrip->getId(), $this->reasonForTrip->getId())) {
+            $this->reasonForTrip = $newReasonForTrip;
         }
-
-        $this->reasonForTrip = $mewReasonForTrip;
     }
 
     public function getTrafficPoliceBooth(): TrafficPoliceBooth
@@ -157,10 +147,9 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
 
     public function changeTrafficPoliceBooth(TrafficPoliceBooth $newTrafficPoliceBooth): void
     {
-        if (StringUtils::equals($newTrafficPoliceBooth->getId(), $this->trafficPoliceBooth->getId())) {
+        if (!StringUtils::equals($newTrafficPoliceBooth->getId(), $this->trafficPoliceBooth->getId())) {
+            $this->trafficPoliceBooth = $newTrafficPoliceBooth;
         }
-
-        $this->trafficPoliceBooth = $newTrafficPoliceBooth;
     }
 
     public function getCreateAt()

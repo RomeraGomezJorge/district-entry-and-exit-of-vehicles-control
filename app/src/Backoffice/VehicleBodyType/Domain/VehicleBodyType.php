@@ -65,15 +65,13 @@ class VehicleBodyType extends AggregateRoot
         UniqueVehicleBodyTypeDescriptionSpecification $uniqueTagDescriptionSpecification
     ): void
     {
-        if (StringUtils::equals($newDescription, $this->description)) {
-            return;
-        }
+        if (!StringUtils::equals($newDescription, $this->description)) {
+            if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
+                throw new NonUniqueVehicleBodyTypeDescription($newDescription);
+            }
 
-        if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
-            throw new NonUniqueVehicleBodyTypeDescription($newDescription);
+            $this->description = $newDescription;
         }
-
-        $this->description = $newDescription;
     }
 
     public function getCreateAt(): DateTime
@@ -88,9 +86,8 @@ class VehicleBodyType extends AggregateRoot
 
     public function changeImage(?string $newImage): void
     {
-        if (StringUtils::equals($newImage, $this->description)) {
-            return;
+        if (!StringUtils::equals($newImage, $this->image)) {
+            $this->image = $newImage;
         }
-        $this->image = $newImage;
     }
 }

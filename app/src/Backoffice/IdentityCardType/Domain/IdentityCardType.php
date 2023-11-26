@@ -56,18 +56,16 @@ class IdentityCardType extends AggregateRoot
 
     public function changeDescription(
         string                                         $newDescription,
-        UniqueIdentityCardTypeDescriptionSpecification $uniqueTagDescriptionSpecification
+        UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification
     ): void
     {
-        if (StringUtils::equals($newDescription, $this->description)) {
-            return;
-        }
+        if (!StringUtils::equals($newDescription, $this->description)) {
+            if (!$uniqueDescriptionSpecification->isSatisfiedBy($newDescription)) {
+                throw new NonUniqueIdentityCardTypeDescription($newDescription);
+            }
 
-        if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
-            throw new NonUniqueIdentityCardTypeDescription($newDescription);
+            $this->description = $newDescription;
         }
-
-        $this->description = $newDescription;
     }
 
     public function getCreateAt()

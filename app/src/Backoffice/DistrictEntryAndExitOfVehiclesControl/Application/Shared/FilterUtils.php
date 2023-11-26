@@ -2,7 +2,6 @@
 
 namespace App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Application\Shared;
 
-use App\Backoffice\DistrictEntryAndExitOfVehiclesControl\Domain\DistrictEntryAndExitOfVehiclesControlRepository;
 use App\Backoffice\VehiclePassenger\Application\FindByCriteriaSearcher\VehiclePassengersByCriteriaSearcher;
 use App\Shared\Infrastructure\Utils\FilterUtilsForFieldThatNotBelongToAnEntity;
 
@@ -10,15 +9,12 @@ final class FilterUtils
 {
     const FIELDS_NAME_THAT_DO_NOT_BELONG_TO_THE_ENTITY_DISTRICT_ENTRY = ['name', 'surname', 'identityCard'];
 
-    private DistrictEntryAndExitOfVehiclesControlRepository $repository;
     private VehiclePassengersByCriteriaSearcher $vehiclePassengersByCriteriaSearcher;
 
     public function __construct(
-        DistrictEntryAndExitOfVehiclesControlRepository $repository,
-        VehiclePassengersByCriteriaSearcher             $vehiclePassengersByCriteriaSearcher
+        VehiclePassengersByCriteriaSearcher $vehiclePassengersByCriteriaSearcher
     )
     {
-        $this->repository                          = $repository;
         $this->vehiclePassengersByCriteriaSearcher = $vehiclePassengersByCriteriaSearcher;
     }
 
