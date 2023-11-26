@@ -10,23 +10,23 @@ final class DistrictUpdater
 {
     private DistrictRepository $repository;
     private DistrictFinder $finder;
-    private UniqueDistrictDescriptionSpecification $uniqueDistrictDescriptionSpecification;
+    private UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification;
 
     public function __construct(
         DistrictRepository                     $repository,
-        UniqueDistrictDescriptionSpecification $uniqueDistrictDescriptionSpecification
+        UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification
     )
     {
-        $this->repository                             = $repository;
-        $this->finder                                 = new DistrictFinder($repository);
-        $this->uniqueDistrictDescriptionSpecification = $uniqueDistrictDescriptionSpecification;
+        $this->repository                     = $repository;
+        $this->finder                         = new DistrictFinder($repository);
+        $this->uniqueDescriptionSpecification = $uniqueDescriptionSpecification;
     }
 
     public function __invoke(string $id, string $newDescription): void
     {
         $district = $this->finder->__invoke($id);
 
-        $district->changeDescription(trim($newDescription), $this->uniqueDistrictDescriptionSpecification);
+        $district->changeDescription(trim($newDescription), $this->uniqueDescriptionSpecification);
 
         $this->repository->save($district);
     }

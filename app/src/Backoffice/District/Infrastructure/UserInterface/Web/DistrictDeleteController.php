@@ -17,18 +17,18 @@ class DistrictDeleteController extends WebController
 
         if (!$isCsrfTokenValid) {
             return new JsonResponse(
-                array(
+                [
                     'status'  => 'fail_invalid_csfr_token',
                     'message' => MessageConstant::INVALID_TOKEN_CSFR_MESSAGE
-                )
+                ]
             );
         }
 
         $validationErrors = ValidationRulesToDelete::verify($request);
 
-        $response = $validationErrors->count() ?
-            array('status' => 'fail', 'message' => MessageConstant::UNEXPECTED_ERROR_HAS_OCCURRED) :
-            $this->delete($deleter, $request->get('id'));
+        $response = $validationErrors->count()
+            ? ['status' => 'fail', 'message' => MessageConstant::UNEXPECTED_ERROR_HAS_OCCURRED]
+            : $this->delete($deleter, $request->get('id'));
 
         return new JsonResponse($response);
     }
@@ -37,6 +37,6 @@ class DistrictDeleteController extends WebController
     {
         $deleter->__invoke($id);
 
-        return array('status' => 'success');
+        return ['status' => 'success'];
     }
 }

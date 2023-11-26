@@ -12,19 +12,19 @@ final class DistrictCreator
 {
     private DistrictRepository $repository;
 
-    private UniqueDistrictDescriptionSpecification $uniqueDistrictDescriptionSpecification;
+    private UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification;
 
     private EventBus $bus;
 
     public function __construct(
         DistrictRepository                     $repository,
-        UniqueDistrictDescriptionSpecification $uniqueDistrictDescriptionSpecification,
+        UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification,
         EventBus                               $bus
     )
     {
-        $this->repository                             = $repository;
-        $this->uniqueDistrictDescriptionSpecification = $uniqueDistrictDescriptionSpecification;
-        $this->bus                                    = $bus;
+        $this->repository                     = $repository;
+        $this->uniqueDescriptionSpecification = $uniqueDescriptionSpecification;
+        $this->bus                            = $bus;
     }
 
     public function __invoke(
@@ -40,7 +40,7 @@ final class DistrictCreator
             $id,
             trim($description),
             $createAt,
-            $this->uniqueDistrictDescriptionSpecification
+            $this->uniqueDescriptionSpecification
         );
 
         $this->repository->save($district);

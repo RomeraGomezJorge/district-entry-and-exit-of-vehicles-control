@@ -5,6 +5,7 @@ namespace App\Backoffice\District\Infrastructure\UserInterface\Web;
 use App\Backoffice\District\Application\Update\DistrictUpdater;
 use App\Shared\Infrastructure\Constant\MessageConstant;
 use App\Shared\Infrastructure\Symfony\WebController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,7 +26,7 @@ class DistrictPutController extends WebController
             : $this->update($request, $updater);
     }
 
-    private function update(Request $request, DistrictUpdater $updater)
+    private function update(Request $request, DistrictUpdater $updater): RedirectResponse
     {
         $updater->__invoke(
             $request->get('id'),

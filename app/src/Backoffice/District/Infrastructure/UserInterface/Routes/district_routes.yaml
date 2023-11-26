@@ -25,7 +25,7 @@ district_update:
 
 district_description_available:
   path: /description-available
-  defaults: { _controller: App\Backoffice\District\Infrastructure\UserInterface\Web\DistrictDescriptionAvailableController}
+  defaults: { _controller: App\Backoffice\District\Infrastructure\UserInterface\Web\DistrictDescriptionAvailabilityController }
   methods:  [GET]
 
 district_delete:

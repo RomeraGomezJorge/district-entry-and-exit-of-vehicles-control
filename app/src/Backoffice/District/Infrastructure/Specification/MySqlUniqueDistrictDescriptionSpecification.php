@@ -18,6 +18,6 @@ final class MySqlUniqueDistrictDescriptionSpecification implements UniqueDistric
 
     public function isSatisfiedBy(string $description): bool
     {
-        return !$this->repository->isDescriptionExits(array('description' => $description));
+        return !$this->repository->isDescriptionExits($description);
     }
 }

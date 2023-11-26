@@ -5,6 +5,7 @@ namespace App\Backoffice\District\Infrastructure\UserInterface\Web;
 use App\Backoffice\District\Application\Create\DistrictCreator;
 use App\Shared\Infrastructure\Constant\MessageConstant;
 use App\Shared\Infrastructure\Symfony\WebController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,7 +26,7 @@ class DistrictPostController extends WebController
             : $this->create($request, $creator);
     }
 
-    private function create(Request $request, DistrictCreator $creator)
+    private function create(Request $request, DistrictCreator $creator): RedirectResponse
     {
         $creator->__invoke(
             $request->get('id'),

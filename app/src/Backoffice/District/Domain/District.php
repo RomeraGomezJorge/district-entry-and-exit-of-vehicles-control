@@ -18,11 +18,11 @@ class District extends AggregateRoot
         Uuid                                   $id,
         string                                 $description,
         DateTime                               $createAt,
-        UniqueDistrictDescriptionSpecification $uniqueDistrictDescriptionSpecification
+        UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification
     ): self
     {
 
-        if (!$uniqueDistrictDescriptionSpecification->isSatisfiedBy($description)) {
+        if (!$uniqueDescriptionSpecification->isSatisfiedBy($description)) {
             throw new NonUniqueDistrictDescription($description);
         }
 
@@ -56,18 +56,16 @@ class District extends AggregateRoot
 
     public function changeDescription(
         string                                 $newDescription,
-        UniqueDistrictDescriptionSpecification $uniqueTagDescriptionSpecification
+        UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification
     ): void
     {
-        if (StringUtils::equals($newDescription, $this->description)) {
-            return;
-        }
+        if (!StringUtils::equals($newDescription, $this->description)) {
+            if (!$uniqueDescriptionSpecification->isSatisfiedBy($newDescription)) {
+                throw new NonUniqueDistrictDescription($newDescription);
+            }
 
-        if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
-            throw new NonUniqueDistrictDescription($newDescription);
+            $this->description = $newDescription;
         }
-
-        $this->description = $newDescription;
     }
 
     public function getCreateAt()
