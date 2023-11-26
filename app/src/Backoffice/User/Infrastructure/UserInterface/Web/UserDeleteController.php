@@ -34,5 +34,4 @@ class UserDeleteController extends WebController
             return $this->jsonResponseFail($exception->getMessage());
         }
     }
-
 }

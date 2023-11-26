@@ -34,7 +34,6 @@ final class MySqlIdentityCardTypeRepository extends DoctrineRepository implement
     public function isDescriptionExits(string $description): bool
     {
         return (bool)$this->repository(self::ENTITY_CLASS)->findOneBy(['description' => $description]);
-
     }
 
     public function matching(Criteria $criteria): array
