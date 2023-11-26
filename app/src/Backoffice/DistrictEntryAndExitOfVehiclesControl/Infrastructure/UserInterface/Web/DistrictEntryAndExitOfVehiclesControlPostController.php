@@ -11,10 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 class DistrictEntryAndExitOfVehiclesControlPostController extends WebController
 {
     public function __invoke(
-        Request                                      $request,
+        Request $request,
         DistrictEntryAndExitOfVehiclesControlCreator $creator
-    ): Response
-    {
+    ): Response {
         $isCsrfTokenValid = $this->isCsrfTokenValid($request->get('id'), $request->get('csrf_token'));
 
         if (!$isCsrfTokenValid) {
@@ -31,10 +30,9 @@ class DistrictEntryAndExitOfVehiclesControlPostController extends WebController
     }
 
     private function create(
-        Request                                      $request,
+        Request $request,
         DistrictEntryAndExitOfVehiclesControlCreator $creator
-    )
-    {
+    ) {
         $creator->__invoke(
             $request->get('id'),
             $request->get('license_plate'),

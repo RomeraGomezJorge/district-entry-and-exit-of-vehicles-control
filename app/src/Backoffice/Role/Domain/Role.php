@@ -14,8 +14,7 @@ class Role extends AggregateRoot
     public static function create(
         string $id,
         string $description
-    ): self
-    {
+    ): self {
 
         $role              = new self();
         $role->id          = $id;

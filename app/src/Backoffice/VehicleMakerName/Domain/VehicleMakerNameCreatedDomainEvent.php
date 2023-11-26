@@ -15,8 +15,7 @@ final class VehicleMakerNameCreatedDomainEvent extends DomainEvent
         string $description,
         string $eventId = null,
         string $occurredOn = null
-    )
-    {
+    ) {
         parent::__construct($id, $eventId, $occurredOn);
 
         $this->description = $description;

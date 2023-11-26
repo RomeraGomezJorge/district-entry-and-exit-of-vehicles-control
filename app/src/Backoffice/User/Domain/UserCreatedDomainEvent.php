@@ -29,8 +29,7 @@ final class UserCreatedDomainEvent extends DomainEvent
         string $trafficPoliceBooth,
         string $eventId = null,
         string $occurredOn = null
-    )
-    {
+    ) {
         parent::__construct($id, $eventId, $occurredOn);
         $this->username           = $description;
         $this->name               = $name;

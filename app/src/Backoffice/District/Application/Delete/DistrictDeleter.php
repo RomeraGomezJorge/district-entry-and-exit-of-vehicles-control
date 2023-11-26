@@ -13,8 +13,7 @@ final class DistrictDeleter
 
     public function __construct(
         DistrictRepository $repository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->finder     = new DistrictFinder($repository);
     }

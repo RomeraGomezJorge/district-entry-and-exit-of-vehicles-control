@@ -17,22 +17,20 @@ final class VehicleBodyTypeCreator
     private EventBus $bus;
 
     public function __construct(
-        VehicleBodyTypeRepository                     $repository,
+        VehicleBodyTypeRepository $repository,
         UniqueVehicleBodyTypeDescriptionSpecification $uniqueVehicleBodyTypeDescriptionSpecification,
-        EventBus                                      $bus
-    )
-    {
+        EventBus $bus
+    ) {
         $this->repository                                    = $repository;
         $this->uniqueVehicleBodyTypeDescriptionSpecification = $uniqueVehicleBodyTypeDescriptionSpecification;
         $this->bus                                           = $bus;
     }
 
     public function __invoke(
-        string  $id,
-        string  $description,
+        string $id,
+        string $description,
         ?string $image
-    )
-    {
+    ) {
         $id = new Uuid($id);
 
         $createAt = new \DateTime();

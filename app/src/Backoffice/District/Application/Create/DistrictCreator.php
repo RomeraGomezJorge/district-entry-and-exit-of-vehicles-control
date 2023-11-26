@@ -17,11 +17,10 @@ final class DistrictCreator
     private EventBus $bus;
 
     public function __construct(
-        DistrictRepository                     $repository,
+        DistrictRepository $repository,
         UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification,
-        EventBus                               $bus
-    )
-    {
+        EventBus $bus
+    ) {
         $this->repository                     = $repository;
         $this->uniqueDescriptionSpecification = $uniqueDescriptionSpecification;
         $this->bus                            = $bus;
@@ -30,8 +29,7 @@ final class DistrictCreator
     public function __invoke(
         string $id,
         string $description
-    )
-    {
+    ) {
         $id = new Uuid($id);
 
         $createAt = new \DateTime();

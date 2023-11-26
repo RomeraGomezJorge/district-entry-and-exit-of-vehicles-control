@@ -13,8 +13,7 @@ final class VehicleMakerNameDeleter
 
     public function __construct(
         VehicleMakerNameRepository $repository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->finder     = new VehicleMakerNameFinder($repository);
     }

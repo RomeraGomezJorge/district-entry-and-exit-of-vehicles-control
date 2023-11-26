@@ -26,13 +26,12 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
 
     public function __construct(
         DistrictEntryAndExitOfVehiclesControlRepository $repository,
-        ModelOfVehicleRepository                        $modelOfVehicleRepository,
-        DistrictRepository                              $districtRepository,
-        ReasonForTripRepository                         $reasonForTripRepository,
-        TrafficPoliceBoothRepository                    $trafficPoliceBoothRepository,
-        EventBus                                        $bus
-    )
-    {
+        ModelOfVehicleRepository $modelOfVehicleRepository,
+        DistrictRepository $districtRepository,
+        ReasonForTripRepository $reasonForTripRepository,
+        TrafficPoliceBoothRepository $trafficPoliceBoothRepository,
+        EventBus $bus
+    ) {
         $this->repository               = $repository;
         $this->finder                   = new DistrictEntryAndExitOfVehiclesControlFinder($repository);
         $this->finderModelOfVehicle     = new ModelOfVehicleFinder($modelOfVehicleRepository);
@@ -50,9 +49,8 @@ final class DistrictEntryAndExitOfVehiclesControlUpdater
         string $newTripDestinationId,
         string $newReasonForTripId,
         string $newTrafficPoliceBoothId,
-        array  $newVehiclePassengers
-    ): void
-    {
+        array $newVehiclePassengers
+    ): void {
         $districtEntryAndExitOfVehiclesControl = $this->finder->__invoke($id);
         $modelOfVehicle                        = $this->finderModelOfVehicle->__invoke($newModelOfVehicleId);
         $tripOrigin                            = $this->finderDistrict->__invoke($newTripOriginId);

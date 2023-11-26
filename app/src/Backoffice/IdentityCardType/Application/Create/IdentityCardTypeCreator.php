@@ -15,11 +15,10 @@ final class IdentityCardTypeCreator
     private EventBus $bus;
 
     public function __construct(
-        IdentityCardTypeRepository                     $repository,
+        IdentityCardTypeRepository $repository,
         UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification,
-        EventBus                                       $bus
-    )
-    {
+        EventBus $bus
+    ) {
         $this->repository                     = $repository;
         $this->uniqueDescriptionSpecification = $uniqueDescriptionSpecification;
         $this->bus                            = $bus;

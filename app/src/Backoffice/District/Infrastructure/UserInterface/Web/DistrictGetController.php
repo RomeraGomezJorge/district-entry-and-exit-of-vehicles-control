@@ -18,11 +18,10 @@ use Symfony\Component\HttpFoundation\Response;
 class DistrictGetController extends WebController
 {
     public function __invoke(
-        Request                     $request,
+        Request $request,
         DistrictsByCriteriaSearcher $itemsByCriteriaSearcher,
-        DistrictCounter             $counter
-    ): Response
-    {
+        DistrictCounter $counter
+    ): Response {
         $orderBy = $request->get('orderBy');
 
         $order = $request->get('order');

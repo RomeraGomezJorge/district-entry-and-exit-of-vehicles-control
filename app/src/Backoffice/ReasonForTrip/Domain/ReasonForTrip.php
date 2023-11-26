@@ -15,12 +15,11 @@ class ReasonForTrip extends AggregateRoot
     private $createAt;
 
     public static function create(
-        Uuid                                        $id,
-        string                                      $description,
-        DateTime                                    $createAt,
+        Uuid $id,
+        string $description,
+        DateTime $createAt,
         UniqueReasonForTripDescriptionSpecification $uniqueReasonForTripDescriptionSpecification
-    ): self
-    {
+    ): self {
 
         if (!$uniqueReasonForTripDescriptionSpecification->isSatisfiedBy($description)) {
             throw new NonUniqueReasonForTripDescription($description);
@@ -55,10 +54,9 @@ class ReasonForTrip extends AggregateRoot
     }
 
     public function changeDescription(
-        string                                      $newDescription,
+        string $newDescription,
         UniqueReasonForTripDescriptionSpecification $uniqueReasonForTripDescriptionSpecification
-    ): void
-    {
+    ): void {
         if (!StringUtils::equals($newDescription, $this->description)) {
             if (!$uniqueReasonForTripDescriptionSpecification->isSatisfiedBy($newDescription)) {
                 throw new NonUniqueReasonForTripDescription($newDescription);

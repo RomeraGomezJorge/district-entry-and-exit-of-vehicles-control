@@ -17,11 +17,10 @@ final class TrafficPoliceBoothCreator
     private EventBus $bus;
 
     public function __construct(
-        TrafficPoliceBoothRepository                     $repository,
+        TrafficPoliceBoothRepository $repository,
         UniqueTrafficPoliceBoothDescriptionSpecification $uniqueTrafficPoliceBoothDescriptionSpecification,
-        EventBus                                         $bus
-    )
-    {
+        EventBus $bus
+    ) {
 
         $this->repository                                       = $repository;
         $this->uniqueTrafficPoliceBoothDescriptionSpecification = $uniqueTrafficPoliceBoothDescriptionSpecification;
@@ -31,8 +30,7 @@ final class TrafficPoliceBoothCreator
     public function __invoke(
         string $id,
         string $description
-    )
-    {
+    ) {
         $id = new Uuid($id);
 
         $createAt = new \DateTime();

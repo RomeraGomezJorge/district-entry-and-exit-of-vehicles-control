@@ -12,11 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 class ModelOfVehicleAddController extends WebController
 {
     public function __invoke(
-        FlashSession        $flashSession,
+        FlashSession $flashSession,
         RamseyUuidGenerator $ramseyUuidGenerator,
-        RelatedEntities     $relatedEntities
-    ): Response
-    {
+        RelatedEntities $relatedEntities
+    ): Response {
         return $this->render(
             TwigTemplateConstants::FORM_FILE_PATH,
             [

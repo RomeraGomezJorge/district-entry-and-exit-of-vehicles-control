@@ -22,13 +22,12 @@ final class UserUpdater
     private TrafficPoliceBoothFinder $trafficPoliceBoothFinder;
 
     public function __construct(
-        UserRepository               $repository,
-        RoleRepository               $roleRepository,
+        UserRepository $repository,
+        RoleRepository $roleRepository,
         TrafficPoliceBoothRepository $trafficPoliceBoothRepository,
-        UniqueUserNameSpecification  $uniqueUserNameSpecification,
+        UniqueUserNameSpecification $uniqueUserNameSpecification,
         UniqueUserEmailSpecification $uniqueUserEmailSpecification
-    )
-    {
+    ) {
         $this->repository                   = $repository;
         $this->finder                       = new UserFinder($repository);
         $this->roleFinder                   = new RoleFinder($roleRepository);
@@ -44,10 +43,9 @@ final class UserUpdater
         string $newSurname,
         string $newEmail,
         string $role_id,
-        int    $isActive,
+        int $isActive,
         string $trafficPoliceBooth_id
-    ): void
-    {
+    ): void {
         $newEmail = new UserEmail(trim($newEmail));
 
         $user = $this->finder->__invoke($id);

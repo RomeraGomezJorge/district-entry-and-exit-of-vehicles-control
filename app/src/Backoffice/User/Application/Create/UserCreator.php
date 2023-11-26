@@ -27,15 +27,14 @@ final class UserCreator
     private TrafficPoliceBoothFinder $finderTrafficPoliceBooth;
 
     public function __construct(
-        UserRepository               $repository,
-        RoleRepository               $roleRepository,
+        UserRepository $repository,
+        RoleRepository $roleRepository,
         TrafficPoliceBoothRepository $trafficPoliceBoothRepository,
-        UniqueUserNameSpecification  $uniqueUserNameSpecification,
+        UniqueUserNameSpecification $uniqueUserNameSpecification,
         UniqueUserEmailSpecification $uniqueUserEmailSpecification,
-        PasswordEncoder              $passwordEncoder,
-        EventBus                     $bus
-    )
-    {
+        PasswordEncoder $passwordEncoder,
+        EventBus $bus
+    ) {
         $this->repository                   = $repository;
         $this->finderRole                   = new RoleFinder($roleRepository);
         $this->finderTrafficPoliceBooth     = new TrafficPoliceBoothFinder($trafficPoliceBoothRepository);
@@ -53,10 +52,9 @@ final class UserCreator
         string $email,
         string $plainPassword,
         string $role_id,
-        int    $isActive,
+        int $isActive,
         string $trafficPoliceBooth_id
-    )
-    {
+    ) {
         $id = new Uuid($id);
 
         $email = new UserEmail(trim($email));

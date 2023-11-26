@@ -10,8 +10,7 @@ final class CheckReasonForTripDescriptionAvailability
 
     public function __construct(
         UniqueReasonForTripDescriptionSpecification $uniqueReasonForTripDescriptionSpecification
-    )
-    {
+    ) {
         $this->uniqueReasonForTripDescriptionSpecification = $uniqueReasonForTripDescriptionSpecification;
     }
 

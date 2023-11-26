@@ -10,10 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 final class ReasonForTripDescriptionAvailableController extends WebController
 {
     public function __invoke(
-        Request                                   $request,
+        Request $request,
         CheckReasonForTripDescriptionAvailability $checkReasonForTripDescriptionAvailability
-    ): JsonResponse
-    {
+    ): JsonResponse {
         return new JsonResponse(
             $checkReasonForTripDescriptionAvailability->__invoke($request->get('description', ''))
         );

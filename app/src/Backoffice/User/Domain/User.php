@@ -27,20 +27,19 @@ class User extends AggregateRoot implements UserInterface, \Serializable
     private TrafficPoliceBooth $trafficPoliceBooth;
 
     public static function create(
-        Uuid                         $id,
-        string                       $username,
-        string                       $name,
-        string                       $surname,
-        UserEmail                    $email,
-        UserPassword                 $password,
-        Role                         $role,
-        int                          $isActive,
-        TrafficPoliceBooth           $trafficPoliceBooth,
-        DateTime                     $createAt,
-        UniqueUserNameSpecification  $uniqueUserNameSpecification,
+        Uuid $id,
+        string $username,
+        string $name,
+        string $surname,
+        UserEmail $email,
+        UserPassword $password,
+        Role $role,
+        int $isActive,
+        TrafficPoliceBooth $trafficPoliceBooth,
+        DateTime $createAt,
+        UniqueUserNameSpecification $uniqueUserNameSpecification,
         UniqueUserEmailSpecification $uniqueUserEmailSpecification
-    ): self
-    {
+    ): self {
         if (!$uniqueUserNameSpecification->isSatisfiedBy($username)) {
             throw new NonUniqueUserName($username);
         }
@@ -140,10 +139,9 @@ class User extends AggregateRoot implements UserInterface, \Serializable
     }
 
     public function changeUsername(
-        string                      $newUsername,
+        string $newUsername,
         UniqueUserNameSpecification $uniqueUserNameSpecification
-    ): void
-    {
+    ): void {
         if (!StringUtils::equals($newUsername, $this->username)) {
             if (!$uniqueUserNameSpecification->isSatisfiedBy($newUsername)) {
                 throw new NonUniqueUserName($newUsername);
@@ -168,10 +166,9 @@ class User extends AggregateRoot implements UserInterface, \Serializable
     }
 
     public function changeEmail(
-        UserEmail                    $newEmail,
+        UserEmail $newEmail,
         UniqueUserEmailSpecification $uniqueUserEmailSpecification
-    ): void
-    {
+    ): void {
         if (!StringUtils::equals($newEmail->value(), $this->email)) {
             if (!$uniqueUserEmailSpecification->isSatisfiedBy($newEmail->value())) {
                 throw new NonUniqueUserEmail($newEmail->value());

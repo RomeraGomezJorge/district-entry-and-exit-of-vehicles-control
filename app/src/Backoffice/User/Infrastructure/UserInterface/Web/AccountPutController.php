@@ -14,10 +14,9 @@ use Symfony\Component\Validator\Validation;
 class AccountPutController extends WebController
 {
     public function __invoke(
-        Request        $request,
+        Request $request,
         AccountUpdater $updater
-    ): Response
-    {
+    ): Response {
         $isCsrfTokenValid = $this->isCsrfTokenValid($request->get('id'), $request->get('csrf_token'));
 
         if (!$isCsrfTokenValid) {

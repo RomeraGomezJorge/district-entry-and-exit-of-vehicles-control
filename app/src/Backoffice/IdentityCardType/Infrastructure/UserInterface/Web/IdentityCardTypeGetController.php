@@ -18,11 +18,10 @@ use Symfony\Component\HttpFoundation\Response;
 class IdentityCardTypeGetController extends WebController
 {
     public function __invoke(
-        Request                             $request,
+        Request $request,
         IdentityCardTypesByCriteriaSearcher $itemsByCriteriaSearcher,
-        IdentityCardTypeCounter             $counter
-    ): Response
-    {
+        IdentityCardTypeCounter $counter
+    ): Response {
         $orderBy = $request->get('orderBy');
 
         $order = $request->get('order');

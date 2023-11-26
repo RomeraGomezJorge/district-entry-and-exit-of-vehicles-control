@@ -17,10 +17,9 @@ final class MySqlUniqueModelOfVehicleDescriptionSpecification implements UniqueM
     }
 
     public function isSatisfiedBy(
-        string  $description,
+        string $description,
         ?string $vehicleMakerNameId
-    ): bool
-    {
+    ): bool {
         return !$this->repository->isDescriptionExits(
             ['description' => $description],
             $vehicleMakerNameId

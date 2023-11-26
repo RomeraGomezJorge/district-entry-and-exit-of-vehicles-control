@@ -19,12 +19,11 @@ final class AddVehiclePassengerInDistrictEntryAndExitOfVehiclesControl
     private IdentityCardTypeFinder $finderIdentityCardType;
 
     public function __construct(
-        VehiclePassengerRepository                      $repository,
+        VehiclePassengerRepository $repository,
         DistrictEntryAndExitOfVehiclesControlRepository $districtEntryAndExitOfVehiclesControlRepository,
-        IdentityCardTypeRepository                      $identityCardTypeRepository,
-        EventBus                                        $bus
-    )
-    {
+        IdentityCardTypeRepository $identityCardTypeRepository,
+        EventBus $bus
+    ) {
         $this->repository                                  = $repository;
         $this->finderDistrictEntryAndExitOfVehiclesControl = new DistrictEntryAndExitOfVehiclesControlFinder($districtEntryAndExitOfVehiclesControlRepository);
         $this->finderIdentityCardType                      = new IdentityCardTypeFinder($identityCardTypeRepository);
@@ -33,9 +32,8 @@ final class AddVehiclePassengerInDistrictEntryAndExitOfVehiclesControl
 
     public function __invoke(
         string $districtEntryAndExitOfVehiclesControlId,
-               $passengers
-    )
-    {
+        $passengers
+    ) {
         $districtEntryAndExitOfVehiclesControl = $this->finderDistrictEntryAndExitOfVehiclesControl
             ->__invoke($districtEntryAndExitOfVehiclesControlId);
 

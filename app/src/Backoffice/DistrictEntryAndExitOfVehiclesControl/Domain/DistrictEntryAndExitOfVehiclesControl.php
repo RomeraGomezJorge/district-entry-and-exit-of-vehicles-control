@@ -31,17 +31,16 @@ class DistrictEntryAndExitOfVehiclesControl extends AggregateRoot
     }
 
     public static function create(
-        Uuid               $id,
-        string             $licensePlate,
-        ModelOfVehicle     $modelOfVehicle,
-        District           $tripOrigin,
-        District           $tripDestination,
-        ReasonForTrip      $reasonForTrip,
+        Uuid $id,
+        string $licensePlate,
+        ModelOfVehicle $modelOfVehicle,
+        District $tripOrigin,
+        District $tripDestination,
+        ReasonForTrip $reasonForTrip,
         TrafficPoliceBooth $trafficPoliceBooth,
-        array              $vehiclePassengers,
-        DateTime           $createAt
-    ): self
-    {
+        array $vehiclePassengers,
+        DateTime $createAt
+    ): self {
         $districtEntryAndExitOfVehiclesControl                     = new self();
         $districtEntryAndExitOfVehiclesControl->id                 = $id;
         $districtEntryAndExitOfVehiclesControl->licensePlate       = $licensePlate;

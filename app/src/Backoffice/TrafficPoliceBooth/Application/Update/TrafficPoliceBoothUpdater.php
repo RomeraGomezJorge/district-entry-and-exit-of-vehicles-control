@@ -13,10 +13,9 @@ final class TrafficPoliceBoothUpdater
     private UniqueTrafficPoliceBoothDescriptionSpecification $uniqueTrafficPoliceBoothDescriptionSpecification;
 
     public function __construct(
-        TrafficPoliceBoothRepository                     $repository,
+        TrafficPoliceBoothRepository $repository,
         UniqueTrafficPoliceBoothDescriptionSpecification $uniqueTrafficPoliceBoothDescriptionSpecification
-    )
-    {
+    ) {
         $this->repository                                       = $repository;
         $this->finder                                           = new TrafficPoliceBoothFinder($repository);
         $this->uniqueTrafficPoliceBoothDescriptionSpecification = $uniqueTrafficPoliceBoothDescriptionSpecification;

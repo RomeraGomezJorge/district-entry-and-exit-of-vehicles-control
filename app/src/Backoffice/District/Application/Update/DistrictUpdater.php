@@ -13,10 +13,9 @@ final class DistrictUpdater
     private UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification;
 
     public function __construct(
-        DistrictRepository                     $repository,
+        DistrictRepository $repository,
         UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification
-    )
-    {
+    ) {
         $this->repository                     = $repository;
         $this->finder                         = new DistrictFinder($repository);
         $this->uniqueDescriptionSpecification = $uniqueDescriptionSpecification;

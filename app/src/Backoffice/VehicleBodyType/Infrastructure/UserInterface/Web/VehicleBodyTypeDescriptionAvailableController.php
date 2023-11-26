@@ -10,10 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 final class VehicleBodyTypeDescriptionAvailableController extends WebController
 {
     public function __invoke(
-        Request                                     $request,
+        Request $request,
         CheckVehicleBodyTypeDescriptionAvailability $checkVehicleBodyTypeDescriptionAvailability
-    ): JsonResponse
-    {
+    ): JsonResponse {
         return new JsonResponse(
             $checkVehicleBodyTypeDescriptionAvailability->__invoke($request->get('description', ''))
         );

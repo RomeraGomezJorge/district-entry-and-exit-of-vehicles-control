@@ -18,11 +18,10 @@ use Symfony\Component\HttpFoundation\Response;
 class ReasonForTripGetController extends WebController
 {
     public function __invoke(
-        Request                          $request,
+        Request $request,
         ReasonsForTripByCriteriaSearcher $itemsByCriteriaSearcher,
-        ReasonForTripCounter             $counter
-    ): Response
-    {
+        ReasonForTripCounter $counter
+    ): Response {
         $orderBy = $request->get('orderBy');
 
         $order = $request->get('order');

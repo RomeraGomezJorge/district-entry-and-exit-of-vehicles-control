@@ -16,11 +16,10 @@ final class AccountUpdater
     private UniqueUserEmailSpecification $uniqueUserEmailSpecification;
 
     public function __construct(
-        UserRepository               $repository,
-        UniqueUserNameSpecification  $uniqueUserNameSpecification,
+        UserRepository $repository,
+        UniqueUserNameSpecification $uniqueUserNameSpecification,
         UniqueUserEmailSpecification $uniqueUserEmailSpecification
-    )
-    {
+    ) {
         $this->repository                   = $repository;
         $this->finder                       = new UserFinder($repository);
         $this->uniqueUserNameSpecification  = $uniqueUserNameSpecification;
@@ -33,8 +32,7 @@ final class AccountUpdater
         string $newName,
         string $newSurname,
         string $newEmail
-    ): void
-    {
+    ): void {
         $newEmail = new UserEmail(trim($newEmail));
 
         $user = $this->finder->__invoke($id);

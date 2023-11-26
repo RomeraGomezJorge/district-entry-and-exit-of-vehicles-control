@@ -15,21 +15,19 @@ final class VehicleBodyTypeUpdater
     private UniqueVehicleBodyTypeDescriptionSpecification $uniqueVehicleBodyTypeDescriptionSpecification;
 
     public function __construct(
-        VehicleBodyTypeRepository                     $repository,
+        VehicleBodyTypeRepository $repository,
         UniqueVehicleBodyTypeDescriptionSpecification $uniqueVehicleBodyTypeDescriptionSpecification
-    )
-    {
+    ) {
         $this->repository                                    = $repository;
         $this->finder                                        = new VehicleBodyTypeFinder($repository);
         $this->uniqueVehicleBodyTypeDescriptionSpecification = $uniqueVehicleBodyTypeDescriptionSpecification;
     }
 
     public function __invoke(
-        string  $id,
-        string  $newDescription,
+        string $id,
+        string $newDescription,
         ?string $newImage
-    ): void
-    {
+    ): void {
         $vehicleBodyType = $this->finder->__invoke($id);
 
         $vehicleBodyType->setDescription(

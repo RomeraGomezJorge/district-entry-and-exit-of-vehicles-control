@@ -12,11 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 class ModelOfVehicleEditController extends WebController
 {
     public function __invoke(
-        Request              $request,
+        Request $request,
         ModelOfVehicleFinder $finder,
-        RelatedEntities      $relatedEntities
-    ): Response
-    {
+        RelatedEntities $relatedEntities
+    ): Response {
         $modelOfVehicle = $finder->__invoke($request->get('id'));
 
         return $this->render(

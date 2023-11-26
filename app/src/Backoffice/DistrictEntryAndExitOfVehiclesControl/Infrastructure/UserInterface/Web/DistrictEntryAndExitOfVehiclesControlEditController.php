@@ -13,12 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 class DistrictEntryAndExitOfVehiclesControlEditController extends WebController
 {
     public function __invoke(
-        Request                                                      $request,
-        DistrictEntryAndExitOfVehiclesControlFinder                  $finder,
-        RelatedEntities                                              $relatedEntities,
+        Request $request,
+        DistrictEntryAndExitOfVehiclesControlFinder $finder,
+        RelatedEntities $relatedEntities,
         FindVehiclePassengersByDistrictEntryAndExitOfVehiclesControl $findVehiclePassengersByDistrictEntryAndExitOfVehiclesControl
-    ): Response
-    {
+    ): Response {
         $districtEntryAndExitOfVehiclesControl = $finder->__invoke($request->get('id'));
 
         return $this->render(

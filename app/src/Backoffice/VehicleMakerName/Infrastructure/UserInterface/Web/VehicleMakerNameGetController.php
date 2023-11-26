@@ -18,11 +18,10 @@ use Symfony\Component\HttpFoundation\Response;
 class VehicleMakerNameGetController extends WebController
 {
     public function __invoke(
-        Request                             $request,
+        Request $request,
         VehicleMakersNameByCriteriaSearcher $itemsByCriteriaSearcher,
-        VehicleMakerNameCounter             $counter
-    ): Response
-    {
+        VehicleMakerNameCounter $counter
+    ): Response {
         $orderBy = $request->get('orderBy');
 
         $order = $request->get('order');

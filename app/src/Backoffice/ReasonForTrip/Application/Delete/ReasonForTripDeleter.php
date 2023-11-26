@@ -13,8 +13,7 @@ final class ReasonForTripDeleter
 
     public function __construct(
         ReasonForTripRepository $repository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->finder     = new ReasonForTripFinder($repository);
     }

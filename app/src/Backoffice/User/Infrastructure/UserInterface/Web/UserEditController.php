@@ -13,12 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 class UserEditController extends WebController
 {
     public function __invoke(
-        Request                      $request,
-        UserFinder                   $finder,
-        RoleRepository               $roleRepository,
+        Request $request,
+        UserFinder $finder,
+        RoleRepository $roleRepository,
         TrafficPoliceBoothRepository $trafficPoliceBoothRepository
-    ): Response
-    {
+    ): Response {
         $user = $finder->__invoke($request->get('id'));
 
         return $this->render(

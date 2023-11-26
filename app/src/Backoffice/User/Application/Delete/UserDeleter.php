@@ -13,8 +13,7 @@ final class UserDeleter
 
     public function __construct(
         UserRepository $repository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->finder     = new UserFinder($repository);
     }

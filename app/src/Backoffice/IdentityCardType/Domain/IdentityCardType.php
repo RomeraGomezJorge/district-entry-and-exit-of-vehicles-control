@@ -15,12 +15,11 @@ class IdentityCardType extends AggregateRoot
     private $createAt;
 
     public static function create(
-        Uuid                                           $id,
-        string                                         $description,
-        DateTime                                       $createAt,
+        Uuid $id,
+        string $description,
+        DateTime $createAt,
         UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification
-    ): self
-    {
+    ): self {
 
         if (!$uniqueDescriptionSpecification->isSatisfiedBy($description)) {
             throw new NonUniqueIdentityCardTypeDescription($description);
@@ -55,10 +54,9 @@ class IdentityCardType extends AggregateRoot
     }
 
     public function changeDescription(
-        string                                         $newDescription,
+        string $newDescription,
         UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification
-    ): void
-    {
+    ): void {
         if (!StringUtils::equals($newDescription, $this->description)) {
             if (!$uniqueDescriptionSpecification->isSatisfiedBy($newDescription)) {
                 throw new NonUniqueIdentityCardTypeDescription($newDescription);

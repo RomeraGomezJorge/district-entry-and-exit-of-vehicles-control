@@ -23,18 +23,17 @@ class VehiclePassenger extends AggregateRoot
     private DateTime $updateAt;
 
     public static function create(
-        Uuid                                  $id,
-        string                                $name,
-        string                                $surname,
-        string                                $identityCard,
-        string                                $phone,
-        string                                $address,
+        Uuid $id,
+        string $name,
+        string $surname,
+        string $identityCard,
+        string $phone,
+        string $address,
         DistrictEntryAndExitOfVehiclesControl $districtEntryAndExitOfVehiclesControl,
-        IdentityCardType                      $identityCardType,
-        string                                $temperatureControl,
-        DateTime                              $createAt
-    ): self
-    {
+        IdentityCardType $identityCardType,
+        string $temperatureControl,
+        DateTime $createAt
+    ): self {
         $vehiclePassenger                                        = new self();
         $vehiclePassenger->id                                    = $id->value();
         $vehiclePassenger->name                                  = $name;
@@ -132,8 +131,7 @@ class VehiclePassenger extends AggregateRoot
 
     public function setDistrictEntryAndExitOfVehiclesControl(
         DistrictEntryAndExitOfVehiclesControl $districtEntryAndExitOfVehiclesControl
-    ): void
-    {
+    ): void {
         $this->districtEntryAndExitOfVehiclesControl = $districtEntryAndExitOfVehiclesControl;
     }
 

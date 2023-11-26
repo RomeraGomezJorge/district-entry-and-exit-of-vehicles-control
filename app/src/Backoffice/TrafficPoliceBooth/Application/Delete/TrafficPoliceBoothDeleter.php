@@ -13,8 +13,7 @@ final class TrafficPoliceBoothDeleter
 
     public function __construct(
         TrafficPoliceBoothRepository $repository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->finder     = new TrafficPoliceBoothFinder($repository);
     }

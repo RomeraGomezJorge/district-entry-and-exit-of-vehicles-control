@@ -12,12 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 class DistrictEntryAndExitOfVehiclesControlAddController extends WebController
 {
     public function __invoke(
-        FlashSession             $flashSession,
-        RamseyUuidGenerator      $ramseyUuidGenerator,
-        RelatedEntities          $relatedEntities,
+        FlashSession $flashSession,
+        RamseyUuidGenerator $ramseyUuidGenerator,
+        RelatedEntities $relatedEntities,
         PassengersInFlashSession $passengersInFlashSession
-    ): Response
-    {
+    ): Response {
         return $this->render(
             TwigTemplateConstants::FORM_FILE_PATH,
             [
@@ -52,9 +51,8 @@ class DistrictEntryAndExitOfVehiclesControlAddController extends WebController
 
     private function settingDefaultIfVehicleBodyTypeIdIsEmpty(
         RelatedEntities $relatedEntities,
-        FlashSession    $flashSession
-    )
-    {
+        FlashSession $flashSession
+    ) {
         if (!empty($flashSession->get('inputs.vehicle_body_type_id'))) {
             return $flashSession->get('inputs.vehicle_body_type_id');
         }

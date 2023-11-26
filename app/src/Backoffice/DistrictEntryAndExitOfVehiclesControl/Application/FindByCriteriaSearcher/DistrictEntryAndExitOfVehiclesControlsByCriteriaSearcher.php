@@ -17,9 +17,8 @@ final class DistrictEntryAndExitOfVehiclesControlsByCriteriaSearcher
 
     public function __construct(
         DistrictEntryAndExitOfVehiclesControlRepository $repository,
-        FilterUtils                                     $filterUtils
-    )
-    {
+        FilterUtils $filterUtils
+    ) {
         $this->repository  = $repository;
         $this->filterUtils = $filterUtils;
     }

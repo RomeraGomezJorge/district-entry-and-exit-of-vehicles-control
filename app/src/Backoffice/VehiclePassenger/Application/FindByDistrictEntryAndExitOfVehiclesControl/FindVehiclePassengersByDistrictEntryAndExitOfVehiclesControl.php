@@ -13,10 +13,9 @@ final class FindVehiclePassengersByDistrictEntryAndExitOfVehiclesControl
     private DistrictEntryAndExitOfVehiclesControlFinder $finderDistrictEntryAndExitOfVehiclesControl;
 
     public function __construct(
-        VehiclePassengerRepository                      $vehiclePassengerRepository,
+        VehiclePassengerRepository $vehiclePassengerRepository,
         DistrictEntryAndExitOfVehiclesControlRepository $DistrictEntryAndExitOfVehiclesControlRepository
-    )
-    {
+    ) {
         $this->repository                                  = $vehiclePassengerRepository;
         $this->finderDistrictEntryAndExitOfVehiclesControl = new DistrictEntryAndExitOfVehiclesControlFinder($DistrictEntryAndExitOfVehiclesControlRepository);
     }

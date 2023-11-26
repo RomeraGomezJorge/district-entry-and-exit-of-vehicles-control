@@ -28,8 +28,7 @@ final class DistrictEntryAndExitOfVehiclesControlCreatedDomainEvent extends Doma
         string $vehiclePassengers,
         string $eventId = null,
         string $occurredOn = null
-    )
-    {
+    ) {
         parent::__construct($id, $eventId, $occurredOn);
         $this->licensePlate       = $licensePlate;
         $this->modelOfVehicle     = $modelOfVehicle;

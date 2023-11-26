@@ -13,8 +13,7 @@ final class IdentityCardTypeDeleter
 
     public function __construct(
         IdentityCardTypeRepository $repository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->finder     = new IdentityCardTypeFinder($repository);
     }

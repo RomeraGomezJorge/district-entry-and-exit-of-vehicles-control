@@ -28,8 +28,7 @@ final class VehiclePassengerCreatedDomainEvent extends DomainEvent
         string $temperatureControl,
         string $eventId = null,
         string $occurredOn = null
-    )
-    {
+    ) {
         parent::__construct($id, $eventId, $occurredOn);
         $this->id                                    = $id;
         $this->name                                  = $name;

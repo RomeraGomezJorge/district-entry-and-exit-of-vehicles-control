@@ -25,12 +25,11 @@ class ModelOfVehicleGetController extends WebController
     const LIST_END_ON_1000 = 1000;
 
     public function __invoke(
-        Request                             $request,
-        ModelsOfVehicleByCriteriaSearcher   $itemsByCriteriaSearcher,
-        ModelOfVehicleCounter               $counter,
+        Request $request,
+        ModelsOfVehicleByCriteriaSearcher $itemsByCriteriaSearcher,
+        ModelOfVehicleCounter $counter,
         VehicleMakersNameByCriteriaSearcher $vehicleMakersNameByCriteriaSearcher
-    ): Response
-    {
+    ): Response {
         $orderBy = $request->get('orderBy');
 
         $order = $request->get('order');
@@ -91,8 +90,7 @@ class ModelOfVehicleGetController extends WebController
      */
     private function getVehicleMarkersNameSortAlphabetically(
         VehicleMakersNameByCriteriaSearcher $vehicleMakersNameByCriteriaSearcher
-    ): array
-    {
+    ): array {
         return $vehicleMakersNameByCriteriaSearcher->__invoke(
             self::DISPLAY_ALL_VEHICLE_MAKER_NAME,
             self::SORT_A_LIST_BY_DESCRIPTION,

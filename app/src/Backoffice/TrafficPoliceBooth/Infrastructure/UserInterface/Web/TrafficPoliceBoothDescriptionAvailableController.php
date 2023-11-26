@@ -10,10 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 final class TrafficPoliceBoothDescriptionAvailableController extends WebController
 {
     public function __invoke(
-        Request                                        $request,
+        Request $request,
         CheckTrafficPoliceBoothDescriptionAvailability $checkTrafficPoliceBoothDescriptionAvailability
-    ): JsonResponse
-    {
+    ): JsonResponse {
         return new JsonResponse(
             $checkTrafficPoliceBoothDescriptionAvailability->__invoke($request->get('description', ''))
         );

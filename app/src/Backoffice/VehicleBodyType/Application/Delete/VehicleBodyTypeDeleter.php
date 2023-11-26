@@ -13,8 +13,7 @@ final class VehicleBodyTypeDeleter
 
     public function __construct(
         VehicleBodyTypeRepository $repository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->finder     = new VehicleBodyTypeFinder($repository);
     }

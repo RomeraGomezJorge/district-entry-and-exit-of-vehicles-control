@@ -10,10 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 final class IdentityCardTypeDescriptionAvailabilityController extends WebController
 {
     public function __invoke(
-        Request                $request,
+        Request $request,
         IsDescriptionAvailable $IsDescriptionAvailable
-    ): JsonResponse
-    {
+    ): JsonResponse {
         return new JsonResponse(
             $IsDescriptionAvailable->__invoke($request->get('description', ''))
         );

@@ -29,14 +29,13 @@ final class DistrictEntryAndExitOfVehiclesControlCreator
 
     public function __construct(
         DistrictEntryAndExitOfVehiclesControlRepository $repository,
-        VehicleBodyTypeRepository                       $vehicleBodyTypeRepository,
-        ModelOfVehicleRepository                        $modelOfVehicleRepository,
-        DistrictRepository                              $districtRepository,
-        ReasonForTripRepository                         $reasonForTripRepository,
-        TrafficPoliceBoothRepository                    $trafficPoliceBoothRepository,
-        EventBus                                        $bus
-    )
-    {
+        VehicleBodyTypeRepository $vehicleBodyTypeRepository,
+        ModelOfVehicleRepository $modelOfVehicleRepository,
+        DistrictRepository $districtRepository,
+        ReasonForTripRepository $reasonForTripRepository,
+        TrafficPoliceBoothRepository $trafficPoliceBoothRepository,
+        EventBus $bus
+    ) {
         $this->repository               = $repository;
         $this->finderModelOfVehicle     = new ModelOfVehicleFinder($modelOfVehicleRepository);
         $this->finderDistrict           = new DistrictFinder($districtRepository);
@@ -53,9 +52,8 @@ final class DistrictEntryAndExitOfVehiclesControlCreator
         string $tripDestinationId,
         string $reasonForTripId,
         string $trafficPoliceBoothId,
-        array  $vehiclePassenger
-    )
-    {
+        array $vehiclePassenger
+    ) {
         $id = new Uuid($id);
 
         /* Comprueba la existencia del modelOfVehicle con el id antes de crear

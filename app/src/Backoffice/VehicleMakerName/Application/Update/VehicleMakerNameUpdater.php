@@ -17,10 +17,9 @@ final class VehicleMakerNameUpdater
     private UniqueVehicleMakerNameDescriptionSpecification $uniqueVehicleMakerNameDescriptionSpecification;
 
     public function __construct(
-        VehicleMakerNameRepository                     $repository,
+        VehicleMakerNameRepository $repository,
         UniqueVehicleMakerNameDescriptionSpecification $uniqueVehicleMakerNameDescriptionSpecification
-    )
-    {
+    ) {
         $this->repository                                     = $repository;
         $this->finder                                         = new VehicleMakerNameFinder($repository);
         $this->uniqueVehicleMakerNameDescriptionSpecification = $uniqueVehicleMakerNameDescriptionSpecification;
@@ -29,8 +28,7 @@ final class VehicleMakerNameUpdater
     public function __invoke(
         string $id,
         string $newDescription
-    ): void
-    {
+    ): void {
         $vehicleMakerName = $this->finder->__invoke($id);
 
         if ($this->hasDescriptionChanged($newDescription, $vehicleMakerName)) {
@@ -44,10 +42,9 @@ final class VehicleMakerNameUpdater
     }
 
     private function hasDescriptionChanged(
-        string           $newDescription,
+        string $newDescription,
         VehicleMakerName $vehicleMakerName
-    ): bool
-    {
+    ): bool {
         return !Stringutils::equals($newDescription, $vehicleMakerName->getDescription());
     }
 }

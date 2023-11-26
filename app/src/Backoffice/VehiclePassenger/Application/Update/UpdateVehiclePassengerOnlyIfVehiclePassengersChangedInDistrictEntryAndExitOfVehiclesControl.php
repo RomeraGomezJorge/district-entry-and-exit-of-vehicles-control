@@ -18,10 +18,9 @@ class UpdateVehiclePassengerOnlyIfVehiclePassengersChangedInDistrictEntryAndExit
     }
 
     public function __construct(
-        AddVehiclePassengerInDistrictEntryAndExitOfVehiclesControl    $creator,
+        AddVehiclePassengerInDistrictEntryAndExitOfVehiclesControl $creator,
         DeleteVehiclePassengerByDistrictEntryAndExitOfVehiclesControl $deleter
-    )
-    {
+    ) {
         $this->creator = $creator;
         $this->deleter = $deleter;
     }
@@ -44,9 +43,8 @@ class UpdateVehiclePassengerOnlyIfVehiclePassengersChangedInDistrictEntryAndExit
 
     private function addNewVehiclePassengersIn(
         string $districtEntryAndExitOfVehiclesControlId,
-               $vehiclePassengers
-    ): void
-    {
+        $vehiclePassengers
+    ): void {
         $this->creator->__invoke($districtEntryAndExitOfVehiclesControlId, $vehiclePassengers);
     }
 }

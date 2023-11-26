@@ -10,16 +10,14 @@ final class CheckModelOfVehicleDescriptionAvailability
 
     public function __construct(
         UniqueModelOfVehicleDescriptionSpecification $uniqueModelOfVehicleDescriptionSpecification
-    )
-    {
+    ) {
         $this->uniqueModelOfVehicleDescriptionSpecification = $uniqueModelOfVehicleDescriptionSpecification;
     }
 
     public function __invoke(
         string $description,
         string $vehicleMakerNameId
-    ): bool
-    {
+    ): bool {
         return $this->uniqueModelOfVehicleDescriptionSpecification->isSatisfiedBy(trim($description), $vehicleMakerNameId);
     }
 }

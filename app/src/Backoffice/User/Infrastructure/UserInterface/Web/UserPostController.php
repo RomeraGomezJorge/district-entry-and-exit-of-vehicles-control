@@ -14,10 +14,9 @@ use Symfony\Component\Validator\Validation;
 class UserPostController extends WebController
 {
     public function __invoke(
-        Request     $request,
+        Request $request,
         UserCreator $creator
-    ): Response
-    {
+    ): Response {
         $isCsrfTokenValid = $this->isCsrfTokenValid($request->get('id'), $request->get('csrf_token'));
 
         if (!$isCsrfTokenValid) {
@@ -49,15 +48,15 @@ class UserPostController extends WebController
                 'is_active'               => [new Assert\Optional()],
                 'csrf_token'              => [new Assert\NotBlank()]
             ]
-        /*
-        ^: anchored to beginning of string
-        \S*: any set of characters
-        (?=\S{8,}): of at least length 8
-        (?=\S*[a-z]): containing at least one lowercase letter
-        (?=\S*[A-Z]): and at least one uppercase letter
-        (?=\S*[\d]): and at least one number
-        $: anchored to the end of the string
-        */
+            /*
+            ^: anchored to beginning of string
+            \S*: any set of characters
+            (?=\S{8,}): of at least length 8
+            (?=\S*[a-z]): containing at least one lowercase letter
+            (?=\S*[A-Z]): and at least one uppercase letter
+            (?=\S*[\d]): and at least one number
+            $: anchored to the end of the string
+            */
         );
 
         $input = $request->request->all();

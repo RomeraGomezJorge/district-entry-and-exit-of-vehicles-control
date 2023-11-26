@@ -17,11 +17,10 @@ final class VehicleMakerNameCreator
     private EventBus $bus;
 
     public function __construct(
-        VehicleMakerNameRepository                     $repository,
+        VehicleMakerNameRepository $repository,
         UniqueVehicleMakerNameDescriptionSpecification $uniqueVehicleMakerNameDescriptionSpecification,
-        EventBus                                       $bus
-    )
-    {
+        EventBus $bus
+    ) {
         $this->repository                                     = $repository;
         $this->uniqueVehicleMakerNameDescriptionSpecification = $uniqueVehicleMakerNameDescriptionSpecification;
         $this->bus                                            = $bus;

@@ -15,8 +15,7 @@ final class DistrictCreatedDomainEvent extends DomainEvent
         string $description,
         string $eventId = null,
         string $occurredOn = null
-    )
-    {
+    ) {
         parent::__construct($id, $eventId, $occurredOn);
 
         $this->description = $description;
@@ -29,11 +28,10 @@ final class DistrictCreatedDomainEvent extends DomainEvent
 
     public static function fromPrimitives(
         string $aggregateId,
-        array  $body,
+        array $body,
         string $eventId,
         string $occurredOn
-    ): DomainEvent
-    {
+    ): DomainEvent {
         return new self($aggregateId, $body['description'], $eventId, $occurredOn);
     }
 

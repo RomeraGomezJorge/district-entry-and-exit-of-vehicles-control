@@ -13,8 +13,7 @@ final class DistrictEntryAndExitOfVehiclesControlDeleter
 
     public function __construct(
         DistrictEntryAndExitOfVehiclesControlRepository $repository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->finder     = new DistrictEntryAndExitOfVehiclesControlFinder($repository);
     }

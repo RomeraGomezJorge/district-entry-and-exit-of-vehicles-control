@@ -17,11 +17,10 @@ final class ReasonForTripCreator
     private EventBus $bus;
 
     public function __construct(
-        ReasonForTripRepository                     $repository,
+        ReasonForTripRepository $repository,
         UniqueReasonForTripDescriptionSpecification $uniqueReasonForTripDescriptionSpecification,
-        EventBus                                    $bus
-    )
-    {
+        EventBus $bus
+    ) {
         $this->repository                                  = $repository;
         $this->uniqueReasonForTripDescriptionSpecification = $uniqueReasonForTripDescriptionSpecification;
         $this->bus                                         = $bus;
@@ -30,8 +29,7 @@ final class ReasonForTripCreator
     public function __invoke(
         string $id,
         string $description
-    )
-    {
+    ) {
         $id = new Uuid($id);
 
         $createAt = new \DateTime();

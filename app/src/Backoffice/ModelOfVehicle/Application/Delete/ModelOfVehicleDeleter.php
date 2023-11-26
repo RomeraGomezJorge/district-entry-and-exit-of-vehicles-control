@@ -13,8 +13,7 @@ final class ModelOfVehicleDeleter
 
     public function __construct(
         ModelOfVehicleRepository $repository
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->finder     = new ModelOfVehicleFinder($repository);
     }

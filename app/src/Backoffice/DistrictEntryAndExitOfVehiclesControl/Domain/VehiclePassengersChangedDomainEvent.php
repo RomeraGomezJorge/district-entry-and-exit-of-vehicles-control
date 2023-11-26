@@ -13,8 +13,7 @@ final class VehiclePassengersChangedDomainEvent extends DomainEvent
         string $vehiclePassengers,
         string $eventId = null,
         string $occurredOn = null
-    )
-    {
+    ) {
         parent::__construct($id, $eventId, $occurredOn);
         $this->vehiclePassengers = $vehiclePassengers;
     }

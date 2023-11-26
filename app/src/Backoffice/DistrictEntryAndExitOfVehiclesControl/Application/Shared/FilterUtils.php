@@ -13,8 +13,7 @@ final class FilterUtils
 
     public function __construct(
         VehiclePassengersByCriteriaSearcher $vehiclePassengersByCriteriaSearcher
-    )
-    {
+    ) {
         $this->vehiclePassengersByCriteriaSearcher = $vehiclePassengersByCriteriaSearcher;
     }
 

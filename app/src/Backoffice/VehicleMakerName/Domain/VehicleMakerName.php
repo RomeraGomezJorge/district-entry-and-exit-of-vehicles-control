@@ -15,12 +15,11 @@ class VehicleMakerName extends AggregateRoot
     private DateTime $createAt;
 
     public static function create(
-        Uuid                                           $id,
-        string                                         $description,
-        DateTime                                       $createAt,
+        Uuid $id,
+        string $description,
+        DateTime $createAt,
         UniqueVehicleMakerNameDescriptionSpecification $uniqueVehicleMakerNameDescriptionSpecification
-    ): self
-    {
+    ): self {
 
         if (!$uniqueVehicleMakerNameDescriptionSpecification->isSatisfiedBy($description)) {
             throw new NonUniqueVehicleMakerNameDescription($description);
@@ -55,10 +54,9 @@ class VehicleMakerName extends AggregateRoot
     }
 
     public function changeDescription(
-        string                                         $newDescription,
+        string $newDescription,
         UniqueVehicleMakerNameDescriptionSpecification $uniqueTagDescriptionSpecification
-    ): void
-    {
+    ): void {
         if (!Stringutils::equals($newDescription, $this->description)) {
             if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
                 throw new NonUniqueVehicleMakerNameDescription($newDescription);

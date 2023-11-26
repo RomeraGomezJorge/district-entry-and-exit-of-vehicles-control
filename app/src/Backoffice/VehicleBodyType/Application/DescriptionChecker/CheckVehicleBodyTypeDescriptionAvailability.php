@@ -10,8 +10,7 @@ final class CheckVehicleBodyTypeDescriptionAvailability
 
     public function __construct(
         UniqueVehicleBodyTypeDescriptionSpecification $uniqueVehicleBodyTypeDescriptionSpecification
-    )
-    {
+    ) {
         $this->uniqueVehicleBodyTypeDescriptionSpecification = $uniqueVehicleBodyTypeDescriptionSpecification;
     }
 

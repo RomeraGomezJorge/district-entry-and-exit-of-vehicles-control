@@ -19,12 +19,11 @@ final class ModelOfVehicleUpdater
     private UniqueModelOfVehicleDescriptionSpecification $uniqueModelOfVehicleDescriptionSpecification;
 
     public function __construct(
-        ModelOfVehicleRepository                     $repository,
+        ModelOfVehicleRepository $repository,
         UniqueModelOfVehicleDescriptionSpecification $uniqueModelOfVehicleDescriptionSpecification,
-        VehicleMakerNameRepository                   $vehicleMakerNameRepository,
-        VehicleBodyTypeRepository                    $vehicleBodyTypeRepository
-    )
-    {
+        VehicleMakerNameRepository $vehicleMakerNameRepository,
+        VehicleBodyTypeRepository $vehicleBodyTypeRepository
+    ) {
         $this->repository                                   = $repository;
         $this->finder                                       = new ModelOfVehicleFinder($repository);
         $this->finderVehicleMakerName                       = new VehicleMakerNameFinder($vehicleMakerNameRepository);
@@ -37,8 +36,7 @@ final class ModelOfVehicleUpdater
         string $newDescription,
         string $newVehicleMakerNameId,
         string $newVehicleBodyTypeId
-    ): void
-    {
+    ): void {
         $modelOfVehicle = $this->finder->__invoke($id);
 
         $newVehicleMakerName = $this->finderVehicleMakerName->__invoke($newVehicleMakerNameId);

@@ -13,10 +13,9 @@ final class ReasonForTripUpdater
     private UniqueReasonForTripDescriptionSpecification $uniqueReasonForTripDescriptionSpecification;
 
     public function __construct(
-        ReasonForTripRepository                     $repository,
+        ReasonForTripRepository $repository,
         UniqueReasonForTripDescriptionSpecification $uniqueReasonForTripDescriptionSpecification
-    )
-    {
+    ) {
         $this->repository                                  = $repository;
         $this->finder                                      = new ReasonForTripFinder($repository);
         $this->uniqueReasonForTripDescriptionSpecification = $uniqueReasonForTripDescriptionSpecification;

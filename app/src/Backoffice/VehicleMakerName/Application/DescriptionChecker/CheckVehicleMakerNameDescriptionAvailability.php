@@ -10,8 +10,7 @@ final class CheckVehicleMakerNameDescriptionAvailability
 
     public function __construct(
         UniqueVehicleMakerNameDescriptionSpecification $uniqueVehicleMakerNameDescriptionSpecification
-    )
-    {
+    ) {
         $this->uniqueVehicleMakerNameDescriptionSpecification = $uniqueVehicleMakerNameDescriptionSpecification;
     }
 

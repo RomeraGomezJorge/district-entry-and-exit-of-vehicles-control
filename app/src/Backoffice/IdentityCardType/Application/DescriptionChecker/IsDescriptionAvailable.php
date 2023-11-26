@@ -10,8 +10,7 @@ final class IsDescriptionAvailable
 
     public function __construct(
         UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification
-    )
-    {
+    ) {
         $this->uniqueDescriptionSpecification = $uniqueDescriptionSpecification;
     }
 

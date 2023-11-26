@@ -38,10 +38,9 @@ final class MySqlModelOfVehicleRepository extends DoctrineRepository implements 
     }
 
     public function isDescriptionExits(
-        array   $descriptionToFind,
+        array $descriptionToFind,
         ?string $makerNameId
-    ): bool
-    {
+    ): bool {
         $modelsOfVehicleFound = $this->repository(self::ENTITY_CLASS)->findBy($descriptionToFind);
 
         if (!$this->isDescriptionWasFound($modelsOfVehicleFound)) {
@@ -59,9 +58,8 @@ final class MySqlModelOfVehicleRepository extends DoctrineRepository implements 
     /* TODO mejorar el naming */
     private function isDescriptionOfModelAlreadyCreatedToAVehicleMakerName(
         ?string $makerNameId,
-        array   $modelsOfVehicleFound
-    ): bool
-    {
+        array $modelsOfVehicleFound
+    ): bool {
         foreach ($modelsOfVehicleFound as $modelOfVehicleFound) {
             if (
                 !StringUtils::equals(

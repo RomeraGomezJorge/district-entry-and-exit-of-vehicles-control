@@ -16,10 +16,9 @@ final class ModelsOfVehicleByCriteriaSearcher
     private FilterUtilsForModelOfVehicle $filterUtils;
 
     public function __construct(
-        ModelOfVehicleRepository     $repository,
+        ModelOfVehicleRepository $repository,
         FilterUtilsForModelOfVehicle $filterUtils
-    )
-    {
+    ) {
         $this->repository  = $repository;
         $this->filterUtils = $filterUtils;
     }

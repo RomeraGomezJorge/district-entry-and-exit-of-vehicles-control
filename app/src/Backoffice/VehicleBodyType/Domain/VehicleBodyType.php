@@ -19,13 +19,12 @@ class VehicleBodyType extends AggregateRoot
     private $createAt;
 
     public static function create(
-        Uuid                                          $id,
-        string                                        $description,
-        ?string                                       $image,
-        DateTime                                      $createAt,
+        Uuid $id,
+        string $description,
+        ?string $image,
+        DateTime $createAt,
         UniqueVehicleBodyTypeDescriptionSpecification $uniqueVehicleBodyTypeDescriptionSpecification
-    ): self
-    {
+    ): self {
         if (!$uniqueVehicleBodyTypeDescriptionSpecification->isSatisfiedBy($description)) {
             throw new NonUniqueVehicleBodyTypeDescription($description);
         }
@@ -61,10 +60,9 @@ class VehicleBodyType extends AggregateRoot
     }
 
     public function setDescription(
-        string                                        $newDescription,
+        string $newDescription,
         UniqueVehicleBodyTypeDescriptionSpecification $uniqueTagDescriptionSpecification
-    ): void
-    {
+    ): void {
         if (!StringUtils::equals($newDescription, $this->description)) {
             if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
                 throw new NonUniqueVehicleBodyTypeDescription($newDescription);

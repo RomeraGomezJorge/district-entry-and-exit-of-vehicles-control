@@ -11,10 +11,9 @@ final class DeleteVehiclePassengerByDistrictEntryAndExitOfVehiclesControl
     private FindVehiclePassengersByDistrictEntryAndExitOfVehiclesControl $finder;
 
     public function __construct(
-        VehiclePassengerRepository                                   $repository,
+        VehiclePassengerRepository $repository,
         FindVehiclePassengersByDistrictEntryAndExitOfVehiclesControl $finder
-    )
-    {
+    ) {
         $this->repository = $repository;
 
         $this->finder = $finder;

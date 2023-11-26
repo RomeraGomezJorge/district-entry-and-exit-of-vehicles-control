@@ -13,10 +13,9 @@ final class IdentityCardTypeUpdater
     private UniqueIdentityCardTypeDescriptionSpecification $uniqueIdentityCardTypeDescriptionSpecification;
 
     public function __construct(
-        IdentityCardTypeRepository                     $repository,
+        IdentityCardTypeRepository $repository,
         UniqueIdentityCardTypeDescriptionSpecification $uniqueIdentityCardTypeDescriptionSpecification
-    )
-    {
+    ) {
         $this->repository                                     = $repository;
         $this->finder                                         = new IdentityCardTypeFinder($repository);
         $this->uniqueIdentityCardTypeDescriptionSpecification = $uniqueIdentityCardTypeDescriptionSpecification;

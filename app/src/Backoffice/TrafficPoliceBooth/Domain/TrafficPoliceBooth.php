@@ -15,12 +15,11 @@ class TrafficPoliceBooth extends AggregateRoot
     private $createAt;
 
     public static function create(
-        Uuid                                             $id,
-        string                                           $description,
-        DateTime                                         $createAt,
+        Uuid $id,
+        string $description,
+        DateTime $createAt,
         UniqueTrafficPoliceBoothDescriptionSpecification $uniqueTrafficPoliceBoothDescriptionSpecification
-    ): self
-    {
+    ): self {
 
         if (!$uniqueTrafficPoliceBoothDescriptionSpecification->isSatisfiedBy($description)) {
             throw new NonUniqueTrafficPoliceBoothDescription($description);
@@ -55,10 +54,9 @@ class TrafficPoliceBooth extends AggregateRoot
     }
 
     public function changeDescription(
-        string                                           $newDescription,
+        string $newDescription,
         UniqueTrafficPoliceBoothDescriptionSpecification $uniqueTagDescriptionSpecification
-    ): void
-    {
+    ): void {
         if (!StringUtils::equals($newDescription, $this->description)) {
             if (!$uniqueTagDescriptionSpecification->isSatisfiedBy($newDescription)) {
                 throw new NonUniqueTrafficPoliceBoothDescription($newDescription);
