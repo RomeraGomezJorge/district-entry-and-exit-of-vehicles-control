@@ -25,7 +25,7 @@ identity_card_type_update:
 
 identity_card_type_description_available:
   path: /description-available
-  defaults: { _controller: App\Backoffice\IdentityCardType\Infrastructure\UserInterface\Web\IdentityCardTypeDescriptionAvailableController}
+  defaults: { _controller: App\Backoffice\IdentityCardType\Infrastructure\UserInterface\Web\IdentityCardTypeDescriptionAvailabilityController }
   methods:  [GET]
 
 identity_card_type_delete:

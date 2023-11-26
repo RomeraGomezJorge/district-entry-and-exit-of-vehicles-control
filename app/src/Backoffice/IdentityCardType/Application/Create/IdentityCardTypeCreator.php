@@ -11,18 +11,18 @@ use App\Shared\Domain\ValueObject\Uuid;
 final class IdentityCardTypeCreator
 {
     private IdentityCardTypeRepository $repository;
-    private UniqueIdentityCardTypeDescriptionSpecification $uniqueIdentityCardTypeDescriptionSpecification;
+    private UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification;
     private EventBus $bus;
 
     public function __construct(
         IdentityCardTypeRepository                     $repository,
-        UniqueIdentityCardTypeDescriptionSpecification $uniqueIdentityCardTypeDescriptionSpecification,
+        UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification,
         EventBus                                       $bus
     )
     {
-        $this->repository                                     = $repository;
-        $this->uniqueIdentityCardTypeDescriptionSpecification = $uniqueIdentityCardTypeDescriptionSpecification;
-        $this->bus                                            = $bus;
+        $this->repository                     = $repository;
+        $this->uniqueDescriptionSpecification = $uniqueDescriptionSpecification;
+        $this->bus                            = $bus;
     }
 
     public function __invoke(string $id, string $description)
@@ -35,7 +35,7 @@ final class IdentityCardTypeCreator
             $id,
             trim($description),
             $createAt,
-            $this->uniqueIdentityCardTypeDescriptionSpecification
+            $this->uniqueDescriptionSpecification
         );
 
         $this->repository->save($identityCardType);

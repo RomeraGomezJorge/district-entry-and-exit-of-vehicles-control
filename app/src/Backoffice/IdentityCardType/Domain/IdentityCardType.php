@@ -18,11 +18,11 @@ class IdentityCardType extends AggregateRoot
         Uuid                                           $id,
         string                                         $description,
         DateTime                                       $createAt,
-        UniqueIdentityCardTypeDescriptionSpecification $uniqueIdentityCardTypeDescriptionSpecification
+        UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification
     ): self
     {
 
-        if (!$uniqueIdentityCardTypeDescriptionSpecification->isSatisfiedBy($description)) {
+        if (!$uniqueDescriptionSpecification->isSatisfiedBy($description)) {
             throw new NonUniqueIdentityCardTypeDescription($description);
         }
 

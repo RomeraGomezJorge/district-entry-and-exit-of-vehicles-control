@@ -20,7 +20,7 @@ class IdentityCardTypePostController extends WebController
 
         $validationErrors = ValidationRulesToCreateAndUpdate::verify($request);
 
-        return $validationErrors->count()
+        return ($validationErrors->count())
             ? $this->redirectWithErrors(TwigTemplateConstants::CREATE_PATH, $validationErrors, $request)
             : $this->create($request, $creator);
     }

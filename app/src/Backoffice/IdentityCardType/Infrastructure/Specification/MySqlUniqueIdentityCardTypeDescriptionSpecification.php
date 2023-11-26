@@ -18,6 +18,6 @@ final class MySqlUniqueIdentityCardTypeDescriptionSpecification implements Uniqu
 
     public function isSatisfiedBy(string $description): bool
     {
-        return !$this->repository->isDescriptionExits(array('description' => $description));
+        return !$this->repository->isDescriptionExits($description);
     }
 }

@@ -7,7 +7,7 @@ use App\Shared\Domain\ValueObject\Uuid;
 
 interface IdentityCardTypeRepository
 {
-    public function save(IdentityCardType $IdentityCardType): void;
+    public function save(IdentityCardType $identityCardType): void;
 
     public function search(Uuid $id): ?IdentityCardType;
 
@@ -17,5 +17,5 @@ interface IdentityCardTypeRepository
 
     public function totalMatchingRows(Criteria $criteria): int;
 
-    public function delete(IdentityCardType $IdentityCardType): void;
+    public function delete(IdentityCardType $identityCardType): void;
 }
