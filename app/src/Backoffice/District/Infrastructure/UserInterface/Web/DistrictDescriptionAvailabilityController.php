@@ -11,11 +11,14 @@ final class DistrictDescriptionAvailabilityController extends WebController
 {
     public function __invoke(
         Request $request,
-        IsDescriptionAvailable $IsDescriptionAvailable
+        IsDescriptionAvailable $isDescriptionAvailable
     ): JsonResponse {
-        // TODO: try catch
-        return new JsonResponse(
-            $IsDescriptionAvailable->__invoke($request->get('description', ''))
-        );
+        try {
+            return new JsonResponse(
+                $isDescriptionAvailable->__invoke($request->get('description', ''))
+            );
+        } catch (\Exception $exception) {
+            return $this->jsonResponseFail($exception->getMessage());
+        }
     }
 }

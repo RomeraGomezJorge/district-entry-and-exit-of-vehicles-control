@@ -4,17 +4,17 @@ namespace App\Backoffice\District\Application\Update;
 
 use App\Backoffice\District\Application\Find\DistrictFinder;
 use App\Backoffice\District\Domain\DistrictRepository;
-use App\Backoffice\District\Domain\UniqueDistrictDescriptionSpecification;
+use App\Backoffice\District\Domain\UniqueDistrictDescriptionSpecification as UniqueDescriptionSpecification;
 
 final class DistrictUpdater
 {
     private DistrictRepository $repository;
     private DistrictFinder $finder;
-    private UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification;
+    private UniqueDescriptionSpecification $uniqueDescriptionSpecification;
 
     public function __construct(
         DistrictRepository $repository,
-        UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification
+        UniqueDescriptionSpecification $uniqueDescriptionSpecification
     ) {
         $this->repository                     = $repository;
         $this->finder                         = new DistrictFinder($repository);

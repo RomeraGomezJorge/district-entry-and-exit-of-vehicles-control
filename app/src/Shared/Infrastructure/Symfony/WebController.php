@@ -18,6 +18,21 @@ abstract class WebController extends AbstractController
         return $this->redirectToRoute($routeName);
     }
 
+    public function redirectWithSuccessCreateMessage( string $routeName): RedirectResponse
+    {
+        return $this->redirectWithMessage($routeName,MessageConstant::SUCCESS_MESSAGE_TO_CREATE);
+    }
+
+    public function redirectWithSuccessUpdateMessage( string $routeName): RedirectResponse
+    {
+        return $this->redirectWithMessage($routeName,MessageConstant::SUCCESS_MESSAGE_TO_UPDATE);
+    }
+
+    public function redirectOnInvalidCsrfToken(): RedirectResponse
+    {
+        return $this->redirectWithMessage('error_page', MessageConstant::INVALID_TOKEN_CSFR_MESSAGE);
+    }
+
     public function redirectWithErrors(
         string                           $routeName,
         ConstraintViolationListInterface $errors,
@@ -61,11 +76,6 @@ abstract class WebController extends AbstractController
         return strpos($routeName, "edit") !== false;
     }
 
-    protected function redirectOnInvalidCsrfToken(): RedirectResponse
-    {
-        return $this->redirectOnInvalidCsrfToken();
-    }
-
     protected function jsonResponseOnInvalidCsrfToken(): JsonResponse
     {
         return new JsonResponse([
@@ -91,4 +101,6 @@ abstract class WebController extends AbstractController
             'message' => $message
         ]);
     }
+
+
 }

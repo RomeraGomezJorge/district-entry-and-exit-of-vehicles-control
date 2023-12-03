@@ -4,21 +4,19 @@ namespace App\Backoffice\District\Application\Create;
 
 use App\Backoffice\District\Domain\District;
 use App\Backoffice\District\Domain\DistrictRepository;
-use App\Backoffice\District\Domain\UniqueDistrictDescriptionSpecification;
+use App\Backoffice\District\Domain\UniqueDistrictDescriptionSpecification as UniqueDescriptionSpecification;
 use App\Shared\Domain\Bus\Event\EventBus;
 use App\Shared\Domain\ValueObject\Uuid;
 
 final class DistrictCreator
 {
     private DistrictRepository $repository;
-
-    private UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification;
-
+    private UniqueDescriptionSpecification $uniqueDescriptionSpecification;
     private EventBus $bus;
 
     public function __construct(
         DistrictRepository $repository,
-        UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification,
+        UniqueDescriptionSpecification $uniqueDescriptionSpecification,
         EventBus $bus
     ) {
         $this->repository                     = $repository;

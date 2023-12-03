@@ -30,7 +30,7 @@ class DistrictGetController extends WebController
 
         $limit = $request->get('limit');
 
-        $filters = $filters = FilterUtils::createAnArrayToUseAsAFilter($request->get('filters'));
+        $filters = FilterUtils::createAnArrayToUseAsAFilter($request->get('filters'));
 
         $districts = $itemsByCriteriaSearcher->__invoke(
             $filters,
