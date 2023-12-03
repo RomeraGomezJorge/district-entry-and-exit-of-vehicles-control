@@ -18,11 +18,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ModelOfVehicleGetController extends WebController
 {
-    const DISPLAY_ALL_VEHICLE_MAKER_NAME = [];
-    const SORT_A_LIST_BY_DESCRIPTION = 'description';
-    const SORT_A_LIST_ALPHABETICALLY = 'desc';
-    const LIST_BEGIN_ON_0 = 0;
-    const LIST_END_ON_1000 = 1000;
+    private const DISPLAY_ALL_VEHICLE_MAKER_NAME = [];
+    private const SORT_A_LIST_BY_DESCRIPTION = 'description';
+    private const SORT_A_LIST_ALPHABETICALLY = 'desc';
+    private const LIST_BEGIN_ON_0 = 0;
+    private const LIST_END_ON_1000 = 1000;
 
     public function __invoke(
         Request $request,
@@ -31,13 +31,9 @@ class ModelOfVehicleGetController extends WebController
         VehicleMakersNameByCriteriaSearcher $vehicleMakersNameByCriteriaSearcher
     ): Response {
         $orderBy = $request->get('orderBy');
-
-        $order = $request->get('order');
-
-        $page = $request->get('page');
-
-        $limit = $request->get('limit');
-
+        $order   = $request->get('order');
+        $page    = $request->get('page');
+        $limit   = $request->get('limit');
         $filters = FilterUtils::createAnArrayToUseAsAFilter($request->get('filters'));
 
         $modelsOfVehicle = $itemsByCriteriaSearcher->__invoke(

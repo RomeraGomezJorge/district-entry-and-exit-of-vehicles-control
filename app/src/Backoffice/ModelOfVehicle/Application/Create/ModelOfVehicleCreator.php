@@ -15,11 +15,8 @@ use App\Shared\Domain\ValueObject\Uuid;
 final class ModelOfVehicleCreator
 {
     private ModelOfVehicleRepository $repository;
-
     private VehicleMakerNameFinder $finderVehicleMakerName;
-
     private UniqueModelOfVehicleDescriptionSpecification $uniqueModelOfVehicleDescriptionSpecification;
-
     private EventBus $bus;
 
     private VehicleBodyTypeFinder $finderVehicleBodyType;

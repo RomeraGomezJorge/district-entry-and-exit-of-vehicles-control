@@ -2,30 +2,29 @@
 
 namespace App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web;
 
-use App\Backoffice\ModelOfVehicle\Application\Create\ModelOfVehicleCreator;
-use App\Shared\Infrastructure\Constant\MessageConstant;
+use App\Backoffice\ModelOfVehicle\Application\Create\ModelOfVehicleCreator as Creator;
 use App\Shared\Infrastructure\Symfony\WebController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ModelOfVehiclePostController extends WebController
 {
-    public function __invoke(Request $request, ModelOfVehicleCreator $creator): Response
+    public function __invoke(Request $request, Creator $creator): Response
     {
         $isCsrfTokenValid = $this->isCsrfTokenValid($request->get('id'), $request->get('csrf_token'));
 
         if (!$isCsrfTokenValid) {
-            return $this->redirectWithMessage('error_page', MessageConstant::INVALID_TOKEN_CSFR_MESSAGE);
+            return $this->redirectOnInvalidCsrfToken();
         }
 
         $validationErrors = ValidationRulesToCreateAndUpdate::verify($request);
 
-        return $validationErrors->count()
+        return ($validationErrors->count())
             ? $this->redirectWithErrors(TwigTemplateConstants::CREATE_PATH, $validationErrors, $request)
             : $this->create($request, $creator);
     }
 
-    private function create(Request $request, ModelOfVehicleCreator $creator)
+    private function create(Request $request, Creator $creator)
     {
         $creator->__invoke(
             $request->get('id'),
@@ -34,9 +33,6 @@ class ModelOfVehiclePostController extends WebController
             $request->get('vehicleBodyTypeId')
         );
 
-        return $this->redirectWithMessage(
-            TwigTemplateConstants::LIST_PATH,
-            MessageConstant::SUCCESS_MESSAGE_TO_CREATE
-        );
+        return $this->redirectWithSuccessCreateMessage(TwigTemplateConstants::LIST_PATH);
     }
 }

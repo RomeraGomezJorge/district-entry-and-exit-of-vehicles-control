@@ -13,14 +13,18 @@ final class ModelOfVehicleDescriptionAvailableController extends WebController
         Request $request,
         CheckModelOfVehicleDescriptionAvailability $checkModelOfVehicleDescriptionAvailability
     ): JsonResponse {
-        return new JsonResponse(
-            $checkModelOfVehicleDescriptionAvailability->__invoke(
-                $request->get(
-                    'description',
-                    ''
-                ),
-                $request->get('vehicleMakerNameId', '')
-            )
-        );
+        try {
+            return new JsonResponse(
+                $checkModelOfVehicleDescriptionAvailability->__invoke(
+                    $request->get(
+                        'description',
+                        ''
+                    ),
+                    $request->get('vehicleMakerNameId', '')
+                )
+            );
+        } catch (\Exception $exception) {
+            $this->jsonResponseFail($exception->getMessage());
+        }
     }
 }

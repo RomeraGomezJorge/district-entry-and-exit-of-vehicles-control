@@ -9,7 +9,7 @@ use App\Shared\Infrastructure\Utils\FilterUtilsForFieldThatNotBelongToAnEntity;
 
 final class FilterUtilsForModelOfVehicle
 {
-    const FIELDS_NAME_THAT_DOES_NOT_BELONG_TO_THE_ENTITY_IN_THE_FILTER_FORM = ['vehicleMakerName'];
+    private const FIELDS_NAME_THAT_DOES_NOT_BELONG_TO_THE_ENTITY_IN_THE_FILTER_FORM = ['vehicleMakerName'];
     private VehicleMakerNameFinder $finderVehicleMakerName;
 
     public function __construct(VehicleMakerNameRepository $vehicleMakerNameRepository)

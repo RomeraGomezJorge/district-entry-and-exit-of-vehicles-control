@@ -8,7 +8,6 @@ use App\Backoffice\ModelOfVehicle\Domain\ModelOfVehicleRepository;
 final class ModelOfVehicleDeleter
 {
     private ModelOfVehicleRepository $repository;
-
     private ModelOfVehicleFinder $finder;
 
     public function __construct(

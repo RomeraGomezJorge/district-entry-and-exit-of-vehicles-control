@@ -33,8 +33,9 @@ function addUniqueDescriptionRule(inputSelector) {
             data: {
                 'description': function () {
                     return inputSelector.val();
-                }, 'vehicleMakerNameId': function () {
-                    return $('select[name="vehicleMakerName_id"]').val()
+                },
+                'vehicleMakerNameId': function () {
+                    return $('select[name="vehicleMakerNameId"]').val()
                 }
             },
             dataType: 'json',

@@ -23,13 +23,9 @@ class DistrictGetController extends WebController
         DistrictCounter $counter
     ): Response {
         $orderBy = $request->get('orderBy');
-
-        $order = $request->get('order');
-
-        $page = $request->get('page');
-
-        $limit = $request->get('limit');
-
+        $order   = $request->get('order');
+        $page    = $request->get('page');
+        $limit   = $request->get('limit');
         $filters = FilterUtils::createAnArrayToUseAsAFilter($request->get('filters'));
 
         $districts = $itemsByCriteriaSearcher->__invoke(
