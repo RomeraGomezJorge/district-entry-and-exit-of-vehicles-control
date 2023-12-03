@@ -2,7 +2,7 @@
 
 namespace App\Backoffice\IdentityCardType\Infrastructure\UserInterface\Web;
 
-use App\Backoffice\IdentityCardType\Application\Find\IdentityCardTypeFinder;
+use App\Backoffice\IdentityCardType\Application\Find\IdentityCardTypeFinder as Finder;
 use App\Shared\Infrastructure\Constant\FormConstant;
 use App\Shared\Infrastructure\Symfony\WebController;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class IdentityCardTypeEditController extends WebController
 {
-    public function __invoke(Request $request, IdentityCardTypeFinder $finder): Response
+    public function __invoke(Request $request, Finder $finder): Response
     {
         $identityCardType = $finder->__invoke($request->get('id'));
 

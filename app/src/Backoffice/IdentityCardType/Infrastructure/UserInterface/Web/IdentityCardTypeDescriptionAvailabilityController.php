@@ -13,8 +13,12 @@ final class IdentityCardTypeDescriptionAvailabilityController extends WebControl
         Request $request,
         IsDescriptionAvailable $IsDescriptionAvailable
     ): JsonResponse {
-        return new JsonResponse(
-            $IsDescriptionAvailable->__invoke($request->get('description', ''))
-        );
+        try {
+            return new JsonResponse(
+                $IsDescriptionAvailable->__invoke($request->get('description', ''))
+            );
+        } catch (\Exception $exception) {
+            return $this->jsonResponseFail($exception->getMessage());
+        }
     }
 }

@@ -4,21 +4,21 @@ namespace App\Backoffice\IdentityCardType\Application\Update;
 
 use App\Backoffice\IdentityCardType\Application\Find\IdentityCardTypeFinder;
 use App\Backoffice\IdentityCardType\Domain\IdentityCardTypeRepository;
-use App\Backoffice\IdentityCardType\Domain\UniqueIdentityCardTypeDescriptionSpecification;
+use App\Backoffice\IdentityCardType\Domain\UniqueIdentityCardTypeDescriptionSpecification as UniqueDescriptionSpecification;
 
 final class IdentityCardTypeUpdater
 {
     private IdentityCardTypeRepository $repository;
     private IdentityCardTypeFinder $finder;
-    private UniqueIdentityCardTypeDescriptionSpecification $uniqueIdentityCardTypeDescriptionSpecification;
+    private UniqueDescriptionSpecification $uniqueDescriptionSpecification;
 
     public function __construct(
         IdentityCardTypeRepository $repository,
-        UniqueIdentityCardTypeDescriptionSpecification $uniqueIdentityCardTypeDescriptionSpecification
+        UniqueDescriptionSpecification $uniqueDescriptionSpecification
     ) {
-        $this->repository                                     = $repository;
-        $this->finder                                         = new IdentityCardTypeFinder($repository);
-        $this->uniqueIdentityCardTypeDescriptionSpecification = $uniqueIdentityCardTypeDescriptionSpecification;
+        $this->repository                     = $repository;
+        $this->finder                         = new IdentityCardTypeFinder($repository);
+        $this->uniqueDescriptionSpecification = $uniqueDescriptionSpecification;
     }
 
     public function __invoke(string $id, string $newDescription): void
@@ -27,7 +27,7 @@ final class IdentityCardTypeUpdater
 
         $identityCardType->changeDescription(
             trim($newDescription),
-            $this->uniqueIdentityCardTypeDescriptionSpecification
+            $this->uniqueDescriptionSpecification
         );
 
         $this->repository->save($identityCardType);

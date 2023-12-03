@@ -8,7 +8,6 @@ use App\Backoffice\IdentityCardType\Domain\IdentityCardTypeRepository;
 final class IdentityCardTypeDeleter
 {
     private IdentityCardTypeRepository $repository;
-
     private IdentityCardTypeFinder $finder;
 
     public function __construct(

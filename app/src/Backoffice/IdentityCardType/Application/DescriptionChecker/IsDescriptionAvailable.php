@@ -2,14 +2,14 @@
 
 namespace App\Backoffice\IdentityCardType\Application\DescriptionChecker;
 
-use App\Backoffice\IdentityCardType\Domain\UniqueIdentityCardTypeDescriptionSpecification;
+use App\Backoffice\IdentityCardType\Domain\UniqueIdentityCardTypeDescriptionSpecification as UniqueDescriptionSpecification;
 
 final class IsDescriptionAvailable
 {
-    private UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification;
+    private UniqueDescriptionSpecification $uniqueDescriptionSpecification;
 
     public function __construct(
-        UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification
+        UniqueDescriptionSpecification $uniqueDescriptionSpecification
     ) {
         $this->uniqueDescriptionSpecification = $uniqueDescriptionSpecification;
     }

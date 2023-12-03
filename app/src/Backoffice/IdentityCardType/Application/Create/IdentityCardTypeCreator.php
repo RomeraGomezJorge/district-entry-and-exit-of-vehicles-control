@@ -4,19 +4,19 @@ namespace App\Backoffice\IdentityCardType\Application\Create;
 
 use App\Backoffice\IdentityCardType\Domain\IdentityCardType;
 use App\Backoffice\IdentityCardType\Domain\IdentityCardTypeRepository;
-use App\Backoffice\IdentityCardType\Domain\UniqueIdentityCardTypeDescriptionSpecification;
+use App\Backoffice\IdentityCardType\Domain\UniqueIdentityCardTypeDescriptionSpecification as UniqueDescriptionSpecification;
 use App\Shared\Domain\Bus\Event\EventBus;
 use App\Shared\Domain\ValueObject\Uuid;
 
 final class IdentityCardTypeCreator
 {
     private IdentityCardTypeRepository $repository;
-    private UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification;
+    private UniqueDescriptionSpecification $uniqueDescriptionSpecification;
     private EventBus $bus;
 
     public function __construct(
         IdentityCardTypeRepository $repository,
-        UniqueIdentityCardTypeDescriptionSpecification $uniqueDescriptionSpecification,
+        UniqueDescriptionSpecification $uniqueDescriptionSpecification,
         EventBus $bus
     ) {
         $this->repository                     = $repository;
