@@ -7,7 +7,7 @@ use App\Backoffice\VehicleMakerName\Domain\VehicleMakerName;
 use App\Backoffice\VehicleMakerName\Domain\VehicleMakerNameRepository;
 use App\Shared\Infrastructure\Utils\FilterUtilsForFieldThatNotBelongToAnEntity;
 
-final class FilterUtilsForModelOfVehicle
+final class FilterUtils
 {
     private const FIELDS_NAME_THAT_DOES_NOT_BELONG_TO_THE_ENTITY_IN_THE_FILTER_FORM = ['vehicleMakerName'];
     private VehicleMakerNameFinder $finderVehicleMakerName;
@@ -24,13 +24,15 @@ final class FilterUtilsForModelOfVehicle
             /* Verifica si en el arreglo de "$filtres" esta definido el campo  "$fieldName" */
             if (!FilterUtilsForFieldThatNotBelongToAnEntity::isDefineAsFilter($filters, $fieldName)) {
                 return null;
-            };
+            }
 
             /* Obtiene el valor asignado para el campo "$fieldName" en el arreglo "$filters" */
             $vehicleMakerNameId = FilterUtilsForFieldThatNotBelongToAnEntity::getValueFromFilters(
                 $filters,
                 $fieldName
             );
+
+            break;
         }
 
         /*En caso que el valor asignado en el campo "self::FIELD_NAME_IN_FILTERS_TO_VEHICLE_MAKER_NAME" sea un

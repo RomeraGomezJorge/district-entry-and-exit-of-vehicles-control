@@ -4,13 +4,16 @@ namespace App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web;
 
 use App\Backoffice\ModelOfVehicle\Application\Create\ModelOfVehicleCreator as Creator;
 use App\Shared\Infrastructure\Symfony\WebController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ModelOfVehiclePostController extends WebController
 {
-    public function __invoke(Request $request, Creator $creator): Response
-    {
+    public function __invoke(
+        Request $request,
+        Creator $creator
+    ): Response {
         $isCsrfTokenValid = $this->isCsrfTokenValid($request->get('id'), $request->get('csrf_token'));
 
         if (!$isCsrfTokenValid) {
@@ -24,7 +27,7 @@ class ModelOfVehiclePostController extends WebController
             : $this->create($request, $creator);
     }
 
-    private function create(Request $request, Creator $creator)
+    private function create(Request $request, Creator $creator): RedirectResponse
     {
         $creator->__invoke(
             $request->get('id'),

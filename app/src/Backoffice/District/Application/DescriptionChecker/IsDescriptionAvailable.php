@@ -2,13 +2,13 @@
 
 namespace App\Backoffice\District\Application\DescriptionChecker;
 
-use App\Backoffice\District\Domain\UniqueDistrictDescriptionSpecification;
+use App\Backoffice\District\Domain\UniqueDistrictDescriptionSpecification as UniqueDescriptionSpecification;
 
 final class IsDescriptionAvailable
 {
-    private UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification;
+    private UniqueDescriptionSpecification $uniqueDescriptionSpecification;
 
-    public function __construct(UniqueDistrictDescriptionSpecification $uniqueDescriptionSpecification)
+    public function __construct(UniqueDescriptionSpecification $uniqueDescriptionSpecification)
     {
         $this->uniqueDescriptionSpecification = $uniqueDescriptionSpecification;
     }

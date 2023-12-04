@@ -5,6 +5,7 @@ namespace App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web;
 use App\Backoffice\ModelOfVehicle\Application\Update\ModelOfVehicleUpdater as Updater;
 use App\Shared\Infrastructure\Constant\MessageConstant;
 use App\Shared\Infrastructure\Symfony\WebController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,7 +26,7 @@ class ModelOfVehiclePutController extends WebController
             : $this->update($request, $updater);
     }
 
-    private function update(Request $request, Updater $updater)
+    private function update(Request $request, Updater $updater): RedirectResponse
     {
         $updater->__invoke(
             $request->get('id'),

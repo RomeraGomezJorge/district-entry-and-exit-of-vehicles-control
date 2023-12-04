@@ -16,7 +16,8 @@ final class ValidationRulesToCreateAndUpdate
                 'description'        => [new Assert\NotBlank(), new Assert\Length(null, null, 100)],
                 'csrf_token'         => new Assert\NotBlank(),
                 'vehicleMakerNameId' => new Assert\Uuid(),
-                'vehicleBodyTypeId'  => new Assert\Uuid(),]
+                'vehicleBodyTypeId'  => new Assert\Uuid(),
+            ]
         );
 
         $input = $request->request->all();

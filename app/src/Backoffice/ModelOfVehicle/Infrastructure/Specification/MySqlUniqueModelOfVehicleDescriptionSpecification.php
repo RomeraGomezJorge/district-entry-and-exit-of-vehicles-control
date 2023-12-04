@@ -20,9 +20,6 @@ final class MySqlUniqueModelOfVehicleDescriptionSpecification implements UniqueM
         string $description,
         ?string $vehicleMakerNameId
     ): bool {
-        return !$this->repository->isDescriptionExits(
-            ['description' => $description],
-            $vehicleMakerNameId
-        );
+        return !$this->repository->isDescriptionExits($description,$vehicleMakerNameId);
     }
 }

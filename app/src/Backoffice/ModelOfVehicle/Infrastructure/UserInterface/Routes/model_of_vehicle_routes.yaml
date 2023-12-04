@@ -25,7 +25,7 @@ model_of_vehicle_update:
 
 model_of_vehicle_description_available:
   path: /description-available
-  defaults: { _controller: App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web\ModelOfVehicleDescriptionAvailableController}
+  defaults: { _controller: App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web\ModelOfVehicleDescriptionAvailabilityController}
   methods:  [GET]
 
 model_of_vehicle_delete:

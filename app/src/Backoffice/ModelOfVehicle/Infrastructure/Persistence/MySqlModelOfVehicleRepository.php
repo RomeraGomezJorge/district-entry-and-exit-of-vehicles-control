@@ -15,11 +15,11 @@ use Doctrine\Common\Collections\Criteria as DoctrineCriteria;
 
 final class MySqlModelOfVehicleRepository extends DoctrineRepository implements ModelOfVehicleRepository
 {
-    const NOT_SETTING_VALUE = null;
-    const ENTITY_CLASS = ModelOfVehicle::class;
-    const DESCRIPTION_IS_NOT_IN_USE = false;
-    const DESCRIPTION_HAS_ALREADY_BEEN_CREATED_FOR_THIS_VEHICLE_MAKER_NAME = true;
-    const NOT_FOUND = null;
+    private const NOT_SETTING_VALUE = null;
+    private const ENTITY_CLASS = ModelOfVehicle::class;
+    private const DESCRIPTION_IS_NOT_IN_USE = false;
+    private const DESCRIPTION_HAS_ALREADY_BEEN_CREATED_FOR_THIS_VEHICLE_MAKER_NAME = true;
+    private const NOT_FOUND = null;
     private ?int $totalMatchingRows = null;
 
     public function save(ModelOfVehicle $district): void
@@ -38,16 +38,16 @@ final class MySqlModelOfVehicleRepository extends DoctrineRepository implements 
     }
 
     public function isDescriptionExits(
-        array $descriptionToFind,
+        string $description,
         ?string $makerNameId
     ): bool {
-        $modelsOfVehicleFound = $this->repository(self::ENTITY_CLASS)->findBy($descriptionToFind);
+        $modelsOfVehicle = $this->repository(self::ENTITY_CLASS)->findBy(['description' => $description]);
 
-        if (!$this->isDescriptionWasFound($modelsOfVehicleFound)) {
+        if (!$this->isDescriptionWasFound($modelsOfVehicle)) {
             return self::DESCRIPTION_IS_NOT_IN_USE;
         }
 
-        return $this->isDescriptionOfModelAlreadyCreatedToAVehicleMakerName($makerNameId, $modelsOfVehicleFound);
+        return $this->isModelDescriptionCreatedForMaker($makerNameId, $modelsOfVehicle);
     }
 
     private function isDescriptionWasFound(array $modelsOfVehicleFound): bool
@@ -55,16 +55,13 @@ final class MySqlModelOfVehicleRepository extends DoctrineRepository implements 
         return !empty($modelsOfVehicleFound);
     }
 
-    /* TODO mejorar el naming */
-    private function isDescriptionOfModelAlreadyCreatedToAVehicleMakerName(
-        ?string $makerNameId,
-        array $modelsOfVehicleFound
-    ): bool {
-        foreach ($modelsOfVehicleFound as $modelOfVehicleFound) {
+    private function isModelDescriptionCreatedForMaker(?string $makerNameId,array $modelsOfVehicle): bool
+    {
+        foreach ($modelsOfVehicle as $modelOfVehicle) {
             if (
                 !StringUtils::equals(
                     $makerNameId,
-                    $modelOfVehicleFound->getVehicleMakerName()->getId()
+                    $modelOfVehicle->getVehicleMakerName()->getId()
                 )
             ) {
                 continue;

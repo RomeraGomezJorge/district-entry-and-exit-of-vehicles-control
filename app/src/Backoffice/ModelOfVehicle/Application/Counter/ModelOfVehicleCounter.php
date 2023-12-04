@@ -2,7 +2,7 @@
 
 namespace App\Backoffice\ModelOfVehicle\Application\Counter;
 
-use App\Backoffice\ModelOfVehicle\Application\Shared\FilterUtilsForModelOfVehicle;
+use App\Backoffice\ModelOfVehicle\Application\Shared\FilterUtils;
 use App\Backoffice\ModelOfVehicle\Domain\ModelOfVehicleRepository;
 use App\Shared\Domain\Criteria\Criteria;
 use App\Shared\Domain\Criteria\Filters;
@@ -11,9 +11,9 @@ use App\Shared\Domain\Criteria\Order;
 final class ModelOfVehicleCounter
 {
     private ModelOfVehicleRepository $repository;
-    private FilterUtilsForModelOfVehicle $filterUtils;
+    private FilterUtils $filterUtils;
 
-    public function __construct(ModelOfVehicleRepository $repository, FilterUtilsForModelOfVehicle $filterUtils)
+    public function __construct(ModelOfVehicleRepository $repository, FilterUtils $filterUtils)
     {
         $this->repository  = $repository;
         $this->filterUtils = $filterUtils;

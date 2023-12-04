@@ -30,11 +30,12 @@ class ModelOfVehicleGetController extends WebController
         ModelOfVehicleCounter $counter,
         VehicleMakersNameByCriteriaSearcher $vehicleMakersNameByCriteriaSearcher
     ): Response {
-        $orderBy = $request->get('orderBy');
-        $order   = $request->get('order');
-        $page    = $request->get('page');
-        $limit   = $request->get('limit');
-        $filters = FilterUtils::createAnArrayToUseAsAFilter($request->get('filters'));
+        $orderBy           = $request->get('orderBy');
+        $order             = $request->get('order');
+        $page              = $request->get('page');
+        $limit             = $request->get('limit');
+        $filters           = FilterUtils::createAnArrayToUseAsAFilter($request->get('filters'));
+        $vehicleMakersName = $this->getVehicleMarkersNameSortAlphabetically($vehicleMakersNameByCriteriaSearcher);
 
         $modelsOfVehicle = $itemsByCriteriaSearcher->__invoke(
             $filters,
@@ -54,7 +55,7 @@ class ModelOfVehicleGetController extends WebController
 
         $totalNumberOfPages = TotalNumberOfPagesUtil::calculate($page, $limit, $totalItem);
 
-        $vehicleMakersName = $this->getVehicleMarkersNameSortAlphabetically($vehicleMakersNameByCriteriaSearcher);
+
 
         return $this->render(
             TwigTemplateConstants::LIST_FILE_PATH,

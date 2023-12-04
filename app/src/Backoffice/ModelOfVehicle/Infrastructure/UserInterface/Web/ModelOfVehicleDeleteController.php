@@ -10,8 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ModelOfVehicleDeleteController extends WebController
 {
-    public function __invoke(Request $request, Deleter $deleter): JsonResponse
-    {
+    public function __invoke(
+        Request $request,
+        Deleter $deleter
+    ): JsonResponse {
         $isCsrfTokenValid = $this->isCsrfTokenValid($request->get('id'), $request->get('csrf_token'));
 
         if (!$isCsrfTokenValid) {
