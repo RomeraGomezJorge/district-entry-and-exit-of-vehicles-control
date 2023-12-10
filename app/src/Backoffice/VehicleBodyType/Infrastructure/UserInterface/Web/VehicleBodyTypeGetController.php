@@ -23,13 +23,9 @@ class VehicleBodyTypeGetController extends WebController
         VehicleBodyTypeCounter $counter
     ): Response {
         $orderBy = $request->get('orderBy');
-
-        $order = $request->get('order');
-
-        $page = $request->get('page');
-
-        $limit = $request->get('limit');
-
+        $order   = $request->get('order');
+        $page    = $request->get('page');
+        $limit   = $request->get('limit');
         $filters = FilterUtils::createAnArrayToUseAsAFilter($request->get('filters'));
 
         $vehicleBodyTypes = $itemsByCriteriaSearcher->__invoke(

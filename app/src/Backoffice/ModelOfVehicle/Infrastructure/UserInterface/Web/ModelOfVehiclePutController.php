@@ -3,7 +3,6 @@
 namespace App\Backoffice\ModelOfVehicle\Infrastructure\UserInterface\Web;
 
 use App\Backoffice\ModelOfVehicle\Application\Update\ModelOfVehicleUpdater as Updater;
-use App\Shared\Infrastructure\Constant\MessageConstant;
 use App\Shared\Infrastructure\Symfony\WebController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

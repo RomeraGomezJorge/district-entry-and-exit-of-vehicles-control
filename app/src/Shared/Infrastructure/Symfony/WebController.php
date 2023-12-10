@@ -30,7 +30,7 @@ abstract class WebController extends AbstractController
 
     public function redirectOnInvalidCsrfToken(): RedirectResponse
     {
-        return $this->redirectWithMessage('error_page', MessageConstant::INVALID_TOKEN_CSFR_MESSAGE);
+        return $this->redirectOnInvalidCsrfToken();
     }
 
     public function redirectWithErrors(

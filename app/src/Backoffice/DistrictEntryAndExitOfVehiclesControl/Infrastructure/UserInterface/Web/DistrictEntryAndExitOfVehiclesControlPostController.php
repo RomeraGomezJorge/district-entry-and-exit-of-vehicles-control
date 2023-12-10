@@ -17,7 +17,7 @@ class DistrictEntryAndExitOfVehiclesControlPostController extends WebController
         $isCsrfTokenValid = $this->isCsrfTokenValid($request->get('id'), $request->get('csrf_token'));
 
         if (!$isCsrfTokenValid) {
-            return $this->redirectWithMessage('error_page', MessageConstant::INVALID_TOKEN_CSFR_MESSAGE);
+            return $this->redirectOnInvalidCsrfToken();
         }
 
         $validationErrors = ValidationRulesToCreateAndUpdate::verify($request);
@@ -44,9 +44,6 @@ class DistrictEntryAndExitOfVehiclesControlPostController extends WebController
             $request->get('vehicle_passenger')
         );
 
-        return $this->redirectWithMessage(
-            TwigTemplateConstants::LIST_PATH,
-            MessageConstant::SUCCESS_MESSAGE_TO_CREATE
-        );
+        return $this->redirectWithSuccessCreateMessage(TwigTemplateConstants::LIST_PATH);
     }
 }
