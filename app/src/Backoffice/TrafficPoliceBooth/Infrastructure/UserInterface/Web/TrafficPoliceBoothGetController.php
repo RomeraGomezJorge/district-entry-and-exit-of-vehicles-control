@@ -17,21 +17,32 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TrafficPoliceBoothGetController extends WebController
 {
-    public function __invoke(Request $request, TrafficPoliceBoothsByCriteriaSearcher $itemsByCriteriaSearcher, TrafficPoliceBoothCounter $counter): Response
-    {
+    public function __invoke(
+        Request $request,
+        TrafficPoliceBoothsByCriteriaSearcher $itemsByCriteriaSearcher,
+        TrafficPoliceBoothCounter $counter
+    ): Response {
         $orderBy = $request->get('orderBy');
-
-        $order = $request->get('order');
-
-        $page = $request->get('page');
-
-        $limit = $request->get('limit');
-
+        $order   = $request->get('order');
+        $page    = $request->get('page');
+        $limit   = $request->get('limit');
         $filters = FilterUtils::createAnArrayToUseAsAFilter($request->get('filters'));
 
-        $trafficPoliceBooths = $itemsByCriteriaSearcher->__invoke($filters, $order, $orderBy, $limit, OffsetPaginationUtil::calculate($limit, $page));
+        $trafficPoliceBooths = $itemsByCriteriaSearcher->__invoke(
+            $filters,
+            $order,
+            $orderBy,
+            $limit,
+            OffsetPaginationUtil::calculate($limit, $page)
+        );
 
-        $totalItem = $counter->__invoke($filters, $order, $orderBy, $limit, OffsetPaginationUtil::calculate($limit, $page));
+        $totalItem = $counter->__invoke(
+            $filters,
+            $order,
+            $orderBy,
+            $limit,
+            OffsetPaginationUtil::calculate($limit, $page)
+        );
 
         $totalNumberOfPages = TotalNumberOfPagesUtil::calculate($page, $limit, $totalItem);
 

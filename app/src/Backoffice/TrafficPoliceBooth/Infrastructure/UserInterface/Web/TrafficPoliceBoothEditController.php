@@ -2,7 +2,7 @@
 
 namespace App\Backoffice\TrafficPoliceBooth\Infrastructure\UserInterface\Web;
 
-use App\Backoffice\TrafficPoliceBooth\Application\Find\TrafficPoliceBoothFinder;
+use App\Backoffice\TrafficPoliceBooth\Application\Find\TrafficPoliceBoothFinder as Finder;
 use App\Shared\Infrastructure\Constant\FormConstant;
 use App\Shared\Infrastructure\Symfony\WebController;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TrafficPoliceBoothEditController extends WebController
 {
-    public function __invoke(Request $request, TrafficPoliceBoothFinder $finder): Response
+    public function __invoke(Request $request, Finder $finder): Response
     {
         $trafficPoliceBooth = $finder->__invoke($request->get('id'));
 
